@@ -1,0 +1,696 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Чёткий лист — улучшение рабочих листов</title>
+<style>
+  :root {
+    --ink: #1f3a6e;
+    --paper: #fdf6ec;
+    --red: #e07b39;
+    --rule: #eeddc4;
+    --muted: #6b6154;
+    --faint: #a3927c;
+  }
+  * { box-sizing: border-box; }
+  body {
+    margin: 0; min-height: 100vh;
+    background: var(--paper);
+    font-family: 'Trebuchet MS', Verdana, sans-serif;
+    color: var(--ink);
+  }
+  header {
+    border-bottom: 3px double var(--ink);
+    padding: 28px 24px 20px;
+    position: relative;
+  }
+  header::before {
+    content: ""; position: absolute; left: 0; top: 0; bottom: -3px;
+    width: 3px; background: var(--red); opacity: .6;
+  }
+  .head-inner {
+    max-width: 1200px; margin: 0 auto;
+    display: flex; align-items: baseline; gap: 16px; flex-wrap: wrap;
+  }
+  h1 {
+    font-family: Georgia, 'Times New Roman', serif;
+    font-size: 34px; margin: 0; letter-spacing: -0.5px;
+  }
+  .subtitle { margin: 0; font-size: 14px; color: var(--muted); }
+  main { max-width: 1200px; margin: 0 auto; padding: 24px 24px 60px; }
+
+  #dropzone {
+    border: 2px dashed var(--ink); border-radius: 4px;
+    background: #fff;
+    background-image: repeating-linear-gradient(transparent, transparent 27px, var(--rule) 28px);
+    padding: 72px 24px; text-align: center; cursor: pointer;
+    transition: background .15s, border-color .15s;
+  }
+  #dropzone.over { border-color: var(--red); background-color: #fff5f3; }
+  #dropzone .big {
+    font-family: Georgia, serif; font-size: 22px; margin-bottom: 8px;
+  }
+  #dropzone .small { font-size: 14px; color: var(--muted); }
+
+  .layout { display: flex; gap: 24px; align-items: flex-start; flex-wrap: wrap; }
+  aside { flex: 0 0 280px; min-width: 260px; }
+  .panel {
+    background: #fff; border: 1px solid var(--rule);
+    border-radius: 4px; padding: 18px;
+  }
+  .panel + .panel { margin-top: 14px; }
+  .eyebrow {
+    font-size: 11px; letter-spacing: 1.5px; text-transform: uppercase;
+    color: var(--red); margin-bottom: 10px;
+  }
+  .preset {
+    display: block; width: 100%; text-align: left;
+    padding: 10px 12px; margin-bottom: 6px; border-radius: 3px;
+    border: 1px solid var(--rule); background: transparent; color: var(--ink);
+    cursor: pointer; font-family: inherit; font-size: 14px;
+  }
+  .preset.active { border-color: var(--ink); background: var(--ink); color: #fff; }
+  .preset b { display: block; }
+  .preset span { font-size: 12px; opacity: .75; }
+
+  .slider-row { margin-bottom: 10px; }
+  .slider-row .top {
+    display: flex; justify-content: space-between;
+    font-size: 13px; margin-bottom: 3px;
+  }
+  .slider-row .top b { font-weight: 700; }
+  input[type=range] { width: 100%; accent-color: var(--ink); }
+  label.check {
+    display: flex; align-items: center; gap: 8px;
+    font-size: 14px; margin: 14px 0 6px; cursor: pointer;
+  }
+
+  button.primary {
+    width: 100%; padding: 13px;
+    background: var(--red); color: #fff; border: none; border-radius: 3px;
+    font-family: inherit; font-size: 15px; font-weight: 700; cursor: pointer;
+  }
+  button.secondary {
+    width: 100%; margin-top: 8px; padding: 11px;
+    background: transparent; color: var(--ink);
+    border: 1px solid var(--ink); border-radius: 3px;
+    font-family: inherit; font-size: 14px; font-weight: 700; cursor: pointer;
+  }
+  button.ghost {
+    flex: 1; padding: 10px;
+    background: transparent; color: var(--muted);
+    border: 1px solid var(--rule); border-radius: 3px;
+    font-family: inherit; font-size: 13px; cursor: pointer;
+  }
+  button:disabled { opacity: .5; cursor: default; }
+  .btn-row { display: flex; gap: 8px; margin-top: 8px; }
+
+  .work { flex: 1 1 480px; min-width: 300px; }
+  #thumbs {
+    display: flex; gap: 10px; overflow-x: auto;
+    padding-bottom: 10px; margin-bottom: 14px;
+  }
+  .thumb {
+    flex: 0 0 auto; width: 96px; cursor: pointer; position: relative;
+    border: 2px solid var(--rule); border-radius: 4px;
+    background: #fff; padding: 4px;
+  }
+  .thumb.selected { border-color: var(--red); }
+  .thumb img {
+    width: 100%; height: 68px; object-fit: cover;
+    display: block; border-radius: 2px;
+  }
+  .thumb .name {
+    font-size: 10px; margin-top: 4px;
+    white-space: nowrap; overflow: hidden; text-overflow: ellipsis;
+  }
+  .thumb .st { font-size: 10px; font-weight: 700; color: var(--faint); }
+  .thumb .st.done { color: #2e7d4f; }
+  .thumb .st.working { color: var(--red); }
+  .thumb .rm {
+    position: absolute; top: -8px; right: -8px;
+    width: 20px; height: 20px; border-radius: 50%;
+    background: var(--ink); color: #fff; border: none;
+    font-size: 11px; line-height: 20px; cursor: pointer; padding: 0;
+  }
+
+  .meta {
+    display: flex; justify-content: space-between;
+    font-size: 12px; color: var(--muted); margin-bottom: 8px;
+  }
+  #compare {
+    position: relative; user-select: none; cursor: ew-resize;
+    border: 1px solid var(--rule); border-radius: 4px; overflow: hidden;
+    background: #fff; box-shadow: 0 4px 16px rgba(30,58,95,.08);
+    touch-action: none;
+  }
+  #compare img { display: block; width: 100%; }
+  #afterWrap { position: absolute; inset: 0; }
+  #afterWrap img { width: 100%; height: 100%; object-fit: fill; }
+  #divider {
+    position: absolute; top: 0; bottom: 0; width: 2px;
+    background: var(--red); transform: translateX(-1px);
+  }
+  #divider .knob {
+    position: absolute; top: 50%; left: 50%;
+    transform: translate(-50%, -50%);
+    width: 34px; height: 34px; border-radius: 50%;
+    background: var(--red); color: #fff;
+    display: flex; align-items: center; justify-content: center;
+    font-size: 14px; box-shadow: 0 2px 8px rgba(0,0,0,.25);
+  }
+  #busyOverlay {
+    position: absolute; inset: 0; background: rgba(251,250,246,.55);
+    display: flex; align-items: center; justify-content: center;
+    font-family: Georgia, serif; font-size: 18px; color: var(--ink);
+  }
+  .under {
+    display: flex; justify-content: space-between; align-items: center;
+    margin-top: 10px; gap: 12px; flex-wrap: wrap;
+  }
+  .under p {
+    font-size: 12px; color: var(--faint); margin: 0;
+    line-height: 1.5; flex: 1 1 300px;
+  }
+  .under button {
+    padding: 9px 14px; background: transparent; color: var(--ink);
+    border: 1px solid var(--ink); border-radius: 3px;
+    font-family: inherit; font-size: 13px; font-weight: 700; cursor: pointer;
+  }
+  .hidden { display: none !important; }
+</style>
+</head>
+<body>
+
+<header>
+  <div class="head-inner">
+    <h1>Чёткий лист</h1>
+    <p class="subtitle">Пакетное улучшение рабочих листов из ChatGPT + сборка в PDF для печати — всё в браузере</p>
+  </div>
+</header>
+
+<main>
+  <div id="dropzone">
+    <div class="big">Перетащите один или несколько листов сюда</div>
+    <div class="small">или нажмите, чтобы выбрать файлы — PNG, JPG, WEBP. Каждый лист станет страницей PDF</div>
+  </div>
+  <input type="file" id="fileInput" accept="image/*" multiple class="hidden">
+
+  <div class="layout hidden" id="app">
+    <aside>
+      <div class="panel">
+        <div class="eyebrow">Режим · применяется ко всем листам</div>
+        <div id="presets"></div>
+        <div class="eyebrow" style="margin-top:18px">Тонкая настройка</div>
+        <div id="sliders"></div>
+        <label class="check">
+          <input type="checkbox" id="thresholdCb"> Режим документа (чёрное на белом)
+        </label>
+        <div class="slider-row" id="thresholdRow">
+          <div class="top"><span>Толщина текста</span><b id="thresholdLevelVal"></b></div>
+          <input type="range" id="thresholdLevel" min="0" max="100" step="1">
+        </div>
+        <label class="check" id="grayRow" style="margin-top:6px">
+          <input type="checkbox" id="grayscaleCb"> Чёрно-белый
+        </label>
+      </div>
+
+      <div class="panel">
+        <div class="eyebrow" id="exportStatus">Экспорт</div>
+        <button class="primary" id="pdfBtn">Скачать PDF для печати</button>
+        <button class="secondary" id="allPngBtn">Скачать все PNG по отдельности</button>
+        <div class="btn-row">
+          <button class="ghost" id="addBtn">+ Добавить листы</button>
+          <button class="ghost" id="clearBtn">Очистить всё</button>
+        </div>
+      </div>
+    </aside>
+
+    <section class="work">
+      <div id="thumbs"></div>
+      <div class="meta">
+        <span id="metaBefore"></span>
+        <span id="metaAfter"></span>
+      </div>
+      <div id="compare">
+        <img id="beforeImg" alt="Оригинал" draggable="false">
+        <div id="afterWrap"><img id="afterImg" alt="Улучшенное" draggable="false"></div>
+        <div id="divider"><div class="knob">⇄</div></div>
+        <div id="busyOverlay" class="hidden">Обрабатываю…</div>
+      </div>
+      <div class="under">
+        <p>Все вычисления идут локально в браузере — изображения никуда не отправляются.
+           В PDF каждый лист становится страницей A4 с полями, по центру.</p>
+        <button id="onePngBtn">Скачать этот лист PNG</button>
+      </div>
+    </section>
+  </div>
+</main>
+
+<script>
+"use strict";
+
+// ── Настройки и пресеты ─────────────────────────────────────
+const PRESETS = {
+  print:  { label: "Для печати",  hint: "Чёткий чёрный текст на белом — как скан",
+            scale: 2, sharpen: 65, contrast: 40, brightness: 8,  threshold: true,  thresholdLevel: 55, grayscale: true },
+  screen: { label: "Для экрана",  hint: "Мягкое улучшение, цвета сохраняются",
+            scale: 2, sharpen: 45, contrast: 22, brightness: 5,  threshold: false, thresholdLevel: 50, grayscale: false },
+  soft:   { label: "Деликатный",  hint: "Лёгкая резкость без изменения тонов",
+            scale: 2, sharpen: 25, contrast: 8,  brightness: 0,  threshold: false, thresholdLevel: 50, grayscale: false },
+};
+const SLIDERS = [
+  { key: "scale",      label: "Увеличение", min: 1,   max: 3,   step: 0.5, fmt: v => v + "×" },
+  { key: "sharpen",    label: "Резкость",   min: 0,   max: 100, step: 1 },
+  { key: "contrast",   label: "Контраст",   min: -50, max: 100, step: 1 },
+  { key: "brightness", label: "Яркость",    min: -50, max: 50,  step: 1 },
+];
+
+let settings = { ...PRESETS.print };
+let activePreset = "print";
+let items = [];          // {id, name, img, resultUrl, outW, outH, status}
+let selectedId = null;
+let nextId = 1;
+let jobToken = 0;
+let split = 50;
+
+const clamp = (v, lo, hi) => v < lo ? lo : v > hi ? hi : v;
+const $ = id => document.getElementById(id);
+const STATUS_LABEL = { queued: "в очереди", working: "обработка…", done: "готово" };
+
+// ── Пиксельные операции ─────────────────────────────────────
+function applySharpen(d, amount) {
+  if (amount <= 0) return d;
+  const { data, width, height } = d;
+  const src = new Uint8ClampedArray(data);
+  const k = amount / 100, center = 1 + 4 * k, side = -k;
+  for (let y = 1; y < height - 1; y++)
+    for (let x = 1; x < width - 1; x++) {
+      const i = (y * width + x) * 4;
+      for (let c = 0; c < 3; c++) {
+        data[i + c] = clamp(
+          src[i + c] * center + src[i + c - 4] * side + src[i + c + 4] * side +
+          src[i + c - width * 4] * side + src[i + c + width * 4] * side, 0, 255);
+      }
+    }
+  return d;
+}
+
+function applyTone(d, contrast, brightness, grayscale) {
+  const { data } = d;
+  const c = (contrast / 100) * 128;
+  const factor = (259 * (c + 255)) / (255 * (259 - c));
+  const b = (brightness / 100) * 100;
+  for (let i = 0; i < data.length; i += 4) {
+    let r = data[i], g = data[i + 1], bl = data[i + 2];
+    if (grayscale) { const l = .299 * r + .587 * g + .114 * bl; r = g = bl = l; }
+    data[i]     = clamp(factor * (r  - 128) + 128 + b, 0, 255);
+    data[i + 1] = clamp(factor * (g  - 128) + 128 + b, 0, 255);
+    data[i + 2] = clamp(factor * (bl - 128) + 128 + b, 0, 255);
+  }
+  return d;
+}
+
+function applyAdaptiveThreshold(d, level) {
+  const { data, width, height } = d;
+  const gray = new Float32Array(width * height);
+  for (let i = 0, p = 0; i < data.length; i += 4, p++)
+    gray[p] = .299 * data[i] + .587 * data[i + 1] + .114 * data[i + 2];
+  const integral = new Float64Array((width + 1) * (height + 1));
+  for (let y = 0; y < height; y++) {
+    let rowSum = 0;
+    for (let x = 0; x < width; x++) {
+      rowSum += gray[y * width + x];
+      integral[(y + 1) * (width + 1) + (x + 1)] = integral[y * (width + 1) + (x + 1)] + rowSum;
+    }
+  }
+  const win = Math.max(15, Math.floor(Math.min(width, height) / 16)) | 1;
+  const half = win >> 1;
+  const bias = .85 + (level / 100) * .25;
+  for (let y = 0; y < height; y++) {
+    const y1 = Math.max(0, y - half), y2 = Math.min(height - 1, y + half);
+    for (let x = 0; x < width; x++) {
+      const x1 = Math.max(0, x - half), x2 = Math.min(width - 1, x + half);
+      const count = (x2 - x1 + 1) * (y2 - y1 + 1);
+      const sum = integral[(y2 + 1) * (width + 1) + (x2 + 1)] - integral[y1 * (width + 1) + (x2 + 1)]
+                - integral[(y2 + 1) * (width + 1) + x1] + integral[y1 * (width + 1) + x1];
+      const p = y * width + x;
+      const v = gray[p] < (sum / count) * bias ? 0 : 255;
+      const i = p * 4;
+      data[i] = data[i + 1] = data[i + 2] = v;
+    }
+  }
+  return d;
+}
+
+function processImage(img, s) {
+  const maxDim = 4200;
+  let scale = s.scale;
+  if (Math.max(img.width, img.height) * scale > maxDim)
+    scale = maxDim / Math.max(img.width, img.height);
+  const w = Math.round(img.width * scale), h = Math.round(img.height * scale);
+  const canvas = document.createElement("canvas");
+  canvas.width = w; canvas.height = h;
+  const ctx = canvas.getContext("2d", { willReadFrequently: true });
+  ctx.imageSmoothingEnabled = true;
+  ctx.imageSmoothingQuality = "high";
+  ctx.drawImage(img, 0, 0, w, h);
+  let d = ctx.getImageData(0, 0, w, h);
+  d = applySharpen(d, s.sharpen);
+  d = applyTone(d, s.contrast, s.brightness, s.grayscale && !s.threshold);
+  if (s.threshold) d = applyAdaptiveThreshold(d, s.thresholdLevel);
+  ctx.putImageData(d, 0, 0);
+  return canvas;
+}
+
+// ── Минимальный генератор PDF (A4, JPEG-страницы) ──────────
+function buildPdf(pages) {
+  const enc = new TextEncoder();
+  const chunks = [];
+  let offset = 0;
+  const objOffsets = {};
+  const push = data => {
+    const u8 = typeof data === "string" ? enc.encode(data) : data;
+    chunks.push(u8); offset += u8.length;
+  };
+  const beginObj = num => { objOffsets[num] = offset; push(num + " 0 obj\n"); };
+  const endObj = () => push("endobj\n");
+
+  push("%PDF-1.4\n");
+  const n = pages.length;
+  beginObj(1); push("<< /Type /Catalog /Pages 2 0 R >>\n"); endObj();
+  const kids = pages.map((_, i) => (3 + i * 3) + " 0 R").join(" ");
+  beginObj(2); push("<< /Type /Pages /Kids [" + kids + "] /Count " + n + " >>\n"); endObj();
+
+  const A4W = 595.28, A4H = 841.89, M = 24;
+  pages.forEach((p, i) => {
+    const pageNum = 3 + i * 3, contNum = pageNum + 1, imgNum = pageNum + 2;
+    const s = Math.min((A4W - 2 * M) / p.w, (A4H - 2 * M) / p.h);
+    const w = p.w * s, h = p.h * s;
+    const x = (A4W - w) / 2, y = (A4H - h) / 2;
+
+    beginObj(pageNum);
+    push("<< /Type /Page /Parent 2 0 R /MediaBox [0 0 " + A4W + " " + A4H +
+         "] /Resources << /XObject << /Im" + i + " " + imgNum +
+         " 0 R >> >> /Contents " + contNum + " 0 R >>\n");
+    endObj();
+
+    const content = "q " + w.toFixed(2) + " 0 0 " + h.toFixed(2) + " " +
+                    x.toFixed(2) + " " + y.toFixed(2) + " cm /Im" + i + " Do Q\n";
+    beginObj(contNum);
+    push("<< /Length " + content.length + " >>\nstream\n" + content + "endstream\n");
+    endObj();
+
+    beginObj(imgNum);
+    push("<< /Type /XObject /Subtype /Image /Width " + p.w + " /Height " + p.h +
+         " /ColorSpace /DeviceRGB /BitsPerComponent 8 /Filter /DCTDecode /Length " +
+         p.bytes.length + " >>\nstream\n");
+    push(p.bytes);
+    push("\nendstream\n");
+    endObj();
+  });
+
+  const total = 2 + n * 3;
+  const xrefOffset = offset;
+  push("xref\n0 " + (total + 1) + "\n0000000000 65535 f \n");
+  for (let i = 1; i <= total; i++)
+    push(String(objOffsets[i]).padStart(10, "0") + " 00000 n \n");
+  push("trailer\n<< /Size " + (total + 1) + " /Root 1 0 R >>\nstartxref\n" + xrefOffset + "\n%%EOF");
+  return new Blob(chunks, { type: "application/pdf" });
+}
+
+function dataUrlToBytes(dataUrl) {
+  const bin = atob(dataUrl.split(",")[1]);
+  const bytes = new Uint8Array(bin.length);
+  for (let i = 0; i < bin.length; i++) bytes[i] = bin.charCodeAt(i);
+  return bytes;
+}
+
+// ── UI: пресеты и слайдеры ──────────────────────────────────
+function renderPresets() {
+  const box = $("presets");
+  box.innerHTML = "";
+  for (const [key, p] of Object.entries(PRESETS)) {
+    const btn = document.createElement("button");
+    btn.className = "preset" + (activePreset === key ? " active" : "");
+    btn.innerHTML = "<b>" + p.label + "</b><span>" + p.hint + "</span>";
+    btn.onclick = () => {
+      activePreset = key;
+      settings = { ...PRESETS[key] };
+      renderPresets(); syncControls(); reprocessAll();
+    };
+    box.appendChild(btn);
+  }
+}
+
+function renderSliders() {
+  const box = $("sliders");
+  box.innerHTML = "";
+  SLIDERS.forEach(s => {
+    const row = document.createElement("div");
+    row.className = "slider-row";
+    row.innerHTML =
+      '<div class="top"><span>' + s.label + '</span><b id="val_' + s.key + '"></b></div>' +
+      '<input type="range" id="in_' + s.key + '" min="' + s.min + '" max="' + s.max + '" step="' + s.step + '">';
+    box.appendChild(row);
+    const input = row.querySelector("input");
+    input.addEventListener("input", () => {
+      settings[s.key] = parseFloat(input.value);
+      activePreset = "custom";
+      renderPresets(); syncControls();
+    });
+    input.addEventListener("change", reprocessAll);
+  });
+}
+
+function syncControls() {
+  SLIDERS.forEach(s => {
+    $("in_" + s.key).value = settings[s.key];
+    $("val_" + s.key).textContent = s.fmt ? s.fmt(settings[s.key]) : settings[s.key];
+  });
+  $("thresholdCb").checked = settings.threshold;
+  $("thresholdLevel").value = settings.thresholdLevel;
+  $("thresholdLevelVal").textContent = settings.thresholdLevel;
+  $("grayscaleCb").checked = settings.grayscale;
+  $("thresholdRow").classList.toggle("hidden", !settings.threshold);
+  $("grayRow").classList.toggle("hidden", settings.threshold);
+}
+
+$("thresholdCb").addEventListener("change", e => {
+  settings.threshold = e.target.checked;
+  activePreset = "custom";
+  renderPresets(); syncControls(); reprocessAll();
+});
+$("thresholdLevel").addEventListener("input", e => {
+  settings.thresholdLevel = parseInt(e.target.value, 10);
+  $("thresholdLevelVal").textContent = settings.thresholdLevel;
+  activePreset = "custom"; renderPresets();
+});
+$("thresholdLevel").addEventListener("change", reprocessAll);
+$("grayscaleCb").addEventListener("change", e => {
+  settings.grayscale = e.target.checked;
+  activePreset = "custom";
+  renderPresets(); reprocessAll();
+});
+
+// ── Загрузка файлов ─────────────────────────────────────────
+const dropzone = $("dropzone"), fileInput = $("fileInput");
+dropzone.onclick = () => fileInput.click();
+dropzone.ondragover = e => { e.preventDefault(); dropzone.classList.add("over"); };
+dropzone.ondragleave = () => dropzone.classList.remove("over");
+dropzone.ondrop = e => { e.preventDefault(); dropzone.classList.remove("over"); loadFiles(e.dataTransfer.files); };
+fileInput.onchange = e => { loadFiles(e.target.files); e.target.value = ""; };
+$("addBtn").onclick = () => fileInput.click();
+
+function loadFiles(fileList) {
+  const files = Array.from(fileList || []).filter(f => f.type.startsWith("image/"));
+  let pending = files.length;
+  if (!pending) return;
+  files.forEach(file => {
+    const img = new Image();
+    img.onload = () => {
+      const item = { id: nextId++, name: file.name, img, resultUrl: null, outW: 0, outH: 0, status: "queued" };
+      items.push(item);
+      if (selectedId === null) selectedId = item.id;
+      if (--pending === 0) { updateVisibility(); renderThumbs(); reprocessAll(); }
+    };
+    img.src = URL.createObjectURL(file);
+  });
+}
+
+function updateVisibility() {
+  const has = items.length > 0;
+  dropzone.classList.toggle("hidden", has);
+  $("app").classList.toggle("hidden", !has);
+}
+
+// ── Пакетная обработка ──────────────────────────────────────
+async function reprocessAll() {
+  const token = ++jobToken;
+  items.forEach(it => it.status = "queued");
+  renderThumbs(); renderExport(); renderCompare();
+  for (const item of [...items]) {
+    if (token !== jobToken) return;
+    if (!items.includes(item)) continue;
+    item.status = "working";
+    renderThumbs(); renderCompare();
+    await new Promise(r => setTimeout(r, 30));
+    if (token !== jobToken) return;
+    const canvas = processImage(item.img, settings);
+    const blob = await new Promise(res => canvas.toBlob(res, "image/png"));
+    if (token !== jobToken || !blob) return;
+    if (item.resultUrl) URL.revokeObjectURL(item.resultUrl);
+    item.resultUrl = URL.createObjectURL(blob);
+    item.outW = canvas.width; item.outH = canvas.height;
+    item.status = "done";
+    renderThumbs(); renderExport(); renderCompare();
+  }
+}
+
+// ── Рендер: миниатюры, сравнение, экспорт ───────────────────
+function selectedItem() {
+  return items.find(it => it.id === selectedId) || items[0] || null;
+}
+
+function renderThumbs() {
+  const box = $("thumbs");
+  box.innerHTML = "";
+  items.forEach((it, idx) => {
+    const div = document.createElement("div");
+    div.className = "thumb" + (selectedItem() && selectedItem().id === it.id ? " selected" : "");
+    div.innerHTML =
+      '<img src="' + (it.resultUrl || it.img.src) + '" alt="">' +
+      '<div class="name">' + (idx + 1) + '. ' + it.name + '</div>' +
+      '<div class="st ' + it.status + '">' + STATUS_LABEL[it.status] + '</div>' +
+      '<button class="rm" title="Убрать лист">×</button>';
+    div.onclick = () => { selectedId = it.id; renderThumbs(); renderCompare(); };
+    div.querySelector(".rm").onclick = e => {
+      e.stopPropagation();
+      if (it.resultUrl) URL.revokeObjectURL(it.resultUrl);
+      items = items.filter(x => x.id !== it.id);
+      if (selectedId === it.id) selectedId = items.length ? items[0].id : null;
+      updateVisibility(); renderThumbs(); renderExport(); renderCompare();
+    };
+    box.appendChild(div);
+  });
+}
+
+function renderCompare() {
+  const it = selectedItem();
+  if (!it) return;
+  $("beforeImg").src = it.img.src;
+  $("metaBefore").textContent = "До · " + it.img.width + "×" + it.img.height;
+  if (it.status === "done" && it.resultUrl) {
+    $("afterImg").src = it.resultUrl;
+    $("afterWrap").classList.remove("hidden");
+    $("metaAfter").textContent = "После · " + it.outW + "×" + it.outH + " — тяните шторку";
+  } else {
+    $("afterWrap").classList.add("hidden");
+    $("metaAfter").textContent = STATUS_LABEL[it.status];
+  }
+  $("busyOverlay").classList.toggle("hidden", it.status !== "working");
+  $("onePngBtn").disabled = !(it.status === "done" && it.resultUrl);
+  applySplit();
+}
+
+function renderExport() {
+  const done = items.filter(it => it.status === "done").length;
+  const busy = items.some(it => it.status === "working" || it.status === "queued");
+  $("exportStatus").textContent = "Экспорт · готово " + done + " из " + items.length;
+  $("pdfBtn").disabled = !done || busy;
+  $("pdfBtn").textContent = "Скачать PDF для печати · " + done + " стр. A4";
+  $("allPngBtn").disabled = !done || busy;
+}
+
+// ── Шторка сравнения ────────────────────────────────────────
+const compare = $("compare");
+let dragging = false;
+function applySplit() {
+  $("afterWrap").style.clipPath = "inset(0 0 0 " + split + "%)";
+  $("divider").style.left = split + "%";
+}
+function onMove(e) {
+  if (!dragging) return;
+  const rect = compare.getBoundingClientRect();
+  const x = (e.touches ? e.touches[0].clientX : e.clientX) - rect.left;
+  split = clamp((x / rect.width) * 100, 2, 98);
+  applySplit();
+}
+compare.addEventListener("mousedown", () => dragging = true);
+compare.addEventListener("touchstart", () => dragging = true);
+window.addEventListener("mousemove", onMove);
+window.addEventListener("touchmove", onMove);
+window.addEventListener("mouseup", () => dragging = false);
+window.addEventListener("touchend", () => dragging = false);
+
+// ── Скачивание ──────────────────────────────────────────────
+const baseName = name => name.replace(/\.[^.]+$/, "") || "worksheet";
+
+function downloadUrl(url, filename) {
+  const a = document.createElement("a");
+  a.href = url; a.download = filename; a.click();
+}
+
+$("onePngBtn").onclick = () => {
+  const it = selectedItem();
+  if (it && it.resultUrl) downloadUrl(it.resultUrl, baseName(it.name) + "-enhanced.png");
+};
+
+$("allPngBtn").onclick = async () => {
+  for (const it of items) {
+    if (it.resultUrl) {
+      downloadUrl(it.resultUrl, baseName(it.name) + "-enhanced.png");
+      await new Promise(r => setTimeout(r, 400));
+    }
+  }
+};
+
+$("pdfBtn").onclick = async () => {
+  const ready = items.filter(it => it.resultUrl && it.status === "done");
+  if (!ready.length) return;
+  $("pdfBtn").disabled = true;
+  $("pdfBtn").textContent = "Собираю PDF…";
+  try {
+    const pages = [];
+    for (const it of ready) {
+      const img = await new Promise((res, rej) => {
+        const i = new Image();
+        i.onload = () => res(i); i.onerror = rej;
+        i.src = it.resultUrl;
+      });
+      const canvas = document.createElement("canvas");
+      canvas.width = img.width; canvas.height = img.height;
+      const ctx = canvas.getContext("2d");
+      ctx.fillStyle = "#ffffff";
+      ctx.fillRect(0, 0, canvas.width, canvas.height);
+      ctx.drawImage(img, 0, 0);
+      pages.push({ bytes: dataUrlToBytes(canvas.toDataURL("image/jpeg", .92)), w: img.width, h: img.height });
+      await new Promise(r => setTimeout(r, 10));
+    }
+    const blob = buildPdf(pages);
+    const url = URL.createObjectURL(blob);
+    downloadUrl(url, ready.length === 1
+      ? baseName(ready[0].name) + "-print.pdf"
+      : "worksheets-" + ready.length + "-pages.pdf");
+    setTimeout(() => URL.revokeObjectURL(url), 5000);
+  } finally {
+    renderExport();
+  }
+};
+
+$("clearBtn").onclick = () => {
+  jobToken++;
+  items.forEach(it => it.resultUrl && URL.revokeObjectURL(it.resultUrl));
+  items = []; selectedId = null;
+  updateVisibility(); renderThumbs(); renderExport();
+};
+
+// ── Старт ───────────────────────────────────────────────────
+renderPresets();
+renderSliders();
+syncControls();
+applySplit();
+</script>
+</body>
+</html>
