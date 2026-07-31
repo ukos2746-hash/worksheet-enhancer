@@ -1,0 +1,502 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Task 38 Helper — Problem & Solution для эссе ЕГЭ</title>
+<meta name="description" content="Генератор problem & solution для абзаца 4 задания 38 ЕГЭ по английскому: типовые темы, экзаменационные формулировки, режим тренировки.">
+<style>
+  :root {
+    --ink: #1f3a6e;
+    --paper: #fdf6ec;
+    --peach: #fae3c6;
+    --orange: #e07b39;
+    --brown: #7a4a2b;
+    --rule: #eeddc4;
+    --muted: #6b6154;
+  }
+  * { box-sizing: border-box; }
+  body {
+    margin: 0; min-height: 100vh;
+    background: var(--paper);
+    font-family: 'Trebuchet MS', Verdana, sans-serif;
+    color: var(--ink);
+  }
+  header {
+    border-bottom: 3px double var(--ink);
+    padding: 30px 24px 22px;
+    text-align: center;
+    background: linear-gradient(160deg, #fdeed8 0%, var(--paper) 70%);
+  }
+  h1 {
+    font-family: Georgia, 'Times New Roman', serif;
+    font-size: 30px; margin: 0 0 6px;
+  }
+  .subtitle { margin: 0 auto; font-size: 14px; color: var(--muted); max-width: 640px; line-height: 1.5; }
+  .back {
+    display: inline-block; margin-top: 10px;
+    font-size: 13px; color: var(--orange); text-decoration: none; font-weight: 700;
+  }
+  main { max-width: 780px; margin: 0 auto; padding: 26px 20px 70px; }
+
+  .controls {
+    background: #fffdf9; border: 1px solid var(--rule); border-radius: 14px;
+    padding: 18px; display: flex; gap: 12px; flex-wrap: wrap; align-items: center;
+  }
+  select {
+    flex: 1 1 240px; padding: 11px 12px;
+    border: 1px solid var(--rule); border-radius: 8px;
+    font-family: inherit; font-size: 14px; color: var(--ink); background: #fff;
+  }
+  button {
+    font-family: inherit; font-weight: 700; cursor: pointer; border-radius: 999px;
+  }
+  .btn-main {
+    padding: 12px 22px; font-size: 15px;
+    background: var(--orange); color: #fff; border: none;
+  }
+  .btn-ghost {
+    padding: 11px 18px; font-size: 13px;
+    background: transparent; color: var(--brown);
+    border: 1px solid var(--rule);
+  }
+  .mode {
+    display: flex; gap: 6px; margin: 18px 0 0; flex-wrap: wrap;
+  }
+  .mode button {
+    padding: 8px 16px; font-size: 13px;
+    background: transparent; border: 1px solid var(--rule); color: var(--muted);
+  }
+  .mode button.on { background: var(--ink); border-color: var(--ink); color: #fff; }
+
+  .card {
+    background: #fffdf9; border: 1px solid var(--rule); border-radius: 14px;
+    box-shadow: 0 3px 0 var(--rule);
+    padding: 24px; margin-top: 16px;
+  }
+  .topic-line {
+    font-size: 12px; letter-spacing: 1.5px; text-transform: uppercase;
+    color: var(--orange); font-weight: 700; margin-bottom: 12px;
+  }
+  .para-label {
+    display: inline-block; background: var(--peach); color: var(--brown);
+    border-radius: 999px; padding: 3px 12px; font-size: 12px; font-weight: 700;
+    margin: 14px 0 8px;
+  }
+  .para-label:first-of-type { margin-top: 0; }
+  .en {
+    font-family: Georgia, serif; font-size: 17px; line-height: 1.65; margin: 0;
+  }
+  .hint {
+    font-size: 13px; color: var(--muted); margin-top: 16px; line-height: 1.55;
+    border-top: 1px dashed var(--rule); padding-top: 12px;
+  }
+  .hidden { display: none !important; }
+  .reveal-zone { text-align: center; padding: 10px 0 4px; }
+  .card-actions { margin-top: 16px; display: flex; gap: 10px; flex-wrap: wrap; }
+
+  .phrases { margin-top: 22px; }
+  .phrases summary {
+    cursor: pointer; font-weight: 700; color: var(--brown);
+    background: var(--peach); border-radius: 10px; padding: 12px 16px; font-size: 14px;
+  }
+  .phrases-inner { padding: 16px 6px 4px; font-size: 14px; line-height: 1.7; }
+  .phrases-inner b { color: var(--orange); }
+  .note {
+    margin-top: 22px; padding: 14px 18px;
+    background: var(--peach); border-radius: 10px;
+    font-size: 13px; color: var(--brown); line-height: 1.55;
+  }
+</style>
+</head>
+<body>
+
+<header>
+  <h1>Task 38 Helper</h1>
+  <p class="subtitle">Problem &amp; Solution для абзаца 4 эссе (задание 38 ЕГЭ, английский язык):
+     типовые темы проектов, экзаменационные формулировки, режим тренировки.</p>
+  <a class="back" href="/">← На главную egerepetit.ru</a>
+</header>
+
+<main>
+  <div class="controls">
+    <select id="topicSelect"></select>
+    <button class="btn-main" id="genBtn">Сгенерировать</button>
+    <button class="btn-ghost" id="randomBtn">Случайная тема</button>
+  </div>
+
+  <div class="mode">
+    <button id="modeShow" class="on">Показать сразу</button>
+    <button id="modeTrain">Режим тренировки</button>
+  </div>
+
+  <div class="card hidden" id="resultCard">
+    <div class="topic-line" id="topicLine"></div>
+
+    <div id="answerBlock">
+      <span class="para-label">Problem</span>
+      <p class="en" id="problemText"></p>
+      <span class="para-label">Solution</span>
+      <p class="en" id="solutionText"></p>
+    </div>
+
+    <div class="reveal-zone hidden" id="revealZone">
+      <p style="font-size:14px;color:var(--muted);margin:0 0 12px">
+        Сначала сформулируйте проблему и решение сами — вслух или письменно. Потом сверьтесь с образцом.
+      </p>
+      <button class="btn-main" id="revealBtn">Показать образец</button>
+    </div>
+
+    <div class="card-actions">
+      <button class="btn-ghost" id="copyBtn">Скопировать текст</button>
+      <button class="btn-ghost" id="anotherBtn">Другой вариант этой темы</button>
+    </div>
+
+    <p class="hint">На экзамене не воспроизводите образец дословно: перефразируйте своими словами
+       и свяжите проблему с данными таблицы/диаграммы вашего варианта.</p>
+  </div>
+
+  <details class="phrases">
+    <summary>Банк фраз: problem &amp; solution</summary>
+    <div class="phrases-inner">
+      <b>Ввести проблему (первая часть абзаца):</b><br>
+      One problem that may arise with … is that … · However, … can pose a certain problem. ·
+      Unfortunately, there is a difficulty connected with … · Speaking about problems, I should mention that …<br><br>
+      <b>Предложить решение (вторая часть абзаца):</b><br>
+      A possible way of solving this problem is to … · To overcome this difficulty, one can … ·
+      The best way out is probably to … · I believe this problem can be solved by …
+    </div>
+  </details>
+
+  <div class="note">
+    💡 Совет: прогоните 5–6 случайных тем подряд в режиме тренировки — на экзамене
+    формулировки будут приходить в голову сами.
+  </div>
+</main>
+
+<script>
+"use strict";
+
+// ── База: темы → пары «проблема + решение» ──────────────────
+// {p: problem clause (после "...is that"), s: solution (после "to ...")}
+const TOPICS = [
+  { name: "Hobbies & free time", key: "hobbies and free time activities", pairs: [
+    { p: "people waste too many hours on gadgets and social networks instead of doing something really interesting",
+      s: "set strict time limits for using devices and learn alternative ways to spend free time" },
+    { p: "people often lose motivation and interest soon after taking up a new hobby",
+      s: "set achievable goals, break them into small manageable steps and track the progress" },
+    { p: "starting a new hobby can be very expensive",
+      s: "set a budget, spend money only on the most important things and look for budget-friendly alternatives such as second-hand materials" },
+    { p: "it is often difficult for friends to agree on a common activity, for example which film to watch",
+      s: "read reviews, watch trailers together and take a group vote to make a fair choice" },
+    { p: "teenagers may suffer from boredom and a lack of activities during long summer holidays",
+      s: "plan ahead and create a schedule by researching local festivals, concerts and outdoor activities" },
+    { p: "playing active games outdoors in hot summer weather carries a high risk of dehydration and overheating",
+      s: "always carry a water bottle to stay hydrated and take regular breaks in the shade" },
+    { p: "spending time outdoors in winter may lead to cold-related illnesses such as frostbite or hypothermia",
+      s: "wear proper layered winter clothes and limit the time spent outside during very low temperatures" },
+    { p: "when organising a camping trip, people often forget important supplies like food, water or first-aid items",
+      s: "make a detailed checklist in advance and double-check all the items before leaving" },
+    { p: "some hobbies take up so much time that they begin to interfere with studies",
+      s: "keep a sensible balance and devote time to the hobby only after the homework is done" },
+    { p: "it is sometimes hard to find like-minded people who share an unusual hobby",
+      s: "join online communities or local clubs where fans of the activity meet regularly" },
+  ]},
+  { name: "Sports & healthy lifestyle", key: "doing sports", pairs: [
+    { p: "extreme sports are highly dangerous, and young athletes risk serious injuries or even death",
+      s: "strictly follow safety rules, take precautions and always wear high-quality protective gear" },
+    { p: "young people who do not do sports face a high risk of obesity, heart disease and poor physical health",
+      s: "make sports fun and accessible by organising after-school programmes and introducing enjoyable physical activities" },
+    { p: "not eating breakfast leads to low energy levels and difficulty focusing during the day",
+      s: "prepare breakfast in advance to make sure you eat a nutritious meal every morning" },
+    { p: "drinking too little water results in symptoms of dehydration and poor physical health",
+      s: "carry a personal water bottle at all times to develop a steady habit of drinking water" },
+    { p: "many students cannot find time for regular training because of their studies",
+      s: "make a weekly timetable and choose short but regular workouts, for example twenty minutes every morning" },
+    { p: "gym memberships and sports equipment can be rather expensive for young people",
+      s: "use free sports grounds, work out at home or join school sports clubs which cost nothing" },
+    { p: "people who train without proper preparation often get injuries",
+      s: "start with a qualified instructor, always warm up properly and increase the load gradually" },
+  ]},
+  { name: "Work & career", key: "work and career", pairs: [
+    { p: "not having the necessary skills for a dream job makes it difficult to compete with other candidates",
+      s: "take relevant professional training or courses to build expertise before applying" },
+    { p: "teenagers with part-time jobs often struggle to manage their time, which leads to stress and poor grades",
+      s: "create a balanced schedule that prioritises tasks and includes time for both work and rest" },
+    { p: "a poorly written CV can fail to grab an employer's attention, so applicants miss out on interviews",
+      s: "use special templates or ask a professional resume writer to make the application more eye-catching" },
+    { p: "many young people are unsure of their talents and struggle to choose a career they will actually enjoy",
+      s: "take aptitude tests to identify personal strengths and see which jobs match those skills" },
+    { p: "technology is moving quickly, and many human workers are being replaced by machines and automated systems",
+      s: "be flexible and develop digital skills that are difficult for artificial intelligence to replace" },
+    { p: "working in customer service can be emotionally exhausting because of rude or impatient clients",
+      s: "develop strong communication skills and practise patience to handle such situations more effectively" },
+    { p: "manual labour and backstage roles, like being a chef, can be physically demanding and stressful",
+      s: "focus on time management and take regular breaks to reduce the risk of burnout" },
+    { p: "young people often have no work experience, which most employers require",
+      s: "start with internships or volunteer projects to gain the first practical experience" },
+  ]},
+  { name: "School & education", key: "school life", pairs: [
+    { p: "students often feel overwhelmed by a heavy academic workload and exam stress",
+      s: "create a balanced study schedule and practise relaxation techniques to manage the pressure" },
+    { p: "it can be difficult for students to choose the right subjects because they are unsure of their future goals",
+      s: "seek advice from career counsellors or take aptitude tests to make an informed choice" },
+    { p: "some students feel that wearing a school uniform takes away their individuality and freedom of expression",
+      s: "introduce more flexible dress codes which combine neatness with personal style" },
+    { p: "studying can sometimes be too theoretical, leaving students without enough practical experience",
+      s: "try volunteering or taking a part-time job to develop useful real-life skills" },
+    { p: "technical glitches or a poor Internet connection can interrupt online learning",
+      s: "keep the apps updated and have a backup plan for offline study when needed" },
+    { p: "students sometimes fall behind because they are too shy to ask questions in class",
+      s: "ask the teacher for extra explanation after the lesson or study difficult topics together with classmates" },
+  ]},
+  { name: "Learning foreign languages", key: "learning foreign languages", pairs: [
+    { p: "it is often hard to stay motivated and disciplined when studying a language for a long time",
+      s: "set clear goals and remind yourself every day why you want to learn the language" },
+    { p: "many people are afraid of making mistakes or easily forget new words",
+      s: "practise every day, use language-learning games and join study groups to feel more confident" },
+    { p: "learners usually have very little real communication with native speakers",
+      s: "find a language exchange partner online or join international communities and speaking clubs" },
+    { p: "language courses with professional teachers can be quite expensive",
+      s: "use free mobile apps and online resources which offer good exercises for self-study" },
+    { p: "progress often seems too slow, which makes learners give up",
+      s: "set small realistic goals and combine studies with pleasant activities such as films and songs in the original" },
+  ]},
+  { name: "Travel & tourism", key: "travelling", pairs: [
+    { p: "travelling to different cities or countries can be very expensive",
+      s: "set a budget, prioritise the most important spending and travel during the off-season" },
+    { p: "many people feel overwhelmed or unsure of where to go, which leads to indecision",
+      s: "identify personal interests, read reviews from other travellers and use trusted travel websites" },
+    { p: "travellers often face stressful situations like flight cancellations, delays or lost luggage",
+      s: "plan for extra time, pack the essentials in carry-on luggage and purchase travel insurance" },
+    { p: "people may get sick abroad, run out of money or lose important documents like passports",
+      s: "invest in travel insurance, keep copies of the documents in a separate place and study local safety guidelines beforehand" },
+    { p: "communicating with locals in a foreign country can be very difficult",
+      s: "learn a few basic phrases in the local language or use translation apps" },
+    { p: "when booking trips online, people may come across fraudulent sites or scammers",
+      s: "use only reputable booking sources and read reviews about the accommodation on several different sites" },
+    { p: "tourists visiting places of natural beauty might litter, which harms the environment and disturbs wildlife",
+      s: "follow the \u201cleave no trace\u201d principle by properly disposing of the rubbish and following local rules" },
+  ]},
+  { name: "Protecting the environment", key: "protecting the environment", pairs: [
+    { p: "many people do not care about environmental protection in their daily lives because they simply forget about the issue",
+      s: "raise awareness through educational courses and teach environmental science at schools" },
+    { p: "when visiting places of natural beauty, people often litter, which harms wildlife and their habitats",
+      s: "follow the \u201cleave no trace\u201d principle by disposing of waste properly or taking it home" },
+    { p: "if people stop protecting nature, we will face more diseases, natural disasters and a lack of clean air and water",
+      s: "increase recycling efforts, use renewable energy such as solar panels and choose eco-friendly transport" },
+    { p: "environmentally friendly goods are often more expensive than usual ones",
+      s: "support local producers and reuse things instead of buying new ones" },
+    { p: "one person's efforts may seem too small to change anything",
+      s: "join volunteer eco-movements where common actions bring visible results" },
+  ]},
+  { name: "Volunteering", key: "volunteering", pairs: [
+    { p: "many people want to help but find it difficult to commit to regular volunteering because of a lack of free time",
+      s: "choose flexible volunteer roles that allow people to contribute only when they are free, for example at weekends" },
+    { p: "volunteering offers no monetary compensation, so it is hard for people to work long hours for free",
+      s: "weigh all the pros and cons before committing to make sure you can cover your living expenses" },
+    { p: "volunteers may feel overwhelmed by their responsibilities, which leads to emotional burnout",
+      s: "take regular breaks, while organisations should recognise and appreciate the contributions of their volunteers" },
+    { p: "new volunteers often feel they do not have the necessary skills or experience to be helpful",
+      s: "participate in training programmes provided by the organisation to learn what is required" },
+    { p: "young people often do not know where to start and whom to help",
+      s: "contact local volunteer centres or find suitable projects on special websites" },
+  ]},
+  { name: "Technology & the Internet", key: "using modern technology", pairs: [
+    { p: "computers, social networks and gadgets consume a great amount of time, so people ignore real-life relationships, studies and work",
+      s: "set strict limits on device usage and find offline alternatives such as meeting friends in person" },
+    { p: "while shopping or communicating online, people can encounter cybercriminals who steal personal information",
+      s: "use only reputable websites, set strong privacy settings and contact the bank immediately if a fraudulent transaction occurs" },
+    { p: "false or misleading information spreads online very quickly, so it is difficult to know if the news is accurate",
+      s: "develop critical thinking skills, compare news across several sources and rely on credible media outlets" },
+    { p: "many tasks are becoming automated, which creates the risk of job loss as machines replace human workers",
+      s: "develop digital skills and creative abilities that machines and artificial intelligence cannot easily replace" },
+    { p: "when communicating through devices, the tone of a message is easily misinterpreted, which can lead to arguments",
+      s: "use clear language and visual cues, such as emojis, to convey emotions more effectively" },
+    { p: "excessive use of digital devices can cause eye strain, back and neck pain and physical exhaustion",
+      s: "limit daily screen time and take regular breaks to rest the eyes and move the body" },
+  ]},
+  { name: "Communication & relationships", key: "communicating with other people", pairs: [
+    { p: "in online messages it is easy to misinterpret the tone or intent because you cannot see facial expressions",
+      s: "use clear language and emojis to help convey your emotions correctly" },
+    { p: "social networks consume a great amount of time, so people ignore real-world relationships and daily duties",
+      s: "turn off notifications, set strict time limits on device usage and prioritise meeting people in person" },
+    { p: "communication with friends can sometimes lead to misunderstandings and arguments, which may strain the relationship",
+      s: "build trust through honesty and open communication" },
+    { p: "social activities can be emotionally exhausting and often require a lot of difficult planning to get everyone together",
+      s: "plan a balanced schedule that includes both social time and individual rest to recharge the energy" },
+    { p: "using social media can lead to cyberbullying or anxiety when people compare their lives to others online",
+      s: "set strong privacy settings, unfollow negative accounts and take regular breaks from social media" },
+    { p: "it can be hard for shy people to make new friends",
+      s: "join clubs and group activities where common interests make communication much easier" },
+  ]},
+  { name: "Holidays & celebrations", key: "celebrating holidays", pairs: [
+    { p: "celebrating major holidays like the New Year can be very expensive and cause financial strain",
+      s: "set a budget in advance, prioritise the most important items and share the costs in a group" },
+    { p: "it is often difficult to choose a gift when you do not know the recipient's tastes",
+      s: "consider the person's hobbies, ask their close friends for advice or simply ask the person directly" },
+    { p: "traditional holidays can become too commercialised and lose their original cultural meaning",
+      s: "focus on traditional activities, such as cooking festive meals together or learning about the holiday's history" },
+    { p: "when preparing a group celebration, people often disagree on the theme or activities, which causes delays and stress",
+      s: "take a group vote on major decisions or combine different preferences into a compromise event" },
+    { p: "popular holidays often lead to overcrowded public areas, which can be uncomfortable or even dangerous",
+      s: "host smaller private gatherings or plan the activities during quieter hours" },
+    { p: "preparing for a celebration can be emotionally exhausting and time-consuming",
+      s: "plan well in advance and delegate different tasks to family members or friends" },
+  ]},
+  { name: "Everyday routine & chores", key: "everyday routine and household chores", pairs: [
+    { p: "many people waste their free time unproductively by spending hours on social media or watching TV",
+      s: "plan and balance the activities in advance by setting aside specific time for hobbies and exercise" },
+    { p: "doing chores can become overwhelming for people with very busy daily schedules",
+      s: "break the tasks into manageable parts and create a consistent cleaning schedule" },
+    { p: "families often face disagreements over how to divide household responsibilities",
+      s: "delegate the tasks to all members of the household so that everyone shares the work" },
+    { p: "manual chores, such as washing dishes by hand, are physically tiring and take up too much time",
+      s: "rely on modern household appliances, like dishwashers or robot vacuum cleaners, to save time and effort" },
+    { p: "teenagers often postpone boring chores until the last moment",
+      s: "turn chores into a game or do them to favourite music to make the process more pleasant" },
+  ]},
+  { name: "Places of living", key: "the place where people live", pairs: [
+    { p: "people living in the countryside often lack access to essential services like healthcare, shops and public transport",
+      s: "use technology and online services, such as telemedicine and Internet shopping, to bridge this gap" },
+    { p: "big cities suffer from overcrowding and a lack of quiet green spaces",
+      s: "actively seek out local parks and nature reserves to exercise and connect with nature" },
+    { p: "urban areas often deal with high crime rates, so some neighbourhoods feel unsafe for teenagers",
+      s: "organise safety lectures at schools to make young people aware of the risks" },
+    { p: "when decorating a new home, it is often difficult to choose a matching colour scheme or style",
+      s: "use online design tools or consult a professional to try different combinations before deciding" },
+  ]},
+  { name: "Russia: traditions & culture", key: "exploring Russian culture and traditions", pairs: [
+    { p: "military-patriotic education can be too physically demanding or seem too strict for some children",
+      s: "focus more on cultural-patriotic education, such as visiting traditional wooden houses and historical sites" },
+    { p: "learning history through traditional textbooks can feel boring or outdated for modern students",
+      s: "use interactive digital displays and multimedia museums to make the learning process more exciting" },
+    { p: "collective clean-up events often produce only short-term results and depend on the availability of volunteers",
+      s: "use technology instead, for example install solar panels to reduce reliance on fossil fuels" },
+    { p: "traditional museum visits require travel, entrance fees and waiting in long queues",
+      s: "explore world-famous collections through online museum tours and virtual exhibitions" },
+    { p: "spiritual traditions like ice bathing can be risky for people with health issues",
+      s: "choose safer social traditions, like gathering with the family for a festive meal" },
+    { p: "advances in technology and new inventions can lead to unemployment as machines replace human workers",
+      s: "develop high-level skills in areas where humans have an advantage over robots, such as the arts" },
+  ]},
+  { name: "Reading books", key: "reading books", pairs: [
+    { p: "many teenagers prefer gadgets and social media to books and simply lose interest in reading",
+      s: "start with books that match the reader's hobbies or watch a film adaptation first to get interested in the story" },
+    { p: "printed books are becoming quite expensive nowadays",
+      s: "borrow books from libraries or use free electronic versions of classical literature" },
+    { p: "students are often too busy to read regularly",
+      s: "listen to audiobooks on the way to school or read at least ten pages before going to bed" },
+  ]},
+  { name: "Healthy eating", key: "healthy eating", pairs: [
+    { p: "fast food is cheap, tasty and available everywhere, so it is hard to resist it",
+      s: "plan meals for the week ahead and cook simple healthy dishes at home" },
+    { p: "products for a healthy diet often seem more expensive than junk food",
+      s: "choose seasonal local fruit and vegetables and compare prices in different shops" },
+    { p: "teenagers frequently skip meals and eat irregularly because of their busy timetable",
+      s: "prepare quick healthy snacks in advance and try to eat at approximately the same time every day" },
+  ]},
+  { name: "Keeping pets", key: "keeping pets", pairs: [
+    { p: "pets require a lot of time, attention and daily care",
+      s: "share the duties among all family members and make a clear care schedule" },
+    { p: "some family members may be allergic to animals",
+      s: "consult a doctor first and choose a hypoallergenic pet such as certain breeds of dogs or fish" },
+    { p: "keeping an animal can be rather costly because of food and vet services",
+      s: "plan the family budget in advance and take the pet for regular check-ups to prevent expensive treatment" },
+  ]},
+];
+
+// Вводные конструкции — каждый раз текст собирается по-разному
+const PROBLEM_OPENERS = [
+  (k, p) => `One problem that may arise with ${k} is that ${p}.`,
+  (k, p) => `However, ${k} can pose a certain problem: ${p}.`,
+  (k, p) => `Unfortunately, there is a difficulty connected with ${k}. The thing is that ${p}.`,
+  (k, p) => `Speaking about possible problems, I should mention that ${p}.`,
+];
+const SOLUTION_OPENERS = [
+  s => `A possible way of solving this problem is to ${s}.`,
+  s => `To overcome this difficulty, one can ${s}.`,
+  s => `The best way out is probably to ${s}.`,
+  s => `I believe this problem can be solved if people ${s}.`,
+];
+
+// ── Логика ──────────────────────────────────────────────────
+const $ = id => document.getElementById(id);
+let trainMode = false;
+let lastTopicIdx = -1, lastPairIdx = -1;
+
+const sel = $("topicSelect");
+TOPICS.forEach((t, i) => {
+  const o = document.createElement("option");
+  o.value = i; o.textContent = t.name;
+  sel.appendChild(o);
+});
+
+function rnd(n) { return Math.floor(Math.random() * n); }
+
+function generate(topicIdx, forceNewPair) {
+  const t = TOPICS[topicIdx];
+  let pairIdx = rnd(t.pairs.length);
+  if (forceNewPair && t.pairs.length > 1) {
+    while (topicIdx === lastTopicIdx && pairIdx === lastPairIdx) pairIdx = rnd(t.pairs.length);
+  }
+  lastTopicIdx = topicIdx; lastPairIdx = pairIdx;
+  const pair = t.pairs[pairIdx];
+  const problem = PROBLEM_OPENERS[rnd(PROBLEM_OPENERS.length)](t.key, pair.p);
+  const solution = SOLUTION_OPENERS[rnd(SOLUTION_OPENERS.length)](pair.s);
+
+  $("topicLine").textContent = "Topic: " + t.name;
+  $("problemText").textContent = problem;
+  $("solutionText").textContent = solution;
+  $("resultCard").classList.remove("hidden");
+
+  if (trainMode) {
+    $("answerBlock").classList.add("hidden");
+    $("revealZone").classList.remove("hidden");
+  } else {
+    $("answerBlock").classList.remove("hidden");
+    $("revealZone").classList.add("hidden");
+  }
+  $("resultCard").scrollIntoView({ behavior: "smooth", block: "nearest" });
+}
+
+$("genBtn").onclick = () => generate(parseInt(sel.value, 10), false);
+$("randomBtn").onclick = () => {
+  const i = rnd(TOPICS.length);
+  sel.value = i;
+  generate(i, false);
+};
+$("anotherBtn").onclick = () => generate(lastTopicIdx < 0 ? parseInt(sel.value, 10) : lastTopicIdx, true);
+$("revealBtn").onclick = () => {
+  $("answerBlock").classList.remove("hidden");
+  $("revealZone").classList.add("hidden");
+};
+$("copyBtn").onclick = async () => {
+  const text = $("problemText").textContent + "\n\n" + $("solutionText").textContent;
+  try {
+    await navigator.clipboard.writeText(text);
+    $("copyBtn").textContent = "Скопировано!";
+  } catch (e) {
+    $("copyBtn").textContent = "Не удалось :(";
+  }
+  setTimeout(() => { $("copyBtn").textContent = "Скопировать текст"; }, 1500);
+};
+$("modeShow").onclick = () => {
+  trainMode = false;
+  $("modeShow").classList.add("on"); $("modeTrain").classList.remove("on");
+  if (!$("resultCard").classList.contains("hidden")) {
+    $("answerBlock").classList.remove("hidden");
+    $("revealZone").classList.add("hidden");
+  }
+};
+$("modeTrain").onclick = () => {
+  trainMode = true;
+  $("modeTrain").classList.add("on"); $("modeShow").classList.remove("on");
+  if (!$("resultCard").classList.contains("hidden")) {
+    $("answerBlock").classList.add("hidden");
+    $("revealZone").classList.remove("hidden");
+  }
+};
+</script>
+</body>
+</html>
