@@ -18,7 +18,8 @@
   * { box-sizing: border-box; }
   body {
     margin: 0; min-height: 100vh;
-    background: var(--paper);
+    background: linear-gradient(180deg, #fbe0bf 0%, #fce8cf 30%, #fae3c6 100%);
+    background-attachment: fixed;
     font-family: 'Trebuchet MS', Verdana, sans-serif;
     color: var(--ink);
   }
@@ -70,11 +71,12 @@
 
   /* ---- баннер и меню ---- */
   .banner { display: block; width: 100%; height: auto; }
-  .banner-wrap { background: var(--paper); }
+  .banner-wrap { background: #fce8cf; }
   nav.menu {
     position: sticky; top: 0; z-index: 50;
-    background: #fffdf9; border-bottom: 1px solid var(--rule);
-    box-shadow: 0 2px 10px rgba(122,74,43,.06);
+    background: rgba(255,253,249,.92); backdrop-filter: blur(6px);
+    border-bottom: 1px solid #f0d8b6;
+    box-shadow: 0 2px 12px rgba(122,74,43,.10);
   }
   .menu-inner {
     max-width: 1180px; margin: 0 auto; padding: 8px 14px;
@@ -116,23 +118,26 @@
   .card {
     display: flex; flex-direction: column;
     text-decoration: none; color: var(--ink);
-    background: #fffdf9;
-    border: 1px solid var(--rule); border-radius: 14px;
+    background: #fffdfa;
+    border: 1px solid #fff; border-radius: 16px;
     padding: 26px 24px 22px; position: relative;
-    box-shadow: 0 3px 0 var(--rule);
+    box-shadow: 0 6px 18px rgba(122,74,43,.10);
     transition: transform .12s, box-shadow .12s, border-color .12s;
   }
   .card:hover {
     transform: translateY(-4px);
-    box-shadow: 0 10px 26px rgba(122,74,43,.16);
+    box-shadow: 0 14px 30px rgba(122,74,43,.20);
     border-color: var(--orange);
   }
   .card .badge {
     align-self: flex-start;
+    display: inline-flex; align-items: center; justify-content: center;
+    width: 46px; height: 46px; border-radius: 50%;
     background: var(--peach); color: var(--brown);
-    border-radius: 999px; padding: 4px 14px;
-    font-size: 12px; font-weight: 700; margin-bottom: 14px;
+    margin-bottom: 14px;
   }
+  .card .badge svg { width: 25px; height: 25px; }
+  .card:hover .badge { background: var(--orange); color: #fff; }
   .card h2 {
     font-family: Georgia, serif; font-size: 23px; margin: 0 0 8px;
   }
@@ -156,13 +161,14 @@
 
   .note {
     margin-top: 46px; padding: 20px 24px;
-    background: var(--peach);
+    background: #fffdfa; border: 1px solid #fff;
+    box-shadow: 0 6px 18px rgba(122,74,43,.10);
     border-radius: 14px;
     font-size: 14px; color: var(--brown); line-height: 1.6;
     text-align: center;
   }
   footer {
-    border-top: 1px solid var(--rule);
+    border-top: 1px solid #f0d8b6;
     padding: 22px 24px; text-align: center;
     font-size: 12px; color: var(--muted);
   }
@@ -186,51 +192,40 @@
 
 
 <main>
-  <p class="eyebrow">My Projects</p>
+  <p class="eyebrow">Мои проекты</p>
   <div class="cards">
 
-    <div class="card club">
-      <span class="badge">Club</span>
-      <h2>Egerepetit Club</h2>
-      <p>Закрытый клуб: полный банк ФИПИ ОГЭ с ответами, разборами и аудио,
-         Task 38 Helper со всеми темами. Вход по почте и личному коду.</p>
-      <div class="actions">
-        <a class="login" href="https://club.egerepetit.ru">Log In</a>
-        <a class="join" href="https://vk.ru/egerepetit?w=donut_payment-161114777&amp;levelId=986" target="_blank" rel="noopener">Join the Club</a>
-      </div>
-    </div>
-
     <a class="card" href="https://checkout.tochka.com/egerepetit">
-      <span class="badge">Shop</span>
-      <h2>Study Materials Shop</h2>
+      <span class="badge"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 8h14l-1 12H6L5 8z"/><path d="M9 8V6.5a3 3 0 0 1 6 0V8"/></svg></span>
+      <h2>Интернет-магазин</h2>
       <p>Авторские пособия, практикумы и курсы по английскому языку
          для подготовки к ЕГЭ и ОГЭ — с онлайн-оплатой и мгновенным доступом.</p>
-      <span class="go">Visit Shop</span>
+      <span class="go">Перейти в магазин</span>
     </a>
 
     <a class="card" href="https://oge-trainers.tatnet.app">
-      <span class="badge">Trainers</span>
-      <h2>OGE Trainers</h2>
-      <p>Интерактивные тренажёры для подготовки к ОГЭ по английскому:
-         отрабатывайте задания в удобном формате и следите за прогрессом.
-         Часть заданий открыта, полный банк — в клубе.</p>
-      <span class="go">Open Trainers</span>
+      <span class="badge"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="5" y="4" width="14" height="17" rx="2"/><path d="M9 3.5h6v2.5H9z"/><path d="M8.7 12.6l2 2 4.2-4.3"/></svg></span>
+      <h2>Банк ФИПИ ОГЭ</h2>
+      <p>Интерактивная тренировка актуальных заданий из банка ФИПИ ОГЭ,
+         которые встретятся на экзамене, с моментальной автопроверкой.</p>
+      <span class="go">Открыть тренажёры</span>
     </a>
 
     <a class="card" href="/task38/">
-      <span class="badge">Writing</span>
-      <h2>Task 38 Helper</h2>
-      <p>Генератор problem &amp; solution для абзаца 4 эссе ЕГЭ: экзаменационные формулировки
-         и режим тренировки. 3 темы открыты, все 17 тем и 95 пар — в клубе.</p>
-      <span class="go">Open Helper</span>
+      <span class="badge"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M4 20.5 4.9 17l10-10 2.6 2.6-10 10-3.5.9z"/><path d="M14.9 7l1.8-1.8a1.8 1.8 0 0 1 2.6 0l.5.5a1.8 1.8 0 0 1 0 2.6L18 10.1"/><path d="M4 20.5h16"/></svg></span>
+      <h2>Task 38 Trainer for EGE</h2>
+      <p>Генератор problem &amp; solution для абзаца 4 эссе ЕГЭ: типовые темы проектов,
+         экзаменационные формулировки и режим тренировки.</p>
+      <span class="go">Открыть тренажёр</span>
     </a>
 
     <a class="card" href="/enhancer/">
-      <span class="badge">Tool</span>
-      <h2>Worksheet Enhancer</h2>
-      <p>Улучшение качества рабочих листов из ChatGPT: резкость, чистый фон,
-         пакетная обработка и сборка в PDF для печати. Работает прямо в браузере.</p>
-      <span class="go">Open App</span>
+      <span class="badge"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="3" y="5" width="18" height="14" rx="2"/><circle cx="8.5" cy="10" r="1.4"/><path d="M4 17l4.5-4.5 3 3L15 12l5 5"/></svg></span>
+      <h2>Улучшение качества изображений за секунды</h2>
+      <p>Сделали рабочий лист в нейросети, а при увеличении картинка расплывается?
+         Приложение вернёт резкость и чистый белый фон, обработает сразу несколько
+         листов и соберёт их в PDF для печати. Бесплатно, без VPN, прямо в браузере.</p>
+      <span class="go">Открыть приложение</span>
     </a>
 
   </div>
