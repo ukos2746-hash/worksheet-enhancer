@@ -3,920 +3,273 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>ЕГЭ под ключ 2027 — готовый курс английского для преподавателей</title>
-<meta name="description" content="Авторский курс Юлии Косенковой на ProgressMe: 30 юнитов, все разделы ЕГЭ по английскому языку. Материалы собраны — вы выбираете темп под ученика. Курс остаётся у вас навсегда.">
-<meta property="og:title" content="ЕГЭ под ключ 2027 — готовый курс английского для преподавателей">
-<meta property="og:description" content="30 юнитов, все разделы экзамена, работа с письмом и устной частью. Курс остаётся у вас навсегда.">
-<meta property="og:type" content="website">
-<link rel="preconnect" href="https://fonts.googleapis.com">
-<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Onest:wght@400;500;600;700;800&display=swap&subset=cyrillic,latin" rel="stylesheet">
+<title>Egerepetit — английский язык, подготовка к ЕГЭ и ОГЭ</title>
+<meta name="description" content="Авторские материалы Юлии Косенковой: пособия, практикумы, тренажёры и онлайн-инструменты для подготовки к ЕГЭ и ОГЭ по английскому языку.">
 <style>
-  :root{
-    --navy:#082045;        /* фирменный тёмно-синий с обложки */
-    --navy-2:#0d2b56;
-    --ink:#10213F;         /* тёмный текст на светлом */
-    --grey:#536176;        /* абзацы */
-    --grey-2:#8а94a5;
-    --yellow:#FFCF00;
-    --yellow-d:#e6b900;
-    --crimson:#A82552;     /* надзаголовки */
-    --paper:#F0F3F8;
-    --line:#dfe4ee;
-    --line-dark:rgba(255,255,255,.16);
+  :root {
+    --ink: #1f3a6e;        /* чернильно-синий, как заголовки баннера */
+    --paper: #fdf6ec;      /* тёплый кремовый фон */
+    --peach: #fae3c6;      /* персиковый — плашки и акценты */
+    --orange: #e07b39;     /* оранжевый — кнопки и выделения */
+    --brown: #7a4a2b;      /* коричневый — подзаголовки */
+    --rule: #eeddc4;       /* линии и рамки */
+    --muted: #6b6154;
   }
-  *{box-sizing:border-box}
-  html{scroll-behavior:smooth}
-  body{margin:0;background:#fff;color:var(--ink);line-height:1.55;
-    font-family:'Onest',system-ui,-apple-system,'Segoe UI',sans-serif;-webkit-font-smoothing:antialiased}
-  img{max-width:100%;display:block}
-  .wrap{max-width:1160px;margin:0 auto;padding:0 24px}
-
-  /* ---------- шапка ---------- */
-  .top{position:sticky;top:0;z-index:50;background:rgba(8,32,69,.94);backdrop-filter:blur(8px);
-    border-bottom:1px solid var(--line-dark)}
-  .top-in{max-width:1160px;margin:0 auto;padding:11px 24px;display:flex;align-items:center;gap:16px}
-  .back{color:#fff;text-decoration:none;font-size:14.5px;font-weight:600;opacity:.85;white-space:nowrap}
-  .back:hover{opacity:1}
-  .top .sp{flex:1}
-  .top-cta{background:var(--yellow);color:var(--navy);text-decoration:none;font-weight:700;font-size:14.5px;
-    padding:9px 18px;border-radius:999px;white-space:nowrap}
-  .top-cta:hover{background:var(--yellow-d)}
-  a:focus-visible,button:focus-visible,summary:focus-visible{outline:3px solid var(--yellow);outline-offset:3px}
-
-  /* ---------- первый экран ---------- */
-  .hero{background:var(--navy);color:#fff;padding:56px 0 0}
-  .hero-grid{display:grid;grid-template-columns:1.05fr .95fr;gap:48px;align-items:center}
-  .eyebrow{display:block;font-size:12.5px;font-weight:700;letter-spacing:.16em;text-transform:uppercase;
-    color:var(--yellow);margin:0 0 18px}
-  .for-whom{font-size:15px;color:rgba(255,255,255,.72);margin:0 0 20px}
-  h1{font-size:clamp(46px,8vw,92px);line-height:.94;font-weight:800;letter-spacing:-.02em;margin:0 0 22px}
-  h1 .y{color:var(--yellow);display:block}
-  .claim{font-size:clamp(20px,2.4vw,27px);font-weight:700;line-height:1.25;margin:0 0 18px;max-width:22ch}
-  .lead{font-size:16.5px;color:rgba(255,255,255,.78);margin:0 0 26px;max-width:46ch}
-
-  .price-strip{border:1px solid var(--line-dark);border-radius:16px;padding:18px 20px;margin:0 0 26px;
-    background:rgba(255,255,255,.04);max-width:470px}
-  .price-row{display:flex;align-items:baseline;gap:12px;flex-wrap:wrap}
-  .price-big{font-size:34px;font-weight:800;letter-spacing:-.02em}
-  .price-club{font-size:15px;color:var(--yellow);font-weight:600}
-  .price-note{margin:8px 0 0;font-size:13.5px;color:rgba(255,255,255,.62);line-height:1.5}
-
-  .cta-row{display:flex;gap:14px;flex-wrap:wrap;align-items:center}
-  .btn{display:inline-flex;align-items:center;justify-content:center;gap:9px;text-decoration:none;
-    font-weight:700;font-size:16px;padding:15px 30px;border-radius:999px;border:0;cursor:pointer;font-family:inherit}
-  .btn-y{background:var(--yellow);color:var(--navy)}
-  .btn-y:hover{background:var(--yellow-d)}
-  .btn-ghost{background:transparent;color:#fff;border:1px solid rgba(255,255,255,.35)}
-  .btn-ghost:hover{border-color:#fff}
-
-  .facts{display:flex;gap:40px;flex-wrap:wrap;margin:34px 0 0;padding:26px 0 46px;border-top:1px solid var(--line-dark)}
-  .fact b{display:block;font-size:26px;font-weight:800;line-height:1.1}
-  .fact span{font-size:13.5px;color:rgba(255,255,255,.62)}
-  .cover{position:relative;perspective:1400px}
-  .cover img{border-radius:14px;margin:0 auto;display:block;
-    transform:rotate(2.2deg);transform-origin:50% 60%;
-    box-shadow:0 0 0 1px rgba(255,255,255,.09),
-               0 12px 26px -12px rgba(0,0,0,.65),
-               0 50px 95px -30px rgba(0,0,0,.95);
-    transition:transform .35s ease}
-  .cover img:hover{transform:rotate(0deg)}
-  @media (max-width:900px){.cover img{transform:rotate(1.4deg)}}
-  @media (prefers-reduced-motion:reduce){.cover img{transition:none}}
-
-  /* ---------- жёлтая полоса ---------- */
-  .strip{background:var(--yellow);color:var(--navy)}
-  .strip-in{max-width:1160px;margin:0 auto;padding:16px 24px;display:flex;justify-content:space-between;
-    gap:14px;flex-wrap:wrap;font-weight:700;font-size:14px;letter-spacing:.14em;text-transform:uppercase}
-
-  /* ---------- секции ---------- */
-  section{padding:84px 0;scroll-margin-top:64px}
-  #video,#structure,#price,#faq{scroll-margin-top:64px}
-  .sec-grey{background:var(--paper)}
-  .sec-dark{background:var(--navy);color:#fff}
-  .over{display:block;font-size:12.5px;font-weight:700;letter-spacing:.16em;text-transform:uppercase;
-    color:var(--crimson);margin:0 0 16px}
-  .sec-dark .over{color:var(--yellow)}
-  h2{font-size:clamp(30px,4.4vw,46px);line-height:1.08;font-weight:800;letter-spacing:-.02em;margin:0 0 20px}
-  .h2-row{display:grid;grid-template-columns:1.1fr .9fr;gap:40px;align-items:end;margin-bottom:46px}
-  .h2-row p{margin:0;color:var(--grey);font-size:16.5px}
-  .h2-row.solo{grid-template-columns:1fr;margin-bottom:40px}
-  .sec-dark .h2-row p{color:rgba(255,255,255,.75)}
-
-  .cols{display:grid;grid-template-columns:repeat(3,1fr);gap:34px}
-  .col{border-top:2px solid var(--ink);padding-top:18px}
-  .sec-dark .col{border-color:var(--yellow)}
-  .col .n{font-size:13px;font-weight:700;color:var(--crimson);letter-spacing:.1em}
-  .col h3{font-size:20px;font-weight:700;margin:10px 0 10px}
-  .col p{margin:0;color:var(--grey);font-size:15.5px}
-
-  /* видео */
-  .videos{display:grid;grid-template-columns:repeat(auto-fit,minmax(290px,430px));gap:22px;
-    justify-content:start;max-width:960px}
-  .vcard{display:block;text-decoration:none;color:inherit;background:#fff;border:1px solid var(--line);
-    border-radius:18px;overflow:hidden;transition:transform .15s,box-shadow .15s}
-  .vcard:hover{transform:translateY(-4px);box-shadow:0 18px 40px -22px rgba(16,33,63,.5)}
-  .vthumb{aspect-ratio:16/9;background:var(--navy);display:grid;place-items:center;position:relative}
-  .play{width:66px;height:66px;border-radius:50%;background:var(--yellow);display:grid;place-items:center}
-  .play svg{width:24px;height:24px;margin-left:4px;fill:var(--navy)}
-  .vbody{padding:20px 22px 22px}
-  .vbody h3{margin:0 0 6px;font-size:19px;font-weight:700}
-  .vbody p{margin:0;color:var(--grey);font-size:15px}
-  .vhint{margin:18px 0 0;font-size:14.5px;color:var(--grey)}
-  .vplayer{margin:0 0 22px;border-radius:18px;overflow:hidden;background:var(--navy);
-    box-shadow:0 26px 60px -34px rgba(16,33,63,.8);max-width:960px}
-  .vplayer video{display:block;width:100%;height:auto;background:var(--navy)}
-  .vcap{margin:12px 0 26px;font-size:14.5px;color:var(--grey);max-width:960px}
-  .vcap b{color:var(--ink)}
-  .vmeta{display:block;margin:0 0 8px;font-size:13px;font-weight:700;letter-spacing:.05em;
-    text-transform:uppercase;color:var(--crimson)}
-  .videos:not(:empty){margin-top:8px}
-  /* широкая ссылка-постер: выглядит как второй плеер */
-  .vlink{display:block;position:relative;max-width:960px;border-radius:18px;overflow:hidden;
-    background:var(--navy);box-shadow:0 26px 60px -34px rgba(16,33,63,.8);
-    transition:transform .15s,box-shadow .15s}
-  .vlink:hover{transform:translateY(-3px);box-shadow:0 30px 64px -30px rgba(16,33,63,.85)}
-  .vlink:focus-visible{outline:3px solid var(--yellow);outline-offset:3px}
-  .vlink img{display:block;width:100%;height:auto}
-  .vlink .shade{position:absolute;inset:0;background:rgba(8,32,69,0);transition:background .15s}
-  .vlink:hover .shade{background:rgba(8,32,69,.12)}
-  /* кнопка под обложкой — не закрывает картинку */
-  .vgo{display:inline-flex;align-items:center;gap:10px;margin:16px 0 0;
-    background:var(--yellow);color:var(--navy);text-decoration:none;font-weight:700;font-size:16px;
-    padding:13px 24px;border-radius:12px;transition:transform .15s,box-shadow .15s}
-  .vgo:hover{transform:translateY(-2px);box-shadow:0 14px 30px -14px rgba(16,33,63,.6)}
-  .vgo:focus-visible{outline:3px solid var(--navy);outline-offset:3px}
-  .vgo svg{width:18px;height:18px;fill:var(--navy);flex:none}
-
-  /* направления работы */
-  .track{display:grid;grid-template-columns:270px 1fr;gap:34px;padding:30px 0;border-top:1px solid var(--line)}
-  .track:last-of-type{border-bottom:1px solid var(--line)}
-  .track .tt{font-size:14px;font-weight:700;letter-spacing:.1em;text-transform:uppercase}
-  .track .tt i{color:var(--crimson);font-style:normal}
-  .track p{margin:0 0 14px;color:var(--grey);font-size:16px}
-  .tags{display:flex;gap:9px;flex-wrap:wrap}
-  .tag{border:1.5px solid var(--line);border-radius:8px;padding:7px 13px;font-size:13.5px;
-    font-weight:600;color:var(--ink);background:#fff}
-  /* у каждого направления свой цвет рамок */
-  .track:nth-of-type(1) .tag{border-color:#2E5AA8;background:#F2F6FD}
-  .track:nth-of-type(2) .tag{border-color:var(--crimson);background:#FDF2F6}
-  .track:nth-of-type(3) .tag{border-color:#C89200;background:#FFFAEA}
-  .track:nth-of-type(1) .tt i{color:#2E5AA8}
-  .track:nth-of-type(2) .tt i{color:var(--crimson)}
-  .track:nth-of-type(3) .tt i{color:#C89200}
-  .checks{display:grid;grid-template-columns:1fr 1fr;gap:0;background:var(--navy);color:#fff;border-radius:16px;
-    margin-top:36px;overflow:hidden}
-  .check{padding:20px 24px;display:flex;gap:14px;align-items:baseline;flex-wrap:wrap}
-  .check b{color:var(--yellow);font-size:15px;white-space:nowrap}
-  .check span{font-size:15px;color:rgba(255,255,255,.8)}
-  .check+.check{border-left:1px solid var(--line-dark)}
-
-  /* цепочка LEARN → … → IMPROVE */
-  .chain-row{display:flex;flex-wrap:wrap;align-items:center;gap:10px;margin-top:8px}
-  .chain-row span{font-size:15px;font-weight:700;letter-spacing:.06em;text-transform:uppercase;
-    color:var(--ink);background:#fff;border:1px solid var(--line);
-    padding:14px 26px;border-radius:999px;
-    box-shadow:0 1px 2px rgba(16,33,63,.05),0 10px 22px -16px rgba(16,33,63,.5)}
-  .chain-row i{color:var(--crimson);font-style:normal;font-weight:700;font-size:16px}
-  .chain-note{margin:26px 0 0;color:var(--grey);font-size:16px;max-width:66ch}
-  .more{margin:20px 0 0;font-size:15.5px;color:var(--grey)}
-  .more a{color:var(--crimson);font-weight:700;text-underline-offset:3px}
-
-  /* платформа */
-  .ways{margin-top:30px;display:grid;gap:18px}
-  .way{border-left:3px solid var(--yellow);padding:2px 0 2px 18px}
-  .way b{display:block;font-size:15px;font-weight:700;letter-spacing:.06em;text-transform:uppercase;
-    color:var(--yellow);margin-bottom:6px}
-  .way p{margin:0;color:rgba(255,255,255,.78);font-size:15.5px;max-width:46ch}
-  .split{display:grid;grid-template-columns:1fr 1fr;gap:56px}
-  .steps .step{padding:18px 0;border-top:1px solid var(--line-dark)}
-  .steps .step:first-child{border-top:0;padding-top:0}
-  .steps .lbl{font-size:12.5px;font-weight:700;letter-spacing:.14em;text-transform:uppercase;color:var(--yellow)}
-  .steps h3{margin:8px 0 6px;font-size:21px;font-weight:700}
-  .steps p{margin:0;color:rgba(255,255,255,.75);font-size:15.5px}
-
-  /* автор */
-  .author{display:grid;grid-template-columns:330px 1fr;gap:56px;align-items:center}
-  .ava{background:var(--yellow);border-radius:20px;aspect-ratio:1;display:grid;place-items:center;
-    transform:rotate(-2deg);position:relative;overflow:hidden}
-  .ava .ini{font-size:96px;font-weight:800;color:var(--navy);letter-spacing:-.04em;line-height:1}
-  .ava .nick{position:absolute;bottom:24px;font-size:15px;font-weight:700;color:var(--navy);opacity:.8}
-  .ava img{width:100%;height:100%;object-fit:cover}
-  .author p{color:var(--grey);font-size:16.5px}
-  .anum{display:flex;gap:40px;flex-wrap:wrap;border-top:1px solid var(--line);padding-top:20px;margin-top:24px}
-  .anum b{display:block;font-size:24px;font-weight:800;color:var(--ink)}
-  .anum span{font-size:13.5px;color:var(--grey)}
-
-  /* покупка */
-  .buy{display:grid;grid-template-columns:1.05fr .95fr;gap:52px;align-items:start}
-  .howto{counter-reset:s;margin:0;padding:0;list-style:none}
-  .howto li{counter-increment:s;position:relative;padding:0 0 22px 52px}
-  .howto li::before{content:counter(s);position:absolute;left:0;top:-2px;width:34px;height:34px;border-radius:50%;
-    background:var(--yellow);color:var(--navy);font-weight:800;display:grid;place-items:center;font-size:15px}
-  .howto h3{margin:0 0 5px;font-size:18px;font-weight:700}
-  .howto p{margin:0;color:rgba(255,255,255,.75);font-size:15.5px}
-  .why{margin-top:10px;border-left:3px solid var(--yellow);padding:4px 0 4px 18px;
-    color:rgba(255,255,255,.75);font-size:15px}
-  .card{background:#fff;color:var(--ink);border-radius:20px;padding:30px;box-shadow:0 30px 70px -35px rgba(0,0,0,.7)}
-  .card .kicker{font-size:12.5px;font-weight:700;letter-spacing:.14em;text-transform:uppercase;color:var(--grey)}
-  .card .big{font-size:52px;font-weight:800;letter-spacing:-.03em;line-height:1;margin:10px 0 0}
-  .card .big span{font-size:24px;font-weight:600}
-  .club-line{background:#FFF8DC;border-radius:12px;padding:12px 16px;margin:16px 0 0;font-size:15px}
-  .club-line b{white-space:nowrap}
-  .card h4{margin:22px 0 6px;font-size:16px;font-weight:700}
-  .card p{margin:0;color:var(--grey);font-size:14.5px}
-  .card hr{border:0;border-top:1px solid var(--line);margin:20px 0}
-  .card .btn{width:100%;margin-top:18px}
-  .fine{margin-top:16px;font-size:13px;color:var(--grey);line-height:1.6}
-
-  /* вопросы */
-  .faq{max-width:900px}
-  details{border-top:1px solid var(--line);padding:22px 0}
-  details:last-of-type{border-bottom:1px solid var(--line)}
-  summary{list-style:none;cursor:pointer;font-size:19px;font-weight:700;display:flex;gap:16px;align-items:flex-start}
-  summary::-webkit-details-marker{display:none}
-  summary::after{content:"+";margin-left:auto;color:var(--crimson);font-weight:700;font-size:24px;line-height:1}
-  details[open] summary::after{content:"–"}
-  details p{margin:14px 0 0;color:var(--grey);font-size:16px;max-width:76ch}
-  details p+p{margin-top:10px}
-  details ul{margin:12px 0 0;padding-left:20px;color:var(--grey);font-size:16px;max-width:76ch}
-  details li{margin:5px 0}
-  .faq-h{font-size:14px;font-weight:700;letter-spacing:.09em;text-transform:uppercase;
-    color:var(--crimson);margin:38px 0 4px}
-  .faq-h:first-child{margin-top:0}
-  .faq-h+details{border-top:0}
-  .vs{display:grid;grid-template-columns:1fr 1fr;gap:14px;margin:18px 0 4px;max-width:760px}
-  .vs>div{background:#fff;border:1px solid var(--line);border-radius:14px;padding:18px 20px;
-    display:flex;flex-direction:column;gap:8px}
-  .vs b{font-size:16px;color:var(--ink)}
-  .vs span{font-size:14.5px;color:var(--grey);padding-left:16px;position:relative}
-  .vs span::before{content:"";position:absolute;left:0;top:8px;width:6px;height:6px;
-    border-radius:50%;background:var(--yellow)}
-  .vs>div:last-child span::before{background:var(--crimson)}
-  .vs em{font-style:normal;font-size:14px;font-weight:700;color:var(--ink);margin-top:auto;
-    padding-top:10px;border-top:1px solid var(--line)}
-  @media (max-width:620px){.vs{grid-template-columns:1fr}}
-
-  footer{background:var(--navy);color:rgba(255,255,255,.7);padding:40px 0}
-  .foot{display:flex;gap:26px;justify-content:space-between;flex-wrap:wrap;font-size:14.5px}
-  footer b{color:#fff;font-size:17px}
-  footer a{color:rgba(255,255,255,.7)}
-
-  @media (max-width:900px){
-    .hero-grid,.h2-row,.split,.author,.buy{grid-template-columns:1fr;gap:32px}
-    .cols{grid-template-columns:1fr;gap:26px}
-    .track{grid-template-columns:1fr;gap:12px}
-    .checks{grid-template-columns:1fr}
-    .check+.check{border-left:0;border-top:1px solid var(--line-dark)}
-    .author{max-width:420px}
-    section{padding:60px 0}
-    .hero{padding-top:36px}
-    .facts{gap:26px;padding-bottom:36px}
-    .strip-in{font-size:12px;gap:10px;justify-content:flex-start}
-    .top-cta{padding:8px 14px;font-size:13.5px}
+  * { box-sizing: border-box; }
+  body {
+    margin: 0; min-height: 100vh;
+    background: var(--paper);
+    font-family: 'Trebuchet MS', Verdana, sans-serif;
+    color: var(--ink);
   }
-  @media (prefers-reduced-motion:reduce){*{transition:none!important;scroll-behavior:auto}}
+
+  header {
+    padding: 52px 24px 40px;
+    background:
+      radial-gradient(circle at 12% 18%, rgba(224,123,57,.10) 0 44px, transparent 45px),
+      radial-gradient(circle at 88% 30%, rgba(224,123,57,.12) 0 34px, transparent 35px),
+      radial-gradient(circle at 78% 82%, rgba(31,58,110,.07) 0 40px, transparent 41px),
+      linear-gradient(160deg, #fdeed8 0%, var(--paper) 70%);
+    border-bottom: 3px double var(--ink);
+    text-align: center;
+  }
+  .head-inner { max-width: 820px; margin: 0 auto; }
+  .stars { font-size: 18px; letter-spacing: 10px; color: var(--orange); opacity: .8; }
+  h1 {
+    font-family: Georgia, 'Times New Roman', serif;
+    font-size: 44px; margin: 10px 0 6px;
+    letter-spacing: -0.5px; text-transform: uppercase;
+  }
+  .brown-line {
+    font-family: Georgia, serif;
+    font-size: 24px; color: var(--brown); margin: 0 0 16px;
+  }
+  .pill {
+    display: inline-block;
+    background: var(--peach);
+    border-radius: 999px;
+    padding: 8px 22px;
+    font-size: 16px; color: var(--brown); font-weight: 700;
+    margin-bottom: 16px;
+  }
+  .cats {
+    font-size: 15px; color: var(--ink); margin: 0 0 18px;
+  }
+  .cats span { color: var(--orange); padding: 0 8px; }
+  .handle {
+    display: inline-block;
+    background: var(--orange); color: #fff;
+    border-radius: 999px;
+    padding: 7px 20px;
+    font-size: 15px; font-weight: 700;
+    text-decoration: none;
+  }
+  .head-links { display: flex; gap: 10px; justify-content: center; flex-wrap: wrap; }
+  .handle.club { background: var(--ink); }
+  .handle:focus-visible, .card a:focus-visible { outline: 3px solid var(--ink); outline-offset: 2px; }
+
+  /* ---- баннер и меню ---- */
+  .banner { display: block; width: 100%; height: auto; }
+  .banner-wrap { background: var(--paper); }
+  nav.menu {
+    position: sticky; top: 0; z-index: 50;
+    background: #fffdf9; border-bottom: 1px solid var(--rule);
+    box-shadow: 0 2px 10px rgba(122,74,43,.06);
+  }
+  .menu-inner {
+    max-width: 1180px; margin: 0 auto; padding: 8px 14px;
+    display: flex; align-items: center; gap: 4px;
+    overflow-x: auto; scrollbar-width: none;
+  }
+  .menu-inner::-webkit-scrollbar { display: none; }
+  .menu a {
+    display: inline-flex; align-items: center; gap: 6px; white-space: nowrap;
+    text-decoration: none; font-size: 15px; font-weight: 700;
+    padding: 11px 20px; border-radius: 999px;
+  }
+  .menu a { color: #fff; }
+  .menu a svg { color: #fff; }
+  .menu a.ege { background: #2A5A96; }          /* синий с обложек пособий */
+  .menu a.ege:hover { background: #224b7e; }
+  .menu a.oge { background: #7A4A2B; }          /* коричневый, как «Английский язык» */
+  .menu a.oge:hover { background: #653c22; }
+  .menu a.vk { background: #E8A33C; color: var(--ink); }   /* тёплый золотой, как звёзды на баннере */
+  .menu a.vk svg { color: var(--ink); }
+  .menu a.vk:hover { background: #d8912b; }
+  .menu a.club { background: #1F3A6E; }         /* тёмно-синий, как заголовок баннера */
+  .menu a.club:hover { background: #16305e; }
+  .menu-inner { justify-content: center; gap: 10px; }
+  .menu a.active { color: var(--orange); }
+  .menu a.active svg { color: var(--orange); }
+  .menu a svg { width: 19px; height: 19px; flex: none; }
+
+  .menu .write {
+    margin-left: 0; background: var(--orange); color: #fff;
+  }
+  .menu .write svg { color: #fff; }
+  .menu .write:hover { background: #cf6c2c; }
+  .menu a:focus-visible { outline: 3px solid var(--ink); outline-offset: 2px; }
+  .menu-inner { justify-content: safe center; }
+  @media (max-width: 760px) {
+    .menu-inner { flex-wrap: wrap; overflow: visible; row-gap: 8px; }
+    .menu a { font-size: 14px; padding: 10px 16px; }
+  }
+
+  main { max-width: 960px; margin: 0 auto; padding: 44px 24px 80px; }
+  .eyebrow {
+    font-size: 12px; letter-spacing: 2px; text-transform: uppercase;
+    color: var(--orange); margin: 0 0 18px; font-weight: 700;
+    text-align: center;
+  }
+  .cards {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(270px, 1fr));
+    gap: 20px;
+  }
+  .card {
+    display: flex; flex-direction: column;
+    text-decoration: none; color: var(--ink);
+    background: #fffdf9;
+    border: 1px solid var(--rule); border-radius: 14px;
+    padding: 26px 24px 22px; position: relative;
+    box-shadow: 0 3px 0 var(--rule);
+    transition: transform .12s, box-shadow .12s, border-color .12s;
+  }
+  .card:hover {
+    transform: translateY(-4px);
+    box-shadow: 0 10px 26px rgba(122,74,43,.16);
+    border-color: var(--orange);
+  }
+  .card .badge {
+    align-self: flex-start;
+    display: inline-flex; align-items: center; justify-content: center;
+    width: 46px; height: 46px; border-radius: 50%;
+    background: var(--peach); color: var(--brown);
+    margin-bottom: 14px;
+  }
+  .card .badge svg { width: 25px; height: 25px; }
+  .card:hover .badge { background: var(--orange); color: #fff; }
+  .card h2 {
+    font-family: Georgia, serif; font-size: 23px; margin: 0 0 8px;
+  }
+  .card p { margin: 0 0 18px; font-size: 14px; color: var(--muted); line-height: 1.55; flex: 1; }
+  .card .go {
+    align-self: flex-start;
+    background: var(--orange); color: #fff;
+    border-radius: 999px; padding: 9px 20px;
+    font-size: 13px; font-weight: 700;
+  }
+  .card .go::after { content: " →"; }
+
+  .card.club { border: 2px solid var(--ink); box-shadow: 0 3px 0 var(--ink); }
+  .card.club:hover { border-color: var(--ink); }
+  .card.club .badge { background: var(--ink); color: #fff; }
+  .card .actions { display: flex; gap: 10px; flex-wrap: wrap; }
+  .card .actions a { text-decoration: none; border-radius: 999px; padding: 9px 20px; font-size: 13px; font-weight: 700; }
+  .card .actions .login { background: var(--ink); color: #fff; }
+  .card .actions .login::after { content: " →"; }
+  .card .actions .join { background: var(--peach); color: var(--brown); }
+
+  .note {
+    margin-top: 46px; padding: 20px 24px;
+    background: var(--peach);
+    border-radius: 14px;
+    font-size: 14px; color: var(--brown); line-height: 1.6;
+    text-align: center;
+  }
+  footer {
+    border-top: 1px solid var(--rule);
+    padding: 26px 24px; text-align: center;
+    font-size: 12px; color: var(--muted);
+  }
+  .channels {
+    display: flex; justify-content: center; flex-wrap: wrap; gap: 10px;
+    margin: 0 0 16px;
+  }
+  .channels a {
+    display: inline-flex; align-items: center; gap: 7px;
+    text-decoration: none; color: var(--ink); font-size: 14px; font-weight: 600;
+    background: var(--peach); padding: 9px 16px; border-radius: 999px;
+  }
+  .channels a:hover { background: var(--orange); color: #fff; }
+  .channels svg { width: 17px; height: 17px; }
 </style>
 </head>
 <body>
 
-<header class="top">
-  <div class="top-in">
-    <a class="back" href="https://egerepetit.ru">← egerepetit.ru</a>
-    <span class="sp"></span>
-    <a class="top-cta" href="#price">Сколько стоит</a>
-  </div>
-</header>
+<div class="banner-wrap"><img class="banner" src="banner.jpg" alt="Пособия для ЕГЭ и ОГЭ. Английский язык. Авторские материалы Юлии Косенковой"></div>
 
-<!-- ======== ПЕРВЫЙ ЭКРАН ======== -->
-<div class="hero">
-  <div class="wrap">
-    <div class="hero-grid">
-      <div>
-        <span class="eyebrow">Английский язык · ЕГЭ 2027</span>
-        <p class="for-whom">Для преподавателей и репетиторов</p>
-        <h1>ЕГЭ<span class="y">под ключ</span></h1>
-        <p class="claim">Вся подготовка — в одной понятной системе.</p>
-        <p class="lead">Готовый курс на ProgressMe: от языковой базы и стратегий до письменной
-           и устной части. Материалы уже собраны — вы выбираете темп под ученика.</p>
+<nav class="menu"><div class="menu-inner">
+      <a class="ege" href="/ege-2027/"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 4 2.5 8.5 12 13l9.5-4.5L12 4z"/><path d="M6.5 10.5V16c0 1.4 2.5 3 5.5 3s5.5-1.6 5.5-3v-5.5"/></svg>Курс ЕГЭ</a>
+      <a class="oge" href="https://vk.ru/@egerepetit-kurs-oge-po-angliiskomu-pod-kluch-na-progressme" target="_blank" rel="noopener"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M4 4.5h6a2.5 2.5 0 0 1 2 2v13a2 2 0 0 0-2-1.5H4v-13z"/><path d="M20 4.5h-6a2.5 2.5 0 0 0-2 2v13a2 2 0 0 1 2-1.5h6v-13z"/></svg>Курс ОГЭ</a>
+      <a class="vk" href="https://vk.ru/egerepetit" target="_blank" rel="noopener"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M4 5.5h16v10a1.5 1.5 0 0 1-1.5 1.5H9l-4 3.5v-3.5H4a1.5 1.5 0 0 1-1.5-1.5"/><path d="M8 9.5h8M8 13h5"/></svg>Сообщество в ВК</a>
+      <a class="club" href="https://club.egerepetit.ru"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="9" cy="9" r="3"/><path d="M3.5 19.5c.6-3 2.9-4.5 5.5-4.5s4.9 1.5 5.5 4.5"/><path d="M16 7.2a3 3 0 0 1 0 5.6M17 15.3c2 .5 3.4 1.9 3.9 4.2"/></svg>Teachers’ Club</a>
+      <a class="write" href="https://vk.ru/juliya_kosenkova" target="_blank" rel="noopener"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M21 3 10.5 13.5"/><path d="M21 3l-7 18-3.5-7.5L3 10l18-7z"/></svg>Написать Юлии</a>
+</div></nav>
 
-        <div class="price-strip">
-          <div class="price-row">
-            <span class="price-big">10 000 ₽</span>
-            <span class="price-club">участникам Teachers’ Club — <span style="white-space:nowrap">9 000 ₽</span></span>
-          </div>
-          <p class="price-note">После покупки курс остаётся у вас навсегда. За платформу ProgressMe
-             вы платите только тогда, когда подключаете к ней учеников. Хранение курса на платформе
-             бесплатное.</p>
-        </div>
 
-        <div class="cta-row">
-          <a class="btn btn-y" href="#video">Смотреть видео</a>
-          <a class="btn btn-ghost" href="#structure">Программа курса</a>
-        </div>
 
-        <div class="facts">
-          <div class="fact"><b>30</b><span>юнитов</span></div>
-          <div class="fact"><b>Все</b><span>разделы экзамена</span></div>
-          <div class="fact"><b>Одна система</b><span>всё в одном месте</span></div>
-        </div>
-      </div>
+<main>
+  <p class="eyebrow">Мои проекты</p>
+  <div class="cards">
 
-      <div class="cover" id="coverBox">
-        <img src="cover.jpg" alt="Обложка курса «ЕГЭ 2027. Английский язык»"
-             onerror="var b=document.getElementById('coverBox');b.remove();document.querySelector('.hero-grid').style.gridTemplateColumns='1fr'">
-      </div>
-    </div>
-  </div>
-</div>
+    <a class="card" href="https://checkout.tochka.com/egerepetit">
+      <span class="badge"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 8h14l-1 12H6L5 8z"/><path d="M9 8V6.5a3 3 0 0 1 6 0V8"/></svg></span>
+      <h2>Интернет-магазин</h2>
+      <p>Авторские пособия, практикумы и курсы по английскому языку
+         для подготовки к ЕГЭ и ОГЭ — с онлайн-оплатой и мгновенным доступом.</p>
+      <span class="go">Перейти в магазин</span>
+    </a>
 
-<div class="strip">
-  <div class="strip-in">
-    <span>Grammar</span><span>Vocabulary</span><span>Reading</span>
-    <span>Listening</span><span>Writing</span><span>Speaking</span>
-  </div>
-</div>
+    <a class="card" href="https://vk.ru/market-161114777?screen=group" target="_blank" rel="noopener">
+      <span class="badge"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M4 9.5h16V19a1 1 0 0 1-1 1H5a1 1 0 0 1-1-1V9.5z"/><path d="M3.2 6.2 4.6 4h14.8l1.4 2.2a2 2 0 0 1-1.7 3 2.6 2.6 0 0 1-2.2-1.2A2.6 2.6 0 0 1 14.7 9.2 2.6 2.6 0 0 1 12 8 2.6 2.6 0 0 1 9.3 9.2 2.6 2.6 0 0 1 7.1 8 2.6 2.6 0 0 1 4.9 9.2a2 2 0 0 1-1.7-3z"/><path d="M10 20v-5h4v5"/></svg></span>
+      <h2>Магазин в ВК</h2>
+      <p>Те же пособия и практикумы в маркете сообщества ВКонтакте: можно посмотреть,
+         задать вопрос в сообщении и оплатить, не выходя из ВК.</p>
+      <span class="go">Открыть в ВК</span>
+    </a>
 
-<!-- ======== ВИДЕО ======== -->
-<section id="video" hidden>
-  <div class="wrap">
-    <div class="h2-row solo">
-      <div>
-        <span class="over">Посмотрите сами</span>
-        <h2>Курс изнутри</h2>
-      </div>
-    </div>
-    <div id="videoMain"></div>
-    <div class="videos" id="videoCards"></div>
-    <p class="vhint">Остались вопросы после просмотра —
-       <a href="https://vk.ru/im?sel=-161114777" target="_blank" rel="noopener">напишите в сообщество в ВК</a>,
-       Юлия ответит лично.</p>
-  </div>
-</section>
+    <a class="card" href="https://oge-trainers.tatnet.app">
+      <span class="badge"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="5" y="4" width="14" height="17" rx="2"/><path d="M9 3.5h6v2.5H9z"/><path d="M8.7 12.6l2 2 4.2-4.3"/></svg></span>
+      <h2>Банк ФИПИ ОГЭ</h2>
+      <p>Интерактивная тренировка актуальных заданий из банка ФИПИ ОГЭ,
+         которые встретятся на экзамене, с моментальной автопроверкой.</p>
+      <span class="go">Открыть тренажёры</span>
+    </a>
 
-<!-- ======== ЛОГИКА ======== -->
-<section class="sec-grey">
-  <div class="wrap">
-    <div class="h2-row solo">
-      <div>
-        <span class="over">Ваше время — для ученика</span>
-        <h2>У подготовки есть общая логика</h2>
-      </div>
-    </div>
-    <div class="cols">
-      <div class="col">
-        <div class="n">01</div>
-        <h3>Материалы собраны</h3>
-        <p>Не нужно тратить время на поиск, оформление и подбор материалов для уроков.</p>
-      </div>
-      <div class="col">
-        <div class="n">02</div>
-        <h3>Навыки возвращаются</h3>
-        <p>Reading, Listening, Writing и другие блоки распределены по юнитам. Ученики регулярно
-           возвращаются к экзаменационным форматам.</p>
-      </div>
-      <div class="col">
-        <div class="n">03</div>
-        <h3>Темп выбираете вы</h3>
-        <p>Знакомые темы можно пройти быстрее, на пробелах задержаться, а часть упражнений
-           назначить для самостоятельной работы.</p>
-      </div>
-    </div>
-  </div>
-</section>
+    <a class="card" href="/task38/">
+      <span class="badge"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M4 20.5 4.9 17l10-10 2.6 2.6-10 10-3.5.9z"/><path d="M14.9 7l1.8-1.8a1.8 1.8 0 0 1 2.6 0l.5.5a1.8 1.8 0 0 1 0 2.6L18 10.1"/><path d="M4 20.5h16"/></svg></span>
+      <h2>Task 38 Trainer for EGE</h2>
+      <p>Генератор problem &amp; solution для абзаца 4 эссе ЕГЭ: типовые темы проектов,
+         экзаменационные формулировки и режим тренировки.</p>
+      <span class="go">Открыть тренажёр</span>
+    </a>
 
-<!-- ======== СТРУКТУРА ======== -->
-<section id="structure">
-  <div class="wrap">
-    <span class="over">Как устроен курс</span>
-    <h2 style="margin-bottom:34px">30 юнитов<br>Три направления работы</h2>
-
-    <div class="track">
-      <div class="tt"><i>01</i> / Exam skills</div>
-      <div>
-        <p>Грамматика, словообразование, чтение, аудирование, лексические задания и письмо.
-           Ученик разбирает алгоритмы, изучает стратегии, учится видеть типичные ловушки,
-           выполняет guided practice и только потом переносит навык в экзаменационный формат.</p>
-        <div class="tags"><span class="tag">Алгоритмы</span><span class="tag">Ловушки заданий</span><span class="tag">Guided practice</span><span class="tag">Образцы ответов</span></div>
-      </div>
-    </div>
-    <div class="track">
-      <div class="tt"><i>02</i> / Topic &amp; vocabulary</div>
-      <div>
-        <p>Не список слов «по теме». Ученик встречает лексику в контексте, тренирует её,
-           активизирует в речи и учится выражать через неё свои идеи и аргументы.
-           Эта же база потом работает в продуктивной части экзамена.</p>
-        <div class="tags"><span class="tag">Видео</span><span class="tag">Vocabulary Bank</span><span class="tag">Collocations &amp; chunks</span><span class="tag">Discussion</span></div>
-      </div>
-    </div>
-    <div class="track">
-      <div class="tt"><i>03</i> / Speaking exam</div>
-      <div>
-        <p>Задания 1–4 разбираются в первых юнитах и дальше возвращаются в каждой теме.
-           Сначала язык и идеи, потом опоры, потом опоры снимаются — и ученик отвечает сам
-           под экзаменационный таймер. Ответ записывается на платформе: его можно переслушать
-           и выполнить задание заново.</p>
-        <div class="tags"><span class="tag">Topic Classifier</span><span class="tag">Argument Generator</span><span class="tag">Шаблон-каркас</span><span class="tag">Запись ответа</span><span class="tag">Таймер</span></div>
-      </div>
-    </div>
-
-    <div class="checks">
-      <div class="check"><b>Входная диагностика</b><span>определить стартовую точку</span></div>
-      <div class="check"><b>Progress Check</b><span>проверить освоение после каждых 5 юнитов</span></div>
-    </div>
+    <a class="card" href="/enhancer/">
+      <span class="badge"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="3" y="5" width="18" height="14" rx="2"/><circle cx="8.5" cy="10" r="1.4"/><path d="M4 17l4.5-4.5 3 3L15 12l5 5"/></svg></span>
+      <h2>Улучшение качества изображений за секунды</h2>
+      <p>Сделали рабочий лист в нейросети, а при увеличении картинка расплывается?
+         Приложение вернёт резкость и чистый белый фон, обработает сразу несколько
+         листов и соберёт их в PDF для печати. Бесплатно, без VPN, прямо в браузере.</p>
+      <span class="go">Открыть приложение</span>
+    </a>
 
   </div>
-</section>
 
-<!-- ======== ЛОГИКА НАВЫКА ======== -->
-<section class="sec-grey">
-  <div class="wrap">
-    <div class="h2-row">
-      <div>
-        <span class="over">Логика каждого навыка</span>
-        <h2>Сначала навык<br>Потом тест</h2>
-      </div>
-      <p>Задания ФИПИ, открытые варианты и сборники в курсе обязательно используются —
-         но как материал для проверки уже сформированного навыка, а не вместо обучения.</p>
-    </div>
-
-    <div class="chain-row">
-      <span>Learn</span><i>→</i><span>Practise</span><i>→</i><span>Apply</span><i>→</i>
-      <span>Revise</span><i>→</i><span>Check</span><i>→</i><span>Improve</span>
-    </div>
-
-    <p class="chain-note">Не «решили тест и пошли дальше»: экзаменационные навыки циклично
-       возвращаются в следующих юнитах, закрепляются и постепенно усложняются.</p>
-
-    <p class="more">Подробно о методике курса —
-      <a href="https://vk.ru/@egerepetit-flagmanskii-kurs-ege-po-angliiskomu-pod-kluch-na-progressme"
-         target="_blank" rel="noopener">в статье автора</a>.</p>
+  <div class="note">
+    ✦ Раздел пополняется: здесь будут появляться новые приложения и материалы.
+    Добавьте страницу в закладки, чтобы ничего не пропустить!
   </div>
-</section>
-
-<!-- ======== МЕТОДИКА ======== -->
-<section>
-  <div class="wrap">
-    <div class="h2-row solo">
-      <div>
-        <span class="over">Методика</span>
-        <h2>Не только материалы<br>но и как с ними работать</h2>
-      </div>
-    </div>
-    <div class="cols">
-      <div class="col">
-        <div class="n">Teacher’s Guide</div>
-        <h3>Логика всего курса</h3>
-        <p>Что делать на уроке, что задавать домой, как работать с разными разделами
-           и как менять объём под сильного или слабого ученика.</p>
-      </div>
-      <div class="col">
-        <div class="n">Speaking Exam</div>
-        <h3>Отдельный сценарий</h3>
-        <p>Где дать опору, когда её убрать, когда показать Sample Answer, как организовать
-           запись ответа и повторную попытку.</p>
-      </div>
-      <div class="col">
-        <div class="n">Lesson Plans</div>
-        <h3>Для каждой темы</h3>
-        <p>Методический сценарий к каждому тематическому уроку: как работать с видео
-           и Vocabulary Bank, как вывести ученика в Discussion.</p>
-      </div>
-    </div>
-  </div>
-</section>
-
-<!-- ======== РАЗНЫЕ УЧЕНИКИ ======== -->
-<section class="sec-grey">
-  <div class="wrap">
-    <span class="over">Под ваш формат работы</span>
-    <h2 style="margin-bottom:40px">Один курс<br>Разные ученики</h2>
-    <div class="cols">
-      <div class="col">
-        <div class="n">10 класс</div>
-        <h3>Заложить основу</h3>
-        <p>Систематизировать грамматику и лексику, постепенно знакомиться с форматами
-           и начинать работу с письмом и говорением.</p>
-      </div>
-      <div class="col">
-        <div class="n">11 класс</div>
-        <h3>Выстроить маршрут</h3>
-        <p>По результатам диагностики выбрать темп, распределить уроки и домашнюю работу.
-           Курс проходят и за один год, и за два.</p>
-      </div>
-      <div class="col">
-        <div class="n">Сильный ученик</div>
-        <h3>Закрыть пробелы</h3>
-        <p>Быстрее пройти освоенное и уделить больше внимания стратегиям, продуктивным заданиям
-           и индивидуальным трудностям.</p>
-      </div>
-    </div>
-  </div>
-</section>
-
-<!-- ======== ПЛАТФОРМА ======== -->
-<section class="sec-dark">
-  <div class="wrap">
-    <div class="split">
-      <div>
-        <span class="over">Онлайн и офлайн</span>
-        <h2>Онлайн или офлайн<br>Курс работает одинаково</h2>
-        <p style="color:rgba(255,255,255,.78);font-size:16.5px;max-width:44ch;margin-bottom:0">
-           Платформа создана как инструмент организации обучения — она не диктует,
-           где и как вы ведёте занятие.</p>
-
-        <div class="ways">
-          <div class="way">
-            <b>Онлайн</b>
-            <p>Весь урок идёт на платформе: материалы, аудио, видео, задания и домашняя работа
-               собраны в одном месте, ничего не нужно пересылать.</p>
-          </div>
-          <div class="way">
-            <b>Офлайн</b>
-            <p>Курс не нужно распечатывать. Вы сидите с учеником за одним столом и выводите нужное
-               на экран, а дома он работает на платформе сам.</p>
-          </div>
-        </div>
-      </div>
-      <div class="steps">
-        <div class="step">
-          <div class="lbl">На уроке</div>
-          <h3>Объясняете и обсуждаете</h3>
-          <p>Разбираете стратегии, работаете с видео, тренируете Speaking и обсуждаете письменные ответы.</p>
-        </div>
-        <div class="step">
-          <div class="lbl">Дома</div>
-          <h3>Ученик закрепляет</h3>
-          <p>Выполняет назначенную практику на платформе. Закрытые задания проверяются автоматически.</p>
-        </div>
-        <div class="step">
-          <div class="lbl">На следующем занятии</div>
-          <h3>Возвращаетесь к трудностям</h3>
-          <p>Используете результаты работы, чтобы выбрать, что разобрать подробнее и что повторить.</p>
-        </div>
-      </div>
-    </div>
-  </div>
-</section>
-
-<!-- ======== АВТОР ======== -->
-<section>
-  <div class="wrap">
-    <div class="author">
-      <div class="ava" id="avaBox">
-        <img src="author.jpg" alt="Юлия Косенкова"
-             onerror="this.remove();document.getElementById('avaFb').hidden=false">
-        <span id="avaFb" hidden>
-          <span class="ini">ЮК</span>
-          <span class="nick">@egerepetit</span>
-        </span>
-      </div>
-      <div>
-        <span class="over">Автор курса</span>
-        <h2 style="font-size:clamp(28px,3.6vw,40px)">Юлия Косенкова</h2>
-        <p>Преподаватель английского, методист и автор материалов для подготовки к ОГЭ и ЕГЭ.</p>
-        <p>Курс объединяет языковую подготовку и работу с экзаменационными заданиями. Его можно
-           дополнять и редактировать под свой стиль преподавания и задачи конкретного ученика.</p>
-        <div class="anum">
-          <div><b>12 лет</b><span>работы</span></div>
-          <div><b>500+</b><span>выпускников</span></div>
-          <div><b>50+</b><span>пособий</span></div>
-        </div>
-      </div>
-    </div>
-  </div>
-</section>
-
-<!-- ======== ПОКУПКА ======== -->
-<section class="sec-dark" id="price">
-  <div class="wrap">
-    <div class="buy">
-      <div>
-        <span class="over">Ваш рабочий инструмент</span>
-        <h2>Готовая система<br>для ваших уроков</h2>
-        <p style="color:rgba(255,255,255,.78);font-size:16.5px;margin:0 0 34px;max-width:44ch">
-           Сохраняете курс в личные материалы, используете со своими учениками
-           и адаптируете под их задачи.</p>
-
-        <ol class="howto">
-          <li>
-            <h3>Пишете в сообщество в ВК</h3>
-            <p>Отвечаю на вопросы и договариваемся об удобном для вас времени.</p>
-          </li>
-          <li>
-            <h3>Оплачиваете</h3>
-            <p>Полностью или частями через сервис «Долями» от Т-Банка. Условия отображаются при оформлении.</p>
-          </li>
-          <li>
-            <h3>В назначенное время открывается ссылка</h3>
-            <p>Ссылка на сохранение курса действует 5 минут — будьте в этот момент за компьютером.</p>
-          </li>
-          <li>
-            <h3>Сохраняете курс себе</h3>
-            <p>Курс появляется в ваших «Личных материалах» на ProgressMe и остаётся там навсегда.</p>
-          </li>
-        </ol>
-
-        <p class="why">Почему нельзя купить в один клик: ссылка на сохранение открывается всего на пять минут —
-           так авторский курс защищён от бесконтрольного копирования. Поэтому мы заранее договариваемся
-           о времени, когда вам удобно его забрать.</p>
-      </div>
-
-      <div class="card">
-        <div class="kicker">ЕГЭ под ключ · 2027</div>
-        <div class="big">10 000 <span>₽</span></div>
-        <div class="club-line">Для участников Teachers’ Club — <b>9 000 ₽</b></div>
-
-        <h4>Что входит</h4>
-        <p>30 юнитов, все разделы экзамена, входная диагностика и Progress Check.
-           Курс остаётся у вас навсегда, обновления в течение учебного года покупки — бесплатно.</p>
-
-        <hr>
-
-        <h4>Тариф платформы — отдельно</h4>
-        <p>Если вы подключаете к курсу учеников, нужен тариф ProgressMe — <b>990 ₽/месяц</b>.
-           Чтобы просто хранить курс, платить не нужно.</p>
-
-        <hr>
-
-        <h4>Оплата частями</h4>
-        <p>Доступен сервис «Долями» от Т-Банка.</p>
-
-        <a class="btn btn-y" href="https://vk.ru/im?sel=-161114777" target="_blank" rel="noopener">Написать в сообщество</a>
-        <p class="fine">Сообщение придёт в сообщество
-           <a href="https://vk.ru/egerepetit" target="_blank" rel="noopener">«ЕГЭ и ОГЭ Английский»</a> —
-           отвечает Юлия Косенкова, автор курса. Курс сохраняется на вашем аккаунте ProgressMe:
-           если вы работаете на другой платформе, курс не подойдёт.</p>
-      </div>
-    </div>
-  </div>
-</section>
-
-<!-- ======== ВОПРОСЫ ======== -->
-<section class="sec-grey" id="faq">
-  <div class="wrap">
-    <span class="over">Перед покупкой</span>
-    <h2 style="margin-bottom:34px">Вопросы, которые задают коллеги</h2>
-    <div class="faq">
-
-      <div class="faq-h">Что внутри</div>
-      <details open>
-        <summary>Какие разделы ЕГЭ входят в курс?</summary>
-        <p>Чтение, аудирование, грамматика, словообразование, лексические задания, письмо и устная часть.
-           Экзаменационные форматы возвращаются в следующих юнитах. Отдельный блок Topic &amp; Vocabulary
-           посвящён тематической лексике, идеям и аргументации для продуктивной части.</p>
-        <p>Я намеренно не собираю все разделы экзамена в каждый юнит. Отработка экзаменационных заданий
-           равномерно распределена: в одном юните в фокусе только один раздел экзамена. Так ученик
-           успевает разобраться с конкретным типом задач, а к концу курса навыки развиты равномерно.</p>
-      </details>
-      <details>
-        <summary>Откуда взяты экзаменационные задания?</summary>
-        <p>Экзаменационная практика строится на заданиях и форматах ФИПИ. При этом курс — не перенесённый
-           на платформу банк: стратегии, алгоритмы, памятки, грамматические и лексические тренажёры,
-           Vocabulary Blocks, вопросы для обсуждения, шаблоны и часть тренировочного материала авторские.</p>
-      </details>
-      <details>
-        <summary>Все ли темы кодификатора есть в курсе?</summary>
-        <p>Да, но названия юнитов не повторяют кодификатор слово в слово. В кодификаторе перечислены
-           широкие тематические области, а не список слов и не требование сделать по уроку на каждый пункт.</p>
-        <p>Я строила тематические блоки от тех сюжетов и формулировок, которые реально встречаются
-           в заданиях ЕГЭ, и уже внутри них отбирала лексику, collocations, chunks и задания на говорение.
-           Поэтому один юнит может закрывать несколько пунктов кодификатора, а широкая тема кодификатора —
-           возвращаться в нескольких юнитах под разными углами.</p>
-      </details>
-      <details>
-        <summary>Есть ли домашние задания и образцы ответов?</summary>
-        <p>Да: материал для самостоятельной работы, образцы устных ответов, примеры и шаблоны письменных
-           работ предусмотрены.</p>
-        <p>При этом курс не задаёт жёсткую траекторию «урок 1 — строго такая домашка». Я не могу заранее
-           знать уровень вашего ученика, поэтому в курсе есть запас практики, из которого преподаватель
-           выбирает нужный объём: механическую отработку удобно отдавать домой, а стратегии, Writing,
-           Speaking и разбор ошибок оставлять на занятие.</p>
-      </details>
-      <details>
-        <summary>Нужен ли параллельно учебник General English?</summary>
-        <p>Как правило нет. Курс построен так, чтобы язык и подготовка к экзамену шли вместе: Exam Skills —
-           грамматика, Word Formation, Reading, Listening, Use of English, Writing; Topic &amp; Vocabulary —
-           тематическая лексика, collocations, chunks, обсуждение; затем этот язык переносится в задания ЕГЭ.</p>
-        <p>Если у конкретного ученика есть выраженные пробелы, материал можно добавлять точечно — курс
-           это позволяет. Но вести параллельно ещё один полный УМК обычно не требуется.</p>
-      </details>
-      <details>
-        <summary>Нужно ли сразу покупать дополнительные пособия?</summary>
-        <p>Нет. В курсе есть стратегии и тренировочные задания по всем разделам. Отдельные пособия автора
-           не включены в него целиком: банк ФИПИ огромен, и если добавить в курс все практикумы,
-           его прохождение займёт не год, а три.</p>
-        <p>Дополнительную практику имеет смысл подбирать по результатам диагностики — когда видно,
-           что конкретный навык проседает и ученику нужен больший объём отработки.</p>
-        <div class="vs">
-          <div>
-            <b>Курс</b>
-            <span>Алгоритмы всех разделов экзамена</span>
-            <span>Грамматика, лексика, словообразование</span>
-            <span>Пояснения к логике экзамена</span>
-            <em>Цель — построить систему</em>
-          </div>
-          <div>
-            <b>Отдельные пособия</b>
-            <span>Концентрация на одном типе заданий</span>
-            <span>Отработка банка ФИПИ по конкретному номеру</span>
-            <span>Шлифовка заданий 30–36, 38 и других</span>
-            <em>Цель — убрать ошибки в одном блоке</em>
-          </div>
-        </div>
-      </details>
-
-      <div class="faq-h">Кому подойдёт</div>
-      <details>
-        <summary>Реально ли пройти курс за 11 класс?</summary>
-        <p>Да. Курс проходят и за один учебный год, и за два — это зависит от исходного уровня ученика,
-           количества занятий и объёма самостоятельной работы. Один юнит не равен одному уроку:
-           преподаватель выбирает нужный объём и распределяет задания между занятием и домом.</p>
-        <p>С 10 класса спокойнее: есть время на фундамент. С 11 класса я бы начала с диагностики,
-           знакомые темы проходила быстрее, а во втором полугодии оставила время на отработку по банку ФИПИ.</p>
-      </details>
-      <details>
-        <summary>Подойдёт ли сильному ученику уровня Intermediate — Upper?</summary>
-        <p>Да, но не как курс повышения уровня с нуля, а как системная подготовка к экзамену с закрытием
-           конкретных пробелов. Знакомую грамматику и Word Formation можно отдавать на самостоятельную
-           работу, а на занятии сосредоточиться на сложных стратегиях, ловушках в Reading и Listening,
-           заданиях 37 и 38, лексике, аргументации и устной части.</p>
-        <p>Проходить каждый юнит одинаково глубоко не обязательно: сильный ученик двигается быстрее
-           и берёт из каждого блока то, что действительно нужно.</p>
-      </details>
-      <details>
-        <summary>Подойдёт ли для офлайн-занятий и мини-групп?</summary>
-        <p>Да. Офлайн — это формат общения с учеником, а платформа — инструмент организации обучения,
-           и одно не мешает другому. На занятии можно вывести материал на ноутбук или экран и работать
-           вместе: стратегии, грамматика, видео, Vocabulary Bank, Reading, Speaking.</p>
-        <p>Там, где нужен индивидуальный ответ, ученики заходят в курс со своих телефонов или ноутбуков.
-           Домашнюю работу особенно удобно отдавать на платформе — закрытые задания проверяются автоматически.</p>
-      </details>
-      <details>
-        <summary>Кому курс не подойдёт</summary>
-        <p>Если вы не планируете работать на ProgressMe — курс живёт на этой платформе, вне её он
-           не существует.</p>
-        <p>Если для вас принципиален English-only. Объяснения грамматики, стратегий и критериев я
-           намеренно оставила на русском: в ЕГЭ много моментов, где ученику нужно точно понять, почему
-           ответ засчитывается или нет и в чём ловушка. Это осознанное методическое решение, а не
-           недоработка. Само занятие при этом можно вести на английском.</p>
-        <p>Если вы ищете готовый календарный план «один юнит — один урок»: курс даёт систему и запас
-           практики, а траекторию под конкретного ученика выстраивает преподаватель.</p>
-      </details>
-      <details>
-        <summary>Работаете ли вы сами по этому курсу?</summary>
-        <p>Да. Курс построен исключительно на моём 12-летнем опыте подготовки к ЕГЭ. Я собирала его
-           прежде всего для себя — так, как мне самой удобно вести подготовку, — и он прошёл много проб
-           на реальных учениках.</p>
-        <p>Поэтому в последнем обновлении я подробно прописала Teacher’s Guide и Lesson Plans:
-           что лучше делать на уроке, что отдавать домой и в какой последовательности проходить блоки.</p>
-      </details>
-
-      <div class="faq-h">Работа с курсом</div>
-      <details>
-        <summary>Нужен ли аккаунт на ProgressMe?</summary>
-        <p>Да, курс живёт на этой платформе: вы сохраняете его в свои «Личные материалы» и оттуда
-           назначаете ученикам. Если вы работаете на другой платформе и не планируете переходить
-           на ProgressMe, этот курс вам не подойдёт.</p>
-      </details>
-      <details>
-        <summary>Можно ли добавлять свои задания и редактировать уроки?</summary>
-        <p>Да. После сохранения собственной копии вы можете редактировать материалы, добавлять упражнения
-           и адаптировать уроки под свой стиль преподавания и под конкретного ученика.</p>
-      </details>
-      <details>
-        <summary>Можно ли распечатывать материалы?</summary>
-        <p>Курс создавался как интерактивный, и полностью превращать его обратно в стопку распечаток
-           я бы не советовала: теряются автопроверка, аудио, видео, запись ответов и повторные попытки.</p>
-        <p>Но отдельные таблицы, памятки и тексты можно распечатывать для работы со своими учениками —
-           без передачи и распространения материалов третьим лицам.</p>
-      </details>
-      <details>
-        <summary>На каком языке даны объяснения?</summary>
-        <p>Объяснения грамматики, стратегий и экзаменационных нюансов даны на русском. Обсуждения,
-           работу с видео, Vocabulary, Reading, Listening и Speaking преподаватель может вести
-           на английском. Русский используется там, где он экономит время и повышает точность понимания.</p>
-      </details>
-
-      <div class="faq-h">Покупка и доступ</div>
-      <details>
-        <summary>Почему нельзя оплатить сразу на сайте?</summary>
-        <p>Ссылка на сохранение курса открывается всего на пять минут — это защита авторских материалов
-           от бесконтрольного копирования. Держать её открытой постоянно нельзя, поэтому мы списываемся
-           и выбираем время, когда вам удобно забрать курс.</p>
-      </details>
-      <details>
-        <summary>Останется ли курс у меня после учебного года?</summary>
-        <p>Да, сохранённый курс остаётся в ваших «Личных материалах» без ограничения срока. Покупать его
-           заново каждый год не нужно. Тариф платформы для подключения учеников оплачивается отдельно.</p>
-      </details>
-      <details>
-        <summary>Как предоставляются обновления?</summary>
-        <p>Обновления в течение учебного года покупки бесплатны. На следующий учебный год вы можете
-           обновить курс самостоятельно или приобрести обновление у автора. Размер доплаты зависит
-           от объёма изменений. Покупать обновление необязательно.</p>
-      </details>
-      <details>
-        <summary>Входит ли этот курс в Teachers’ Club?</summary>
-        <p>Курс приобретается отдельно. Участникам Teachers’ Club предоставляется скидка 10% на его покупку.</p>
-      </details>
-    </div>
-  </div>
-</section>
+</main>
 
 <footer>
-  <div class="wrap foot">
-    <div><b>@egerepetit</b><br>Авторский курс Юлии Косенковой</div>
-    <div>Английский язык · ЕГЭ 2027<br><a href="#faq">Частые вопросы</a></div>
-    <div><a href="https://egerepetit.ru">egerepetit.ru</a><br>
-      <a href="https://vk.ru/egerepetit" target="_blank" rel="noopener">Сообщество в ВК</a> ·
-      <a href="https://vk.ru/im?sel=-161114777" target="_blank" rel="noopener">Написать</a></div>
+  <div class="channels">
+    <a href="https://vk.ru/egerepetit" target="_blank" rel="noopener"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M4 5.5h16v10a1.5 1.5 0 0 1-1.5 1.5H9l-4 3.5v-3.5H4a1.5 1.5 0 0 1-1.5-1.5"/><path d="M8 9.5h8M8 13h5"/></svg>Группа в ВК</a>
+    <a href="https://max.ru/egerepetit" target="_blank" rel="noopener"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M21 3 10.5 13.5"/><path d="M21 3l-7 18-3.5-7.5L3 10l18-7z"/></svg>Канал в Max</a>
+    <a href="https://t.me/egerepetit" target="_blank" rel="noopener"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M21 3 10.5 13.5"/><path d="M21 3l-7 18-3.5-7.5L3 10l18-7z"/></svg>Канал в Telegram</a>
   </div>
+  © ИП Косенкова Ю.В. / Egerepetit
 </footer>
 
-<script>
-/* ---------------------------------------------------------------
-   ВИДЕО. Блок «Курс изнутри» появляется сам, если что-то заполнено.
-
-   file  — видеофайл лежит рядом, в этой же папке. Играет прямо
-           на странице, без рекламы.
-   url   — видео лежит где-то ещё (Яндекс Диск, VK и т.п.).
-           Будет карточка с кнопкой «play», по клику откроется там.
-   Заполнять нужно что-то одно.
----------------------------------------------------------------- */
-var VIDEO = {
-  demo: {
-    file:  "demo-course.mp4",      // демо курса — лежит в этой папке
-    poster:"demo-poster.jpg",
-    title: "Демо: курс изнутри",
-    meta:  "3,5 минуты · играет прямо здесь",
-    text:  "Как курс выглядит на платформе: структура юнитов, памятки и стратегии, задания, Vocabulary Bank, письмо и устная часть."
-  },
-  review: {
-    url:   "https://disk.yandex.ru/i/T1x_iQvAwDRxbA",   // обзор на Яндекс Диске
-    poster:"review-poster.jpg",
-    title: "Подробный разбор курса",
-    meta:  "22 минуты · откроется на Яндекс Диске",
-    text:  "Прохожу по курсу целиком и показываю, как с ним работать на занятиях."
-  }
-};
-(function () {
-  var shown = false;
-
-  Object.keys(VIDEO).forEach(function (k) {
-    var v = VIDEO[k];
-    if (!v || !v.file) return;
-    shown = true;
-    var d = document.createElement("div");
-    d.innerHTML =
-      '<div class="vplayer"><video controls preload="none" playsinline' +
-      (v.poster ? ' poster="' + v.poster + '"' : '') + '>' +
-      '<source src="' + v.file + '" type="video/mp4">' +
-      'Ваш браузер не умеет показывать видео. <a href="' + v.file + '">Скачать файл</a>.' +
-      '</video></div>' +
-      (v.text ? '<p class="vcap">' + (v.meta ? '<span class="vmeta">' + v.meta + '</span>' : '') +
-        '<b>' + v.title + '.</b> ' + v.text + '</p>' : '');
-    document.getElementById("videoMain").appendChild(d);
-  });
-
-  var links = Object.keys(VIDEO).map(function (k) { return VIDEO[k]; })
-    .filter(function (v) { return v && v.url && !v.file; });
-
-  var PLAY = '<span class="play"><svg viewBox="0 0 24 24" aria-hidden="true">' +
-             '<path d="M8 5v14l11-7z"/></svg></span>';
-
-  /* есть обложка — показываем во всю ширину, как второй плеер */
-  links.filter(function (i) { return i.poster; }).forEach(function (i) {
-    shown = true;
-    var d = document.createElement("div");
-    d.innerHTML =
-      '<a class="vlink" href="' + i.url + '" target="_blank" rel="noopener" ' +
-      'aria-label="' + i.title + '. Откроется в новой вкладке">' +
-      '<img src="' + i.poster + '" alt="' + i.title + '">' +
-      '<span class="shade"></span></a>' +
-      '<p class="vcap">' + (i.meta ? '<span class="vmeta">' + i.meta + '</span>' : '') +
-      '<b>' + i.title + '.</b> ' + i.text +
-      '<br><a class="vgo" href="' + i.url + '" target="_blank" rel="noopener">' +
-      '<svg viewBox="0 0 24 24" aria-hidden="true"><path d="M8 5v14l11-7z"/></svg>' +
-      'Смотреть разбор</a></p>';
-    document.getElementById("videoMain").appendChild(d);
-  });
-
-  /* без обложки — обычная карточка */
-  var cards = links.filter(function (i) { return !i.poster; });
-  if (cards.length) {
-    shown = true;
-    document.getElementById("videoCards").innerHTML = cards.map(function (i) {
-      return '<a class="vcard" href="' + i.url + '" target="_blank" rel="noopener">' +
-        '<div class="vthumb">' + PLAY + '</div>' +
-        '<div class="vbody"><h3>' + i.title + '</h3>' +
-        (i.meta ? '<span class="vmeta">' + i.meta + '</span>' : '') +
-        '<p>' + i.text + '</p></div></a>';
-    }).join("");
-  }
-
-  if (shown) document.getElementById("video").hidden = false;
-})();
-</script>
 </body>
 </html>
