@@ -100,6 +100,7 @@
   h2{font-size:clamp(30px,4.4vw,46px);line-height:1.08;font-weight:800;letter-spacing:-.02em;margin:0 0 20px}
   .h2-row{display:grid;grid-template-columns:1.1fr .9fr;gap:40px;align-items:end;margin-bottom:46px}
   .h2-row p{margin:0;color:var(--grey);font-size:16.5px}
+  .h2-row.solo{grid-template-columns:1fr;margin-bottom:40px}
   .sec-dark .h2-row p{color:rgba(255,255,255,.75)}
 
   .cols{display:grid;grid-template-columns:repeat(3,1fr);gap:34px}
@@ -154,7 +155,15 @@
   .track .tt i{color:var(--crimson);font-style:normal}
   .track p{margin:0 0 14px;color:var(--grey);font-size:16px}
   .tags{display:flex;gap:9px;flex-wrap:wrap}
-  .tag{border:1px solid var(--line);border-radius:8px;padding:7px 13px;font-size:13.5px;color:var(--ink);background:#fff}
+  .tag{border:1.5px solid var(--line);border-radius:8px;padding:7px 13px;font-size:13.5px;
+    font-weight:600;color:var(--ink);background:#fff}
+  /* у каждого направления свой цвет рамок */
+  .track:nth-of-type(1) .tag{border-color:#2E5AA8;background:#F2F6FD}
+  .track:nth-of-type(2) .tag{border-color:var(--crimson);background:#FDF2F6}
+  .track:nth-of-type(3) .tag{border-color:#C89200;background:#FFFAEA}
+  .track:nth-of-type(1) .tt i{color:#2E5AA8}
+  .track:nth-of-type(2) .tt i{color:var(--crimson)}
+  .track:nth-of-type(3) .tt i{color:#C89200}
   .checks{display:grid;grid-template-columns:1fr 1fr;gap:0;background:var(--navy);color:#fff;border-radius:16px;
     margin-top:36px;overflow:hidden}
   .check{padding:20px 24px;display:flex;gap:14px;align-items:baseline;flex-wrap:wrap}
@@ -174,6 +183,11 @@
   .more a{color:var(--crimson);font-weight:700;text-underline-offset:3px}
 
   /* платформа */
+  .ways{margin-top:30px;display:grid;gap:18px}
+  .way{border-left:3px solid var(--yellow);padding:2px 0 2px 18px}
+  .way b{display:block;font-size:15px;font-weight:700;letter-spacing:.06em;text-transform:uppercase;
+    color:var(--yellow);margin-bottom:6px}
+  .way p{margin:0;color:rgba(255,255,255,.78);font-size:15.5px;max-width:46ch}
   .split{display:grid;grid-template-columns:1fr 1fr;gap:56px}
   .steps .step{padding:18px 0;border-top:1px solid var(--line-dark)}
   .steps .step:first-child{border-top:0;padding-top:0}
@@ -326,13 +340,11 @@
 <!-- ======== ВИДЕО ======== -->
 <section id="video" hidden>
   <div class="wrap">
-    <div class="h2-row">
+    <div class="h2-row solo">
       <div>
         <span class="over">Посмотрите сами</span>
         <h2>Курс изнутри</h2>
       </div>
-      <p>Обзор показывает, как устроены юниты и задания. Так вы решаете не по описанию,
-         а по тому, что увидели своими глазами.</p>
     </div>
     <div id="videoMain"></div>
     <div class="videos" id="videoCards"></div>
@@ -345,13 +357,11 @@
 <!-- ======== ЛОГИКА ======== -->
 <section class="sec-grey">
   <div class="wrap">
-    <div class="h2-row">
+    <div class="h2-row solo">
       <div>
         <span class="over">Ваше время — для ученика</span>
         <h2>У подготовки есть общая логика</h2>
       </div>
-      <p>Грамматика, лексика и экзаменационные навыки развиваются параллельно.
-         Пройденные форматы возвращаются в следующих юнитах.</p>
     </div>
     <div class="cols">
       <div class="col">
@@ -447,13 +457,11 @@
 <!-- ======== МЕТОДИКА ======== -->
 <section>
   <div class="wrap">
-    <div class="h2-row">
+    <div class="h2-row solo">
       <div>
         <span class="over">Методика</span>
         <h2>Не только материалы<br>но и как с ними работать</h2>
       </div>
-      <p>К курсу написаны методические сценарии: что делать на уроке, что отдавать домой
-         и почему этот этап стоит именно здесь.</p>
     </div>
     <div class="cols">
       <div class="col">
@@ -512,10 +520,23 @@
     <div class="split">
       <div>
         <span class="over">Онлайн и офлайн</span>
-        <h2>Работаете офлайн?</h2>
-        <p style="color:rgba(255,255,255,.78);font-size:16.5px;max-width:44ch">
-           Платформа создана как инструмент организации обучения. Больше не нужно распечатывать курс.
-           Ученик работает на платформе дома, а на уроке вы можете демонстрировать экран.</p>
+        <h2>Онлайн или офлайн<br>Курс работает одинаково</h2>
+        <p style="color:rgba(255,255,255,.78);font-size:16.5px;max-width:44ch;margin-bottom:0">
+           Платформа создана как инструмент организации обучения — она не диктует,
+           где и как вы ведёте занятие.</p>
+
+        <div class="ways">
+          <div class="way">
+            <b>Онлайн</b>
+            <p>Весь урок идёт на платформе: материалы, аудио, видео, задания и домашняя работа
+               собраны в одном месте, ничего не нужно пересылать.</p>
+          </div>
+          <div class="way">
+            <b>Офлайн</b>
+            <p>Курс не нужно распечатывать. Вы сидите с учеником за одним столом и выводите нужное
+               на экран, а дома он работает на платформе сам.</p>
+          </div>
+        </div>
       </div>
       <div class="steps">
         <div class="step">
