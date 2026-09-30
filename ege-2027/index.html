@@ -163,16 +163,14 @@
   .check+.check{border-left:1px solid var(--line-dark)}
 
   /* цепочка LEARN → … → IMPROVE */
-  .chain{margin-top:34px}
-  .chain-lbl{display:block;font-size:13px;font-weight:700;letter-spacing:.1em;text-transform:uppercase;
-    color:var(--crimson);margin-bottom:12px}
-  .chain-row{display:flex;flex-wrap:wrap;align-items:center;gap:8px}
-  .chain-row span{font-size:14px;font-weight:700;letter-spacing:.05em;text-transform:uppercase;
-    color:var(--ink);background:var(--paper);border:1px solid var(--line);
-    padding:9px 16px;border-radius:999px}
-  .chain-row i{color:var(--crimson);font-style:normal;font-weight:700;font-size:15px}
-  .chain-note{margin:14px 0 0;color:var(--grey);font-size:15.5px;max-width:64ch}
-  .more{margin:26px 0 0;font-size:15.5px;color:var(--grey)}
+  .chain-row{display:flex;flex-wrap:wrap;align-items:center;gap:10px;margin-top:8px}
+  .chain-row span{font-size:15px;font-weight:700;letter-spacing:.06em;text-transform:uppercase;
+    color:var(--ink);background:#fff;border:1px solid var(--line);
+    padding:14px 26px;border-radius:999px;
+    box-shadow:0 1px 2px rgba(16,33,63,.05),0 10px 22px -16px rgba(16,33,63,.5)}
+  .chain-row i{color:var(--crimson);font-style:normal;font-weight:700;font-size:16px}
+  .chain-note{margin:26px 0 0;color:var(--grey);font-size:16px;max-width:66ch}
+  .more{margin:20px 0 0;font-size:15.5px;color:var(--grey)}
   .more a{color:var(--crimson);font-weight:700;text-underline-offset:3px}
 
   /* платформа */
@@ -417,15 +415,28 @@
       <div class="check"><b>Progress Check</b><span>проверить освоение после каждых 5 юнитов</span></div>
     </div>
 
-    <div class="chain">
-      <span class="chain-lbl">Логика каждого навыка</span>
-      <div class="chain-row">
-        <span>Learn</span><i>→</i><span>Practise</span><i>→</i><span>Apply</span><i>→</i>
-        <span>Revise</span><i>→</i><span>Check</span><i>→</i><span>Improve</span>
+  </div>
+</section>
+
+<!-- ======== ЛОГИКА НАВЫКА ======== -->
+<section class="sec-grey">
+  <div class="wrap">
+    <div class="h2-row">
+      <div>
+        <span class="over">Логика каждого навыка</span>
+        <h2>Сначала навык<br>Потом тест</h2>
       </div>
-      <p class="chain-note">Сначала формируем навык, потом проверяем его на заданиях ФИПИ —
-         а не «решили тест и пошли дальше».</p>
+      <p>Задания ФИПИ, открытые варианты и сборники в курсе обязательно используются —
+         но как материал для проверки уже сформированного навыка, а не вместо обучения.</p>
     </div>
+
+    <div class="chain-row">
+      <span>Learn</span><i>→</i><span>Practise</span><i>→</i><span>Apply</span><i>→</i>
+      <span>Revise</span><i>→</i><span>Check</span><i>→</i><span>Improve</span>
+    </div>
+
+    <p class="chain-note">Не «решили тест и пошли дальше»: экзаменационные навыки циклично
+       возвращаются в следующих юнитах, закрепляются и постепенно усложняются.</p>
 
     <p class="more">Подробно о методике курса —
       <a href="https://vk.ru/@egerepetit-flagmanskii-kurs-ege-po-angliiskomu-pod-kluch-na-progressme"
