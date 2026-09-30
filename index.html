@@ -115,18 +115,18 @@
     .menu a { font-size: 14px; padding: 10px 16px; }
   }
 
-  main { max-width: 960px; margin: 0 auto; padding: 44px 24px 80px; }
+  main { max-width: 1400px; margin: 0 auto; padding: 44px 24px 80px; }
   .eyebrow {
     font-size: 12px; letter-spacing: 2px; text-transform: uppercase;
     color: var(--orange); margin: 0 0 18px; font-weight: 700;
     text-align: center;
   }
   .cards {
-    display: grid;
-    grid-template-columns: repeat(auto-fill, minmax(270px, 1fr));
+    display: flex; flex-wrap: wrap; justify-content: center;
     gap: 20px;
   }
   .card {
+    flex: 1 1 360px; max-width: 430px;
     display: flex; flex-direction: column;
     text-decoration: none; color: var(--ink);
     background: #fffdf9;
