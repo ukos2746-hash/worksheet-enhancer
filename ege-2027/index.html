@@ -200,9 +200,41 @@
   .more{margin:20px 0 0;font-size:15.5px;color:var(--grey)}
   .more a{color:var(--crimson);font-weight:700;text-underline-offset:3px}
 
+  /* отзывы */
+  .revs{display:grid;gap:22px;max-width:980px}
+  .rev{background:#fff;border:1px solid var(--line);border-radius:20px;padding:34px 36px;
+    box-shadow:0 1px 2px rgba(16,33,63,.04),0 22px 50px -34px rgba(16,33,63,.45)}
+  .rev-quote{margin:0 0 22px;font-size:clamp(19px,2.1vw,24px);font-weight:700;line-height:1.35;
+    color:var(--ink);border-left:4px solid var(--yellow);padding-left:20px}
+  .rev-body p{margin:0 0 14px;color:var(--grey);font-size:16px;line-height:1.65}
+  .rev-body p:last-child{margin-bottom:0}
+  .rev-more{border:0;padding:0;margin:4px 0 0}
+  .rev-more:last-of-type{border-bottom:0}
+  .rev-more summary{font-size:15.5px;font-weight:700;color:var(--crimson);display:inline-flex;
+    gap:8px;align-items:center;cursor:pointer;list-style:none}
+  .rev-more summary::after{content:"▾";margin-left:0;font-size:14px;color:var(--crimson)}
+  .rev-more[open] summary::after{content:"▴"}
+  .rev-more[open] summary{margin-bottom:14px}
+  .rev-who{display:flex;flex-wrap:wrap;align-items:baseline;gap:4px 12px;margin-top:24px;
+    padding-top:18px;border-top:1px solid var(--line)}
+  .rev-who a,.rev-name{font-weight:700;font-size:16.5px;color:var(--ink);text-underline-offset:3px}
+  .rev-who a:hover{color:var(--crimson)}
+  .rev-who span{font-size:14.5px;color:var(--grey)}
+  @media (max-width:620px){.rev{padding:24px 22px}.rev-quote{padding-left:15px}}
+  .revs-rest{border:0;padding:0;margin:22px 0 0;max-width:980px}
+  .revs-rest:last-of-type{border-bottom:0}
+  .revs-rest>summary{list-style:none;cursor:pointer;display:inline-flex;align-items:center;gap:10px;
+    background:#fff;border:1.5px solid var(--line);border-radius:999px;padding:13px 26px;
+    font-size:15.5px;font-weight:700;color:var(--ink);transition:border-color .15s,transform .15s}
+  .revs-rest>summary::-webkit-details-marker{display:none}
+  .revs-rest>summary::after{content:"\25BE";color:var(--crimson);font-size:13px}
+  .revs-rest>summary:hover{border-color:var(--crimson);transform:translateY(-2px)}
+  .revs-rest[open]>summary{margin-bottom:22px}
+  .revs-rest[open]>summary::after{content:"\25B4"}
+
   /* что вы покупаете */
   .nots{display:grid;grid-template-columns:repeat(3,1fr);gap:16px}
-  .not{display:flex;align-items:center;gap:14px;background:#fff;border:1px solid var(--line);
+  .not{display:flex;align-items:center;gap:14px;background:var(--paper);border:1px solid var(--line);
     border-radius:14px;padding:20px 22px;font-size:17px;font-weight:600;color:var(--grey)}
   .not .x{flex:none;width:30px;height:30px;border-radius:50%;background:#FBE9F0;
     color:var(--crimson);display:grid;place-items:center;font-size:15px;font-weight:700}
@@ -631,8 +663,236 @@
   </div>
 </section>
 
+<!-- ======== ОТЗЫВЫ ========
+     Чтобы добавить отзыв — скопируйте блок <article class="rev"> … </article>
+     целиком и замените текст. Абзацы после <details> скрыты под «Читать целиком».
+-->
+<section class="sec-grey" id="reviews">
+  <div class="wrap">
+    <div class="h2-row solo">
+      <div>
+        <span class="over">Отзывы коллег</span>
+        <h2>Что говорят преподаватели,<br>которые уже работают по курсу</h2>
+      </div>
+    </div>
+
+    <div class="revs">
+
+      <article class="rev">
+        <p class="rev-quote">«Готовая система, которая экономит преподавателю огромное
+           количество времени и при этом оставляет свободу работать по-своему»</p>
+
+        <div class="rev-body">
+          <p>Юлия, приобрела Ваш курс «ЕГЭ 2027 ПОД КЛЮЧ» и уже сейчас понимаю, насколько это
+             продуманный и удобный инструмент для преподавателя.</p>
+          <p>Больше всего меня восхищает визуал. Vocabulary Banks, warm-ups, задания для обсуждения —
+             яркие, современные, наглядные и при этом не просто красивые, а действительно рабочие.
+             Есть короткие видео, интересные задания на выбор, сравнение, аргументацию — всё то,
+             что помогает оживить подготовку к ЕГЭ и вывести ученика в речь.</p>
+
+          <details class="rev-more">
+            <summary>Читать целиком</summary>
+            <p>Но главное для меня — системность. Не нужно собирать урок по кусочкам из разных
+               источников и каждый раз думать, чем связать лексику, грамматику, экзаменационные
+               задания и говорение. Здесь уже есть понятная дорожная карта: навыки отрабатываются
+               последовательно и циклично, а лексика не остаётся списком слов — она многократно
+               встречается в разных заданиях и постепенно переходит в активную речь.</p>
+            <p>Например, в теме Learning можно ввести лексику, обсудить плюсы и минусы online
+               и traditional learning, сравнить разные форматы обучения, аргументировать свой выбор —
+               и всё это на одной тематической базе. Ученик не просто запоминает flexibility,
+               face-to-face interaction, adapt to individual needs, а учится действительно
+               использовать эти выражения.</p>
+            <p>Очень ценно и то, что курс можно адаптировать под конкретного ученика: что-то
+               сократить, где-то дать больше практики, добавить свои материалы. Есть образцы ответов,
+               шаблоны, Teacher’s Guide, готовые планы — всё для эффективной работы.</p>
+            <p>А визуал — отдельная любовь! ❤️</p>
+            <p>Очень благодарна за Ваш труд! Каждое пособие — это настоящий клад. А этот курс —
+               тот случай, когда открываешь материалы и хочется сразу на урок. ❤️</p>
+          </details>
+        </div>
+
+        <div class="rev-who">
+          <a href="https://vk.ru/id61235594" target="_blank" rel="noopener">Людмила Метелкина</a>
+          <span>преподаватель английского языка, репетитор</span>
+        </div>
+      </article>
+
+      <article class="rev">
+        <p class="rev-quote">«И самое главное — учителю не требуется никакого времени
+           для подготовки»</p>
+
+        <div class="rev-body">
+          <p>Я приобрела этот курс ещё в прошлом году и поэтому могу уже дать свой отзыв.</p>
+          <p>«30 Lessons on English Grammar and Vocabulary with Algorithm of Tasks» — я бы так
+             назвала этот курс. Отличный ресурс для тех, кто хочет подготовиться к ЕГЭ. Курс хорошо
+             структурирован и предоставляет полное представление о грамматике, лексике
+             и алгоритме заданий.</p>
+
+          <details class="rev-more">
+            <summary>Читать целиком</summary>
+            <p>Уроки в курсе хорошо организованы, и легко следовать за ними, с чёткими объяснениями
+               и примерами для каждой темы. Используются различные упражнения, включая заполнение
+               пропусков, выбор из нескольких вариантов и задания на написание, чтобы закрепить уроки.</p>
+            <p>Одной из особенностей курса является алгоритм заданий, предоставляемый для каждого
+               урока. Алгоритм является пошаговым руководством, которое помогает учащимся подходить
+               к каждому уроку систематически и гарантирует, что они полностью понимают основные
+               понятия.</p>
+            <p>Ещё одной замечательной чертой курса является внимание к деталям. Даются полезные
+               советы и заметки, чтобы помочь учащимся избежать распространённых ошибок и развить
+               хорошие привычки в своём языковом обучении.</p>
+          </details>
+
+          <p>У меня хорошо идёт у учеников с уровнем A2+ — B1.</p>
+        </div>
+
+        <div class="rev-who">
+          <a href="https://vk.ru/id151597273" target="_blank" rel="noopener">Нина Шаманова</a>
+          <span>преподаватель английского</span>
+        </div>
+      </article>
+
+      <article class="rev">
+        <p class="rev-quote">«Сейчас 8 моих учеников работают по нему, и есть ощутимый результат»</p>
+
+        <div class="rev-body">
+          <p>Огромное спасибо Юлии за такой прекрасный курс!</p>
+          <p>Чёткая структура уроков и понятные объяснения дают возможность ученикам самостоятельно
+             заниматься и восполнять пробелы. Спасибо большое!</p>
+        </div>
+
+        <div class="rev-who">
+          <a href="https://vk.ru/id301315075" target="_blank" rel="noopener">Екатерина Владимировна</a>
+          <span>преподаватель английского</span>
+        </div>
+      </article>
+
+      <article class="rev">
+        <p class="rev-quote">«Вы сами выбираете, в каком темпе ваши ученики будут проходить
+           данный курс»</p>
+
+        <div class="rev-body">
+          <p>Здравствуйте! Курс очень хороший. Прорабатываются все виды речевой деятельности.</p>
+          <p>Отличная выжимка с теоретической частью, которая дополнена хорошими упражнениями
+             для закрепления изученного материала. Большинство заданий в формате ЕГЭ,
+             и промежуточные тесты позволят обеспечить качественную подготовку к сдаче экзамена.</p>
+          <p>Хорошо налажена система обратной связи между учениками и преподавателем.</p>
+
+          <details class="rev-more">
+            <summary>Читать целиком</summary>
+            <p>Отдельно хочется отметить работу с лексикой. В курсе представлены объёмные списки
+               с лексикой по темам кодификатора с дополнительными упражнениями для лучшего
+               запоминания новых слов.</p>
+            <p>Минусов как таковых обнаружено не было. Разве что плата за саму платформу.
+               Но на фоне всех плюсов этот нюанс совсем незначителен. Сама платформа вполне
+               себе удобная.</p>
+            <p>Курс подойдёт всем, кто готовит или готовится к сдаче ЕГЭ по английскому (даже если
+               вы сами учитель и, например, вам нужно сдать МЦКО после перерыва в работе, освежить
+               свои знания и ознакомиться с новым форматом экзамена).</p>
+            <p>Большое спасибо автору за такую большую и качественную работу!</p>
+          </details>
+        </div>
+
+        <div class="rev-who">
+          <a href="https://vk.ru/id704016048" target="_blank" rel="noopener">Кирилл Павлович</a>
+          <span>преподаватель английского</span>
+        </div>
+      </article>
+
+    </div>
+
+    <details class="revs-rest">
+      <summary>Показать ещё 4 отзыва</summary>
+      <div class="revs">
+
+      <article class="rev">
+        <p class="rev-quote">«Я использую его как flipped classroom»</p>
+
+        <div class="rev-body">
+          <p>Юлия, большое спасибо за курс по подготовке к ЕГЭ. Он отлично подходит
+             для самостоятельной работы при подготовке к экзамену.</p>
+          <p>Это избавляет меня на уроках объяснять грамматику ученикам — они прекрасно справляются
+             с этим сами. Есть не только теория, но и тренировочные упражнения.</p>
+          <p>А ещё в курсе много упражнений на словообразование, на фразовые глаголы, на предлоги,
+             множественный выбор. В каждом уроке есть обязательно задания по чтению, аудированию
+             с памятками. Целых 30 уроков!</p>
+          <p>Ещё раз спасибо. Вы сэкономили моё время на подготовку.</p>
+        </div>
+
+        <div class="rev-who">
+          <a href="https://vk.ru/id29848145" target="_blank" rel="noopener">Ирина Луткова</a>
+          <span>преподаватель английского</span>
+        </div>
+      </article>
+
+      <article class="rev">
+        <p class="rev-quote">«Автопроверка многих заданий — настоящее спасение»</p>
+
+        <div class="rev-body">
+          <p>Хочу от души поблагодарить за курс «ЕГЭ по английскому ПОД КЛЮЧ».
+             Это по-настоящему замечательный ресурс!</p>
+          <p>Курс заметно облегчает жизнь и учителям, и ученикам. Всё необходимое для подготовки
+             к ЕГЭ собрано в одном месте, и больше не нужно тратить часы на поиск материалов.
+             Здесь отрабатываются все типы экзаменационных заданий: аудирование, письмо
+             и написание эссе, грамматика и, конечно, устная часть.</p>
+          <p>Раньше подготовка к урокам и проверка домашних работ отнимали у меня массу времени,
+             а теперь всё происходит гораздо быстрее.</p>
+          <p>Видно, что материалы подбирал профессионал: они продуманы и действительно работают.
+             Курс нравится не только мне, но и всем моим ученикам!</p>
+          <p>Юлия, огромное спасибо за ваш труд и за такой продуманный курс!</p>
+        </div>
+
+        <div class="rev-who">
+          <a href="https://vk.ru/id666097213" target="_blank" rel="noopener">Александра Сыр</a>
+          <span>учитель английского, репетитор</span>
+        </div>
+      </article>
+
+      <article class="rev">
+        <p class="rev-quote">«Лексика и грамматика подобраны в соответствии с темами кодификатора»</p>
+
+        <div class="rev-body">
+          <p>Приобрела курс Юлии «ЕГЭ ПОД КЛЮЧ». Данный курс — это логично выстроенная система
+             подготовки к экзамену, которая строится на принципе от простого к сложному.</p>
+          <p>Есть специальный блок Exam skills, который учит стратегиям выполнения экзаменационных
+             заданий всех типов, включая устную часть. Навыки отрабатываются последовательно
+             и циклично.</p>
+          <p>Курс отлично адаптируется под потребности каждого конкретного учителя/репетитора
+             и под уровень его учеников.</p>
+        </div>
+
+        <div class="rev-who">
+          <a href="https://vk.ru/id382059376" target="_blank" rel="noopener">Ксения Андреева</a>
+          <span>преподаватель английского, репетитор</span>
+        </div>
+      </article>
+
+      <article class="rev">
+        <p class="rev-quote">«Каждый учитель может добавить что-то своё дополнительно,
+           но я это не делала, поскольку заданий достаточно»</p>
+
+        <div class="rev-body">
+          <p>Курс ЕГЭ на интерактивной платформе ProgressMe очень продуманный. Нужен именно
+             для того, чтобы лучше отработать сложные моменты при подготовке к ЕГЭ.</p>
+          <p>Для меня большим плюсом является отсутствие отвлекающей рекламы.</p>
+        </div>
+
+        <div class="rev-who">
+          <a href="https://vk.ru/id3271167" target="_blank" rel="noopener">Алла Смыченко</a>
+          <span>преподаватель, репетитор</span>
+        </div>
+      </article>
+
+      </div>
+    </details>
+
+    <p class="more">Ещё отзывы коллег —
+      <a href="https://vk.ru/app6326142_-161114777" target="_blank" rel="noopener">в сообществе ВКонтакте</a>.
+      Там же можно перейти в профиль каждого, кто оставил отзыв.</p>
+  </div>
+</section>
+
 <!-- ======== ЧТО ВЫ ПОКУПАЕТЕ ======== -->
-<section class="sec-grey">
+<section>
   <div class="wrap">
     <div class="h2-row solo">
       <div>
