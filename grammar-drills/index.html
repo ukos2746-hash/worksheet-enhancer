@@ -304,12 +304,16 @@ function setPlaying(on){ document.querySelectorAll('[data-play-main]').forEach(b
 /* ---------- recording ---------- */
 const R={rec:null,chunks:[],url:null,qid:null,stream:null,startedAt:0,tick:null};
 async function startRec(qid){
-  if(!navigator.mediaDevices||!window.MediaRecorder){recNote('Запись не поддерживается этим браузером.',true);return false;}
+  const inApp=/VKClient|vkclient|Telegram|FBAN|FBAV|Instagram/i.test(navigator.userAgent), ios=/iPhone|iPad|iPod/i.test(navigator.userAgent);
+  if(!navigator.mediaDevices||!navigator.mediaDevices.getUserMedia||!window.MediaRecorder){recNote(inApp?'Запись недоступна во встроенном браузере ВКонтакте или Telegram. Открой страницу в Safari или Chrome.':'Запись не поддерживается этим браузером. Открой страницу в Safari или Chrome.',true);return false;}
   try{ R.stream=await navigator.mediaDevices.getUserMedia({audio:true}); }
-  catch(e){ recNote('Нет доступа к микрофону. Разрешите микрофон для сайта — запись работает, когда тренажёр открыт на вашем сайте.',true); return false; }
+  catch(e){ const n=e&&e.name; recNote(inApp?'Запись недоступна во встроенном браузере ВКонтакте или Telegram. Открой страницу в Safari или Chrome.'
+      : n==='NotFoundError'?'Микрофон не найден. Подключи наушники с микрофоном или проверь настройки звука.'
+      : ios?'Нет доступа к микрофону. Нажми «аА» в адресной строке Safari → «Настройки веб-сайта» → «Микрофон» → «Разрешить» и попробуй ещё раз.'
+      :'Нет доступа к микрофону. Нажми на значок замка в адресной строке, разреши микрофон для этого сайта и попробуй ещё раз.',true); return false; }
   R.chunks=[]; R.qid=qid; R.rec=new MediaRecorder(R.stream);
   R.rec.ondataavailable=e=>e.data.size&&R.chunks.push(e.data);
-  R.rec.onstop=()=>{ const b=new Blob(R.chunks,{type:R.rec.mimeType||'audio/webm'}); if(R.url) URL.revokeObjectURL(R.url); R.url=URL.createObjectURL(b); R.stream.getTracks().forEach(t=>t.stop()); R.rec=null; renderRecState(); };
+  R.rec.onstop=()=>{ const b=new Blob(R.chunks,{type:R.rec.mimeType||(R.chunks[0]&&R.chunks[0].type)||'audio/webm'}); R.mime=b.type; if(R.url) URL.revokeObjectURL(R.url); R.url=URL.createObjectURL(b); R.stream.getTracks().forEach(t=>t.stop()); R.rec=null; renderRecState(); };
   R.rec.start(); R.startedAt=Date.now(); R.tick=setInterval(renderRecState,250); renderRecState(); return true;
 }
 function stopRec(){ if(R.rec&&R.rec.state!=='inactive') R.rec.stop(); clearInterval(R.tick); }
@@ -319,7 +323,7 @@ function renderRecState(){
   const on=!!R.rec; b.classList.toggle('on',on);
   b.querySelector('.lbl').textContent= on? 'Стоп · '+Math.floor((Date.now()-R.startedAt)/1000)+' с' : 'Записать ответ';
   const box=$('#myAns'); const cur=curQ();
-  if(box){ if(!on && R.url && cur && R.qid===cur.id){ box.hidden=false; box.querySelector('audio').src=R.url; const dl=$('#recDl'); if(dl){dl.href=R.url; dl.download='answer-'+cur.id+'.webm';} } else box.hidden=true; }
+  if(box){ if(!on && R.url && cur && R.qid===cur.id){ box.hidden=false; box.querySelector('audio').src=R.url; const dl=$('#recDl'); if(dl){dl.href=R.url; dl.download='answer-'+cur.id+(/mp4|aac|m4a/i.test(R.rec?'':(R.mime||''))?'.m4a':/ogg/i.test(R.mime||'')?'.ogg':'.webm');} } else box.hidden=true; }
 }
 
 /* ---------- toast & dialog ---------- */
