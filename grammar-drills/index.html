@@ -305,9 +305,11 @@ function setPlaying(on){ document.querySelectorAll('[data-play-main]').forEach(b
 const R={rec:null,chunks:[],url:null,qid:null,stream:null,startedAt:0,tick:null};
 async function startRec(qid){
   const inApp=/VKClient|vkclient|Telegram|FBAN|FBAV|Instagram/i.test(navigator.userAgent), ios=/iPhone|iPad|iPod/i.test(navigator.userAgent);
-  if(!navigator.mediaDevices||!navigator.mediaDevices.getUserMedia||!window.MediaRecorder){recNote(inApp?'Запись недоступна во встроенном браузере ВКонтакте или Telegram. Открой страницу в Safari или Chrome.':'Запись не поддерживается этим браузером. Открой страницу в Safari или Chrome.',true);return false;}
+  const iosOther=ios&&!inApp&&/CriOS|YaBrowser|EdgiOS|FxiOS|OPiOS|YaApp/i.test(navigator.userAgent);
+  const IOS_OTHER='На iPhone запись надёжнее всего работает в Safari — открой эту страницу в Safari. Если хочешь остаться в этом браузере: Настройки iPhone → найди этот браузер (Chrome или Яндекс) → включи «Микрофон» и попробуй ещё раз.';
+  if(!navigator.mediaDevices||!navigator.mediaDevices.getUserMedia||!window.MediaRecorder){recNote(iosOther?IOS_OTHER:inApp?'Запись недоступна во встроенном браузере ВКонтакте или Telegram. Открой страницу в Safari или Chrome.':'Запись не поддерживается этим браузером. Открой страницу в Safari или Chrome.',true);return false;}
   try{ R.stream=await navigator.mediaDevices.getUserMedia({audio:true}); }
-  catch(e){ const n=e&&e.name; recNote(inApp?'Запись недоступна во встроенном браузере ВКонтакте или Telegram. Открой страницу в Safari или Chrome.'
+  catch(e){ const n=e&&e.name; recNote(iosOther?IOS_OTHER:inApp?'Запись недоступна во встроенном браузере ВКонтакте или Telegram. Открой страницу в Safari или Chrome.'
       : n==='NotFoundError'?'Микрофон не найден. Подключи наушники с микрофоном или проверь настройки звука.'
       : ios?'Нет доступа к микрофону. Нажми «аА» в адресной строке Safari → «Настройки веб-сайта» → «Микрофон» → «Разрешить» и попробуй ещё раз.'
       :'Нет доступа к микрофону. Нажми на значок замка в адресной строке, разреши микрофон для этого сайта и попробуй ещё раз.',true); return false; }
