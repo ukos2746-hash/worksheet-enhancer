@@ -3,7 +3,7 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Task 38 Helper — Problem & Solution для эссе ЕГЭ</title>
+<title>Task 38 Helper — Problem & Solution для эссе ЕГЭ (демо)</title>
 <meta name="description" content="Генератор problem & solution для абзаца 4 задания 38 ЕГЭ по английскому: типовые темы, экзаменационные формулировки, режим тренировки.">
 <style>
   :root {
@@ -39,12 +39,8 @@
   }
   main { max-width: 780px; margin: 0 auto; padding: 26px 20px 70px; }
 
-  .controls {
-    background: #fffdf9; border: 1px solid var(--rule); border-radius: 14px;
-    padding: 18px; display: flex; gap: 12px; flex-wrap: wrap; align-items: center;
-  }
   select {
-    flex: 1 1 240px; min-width: 0; max-width: 100%; padding: 11px 12px;
+    display: block; width: 100%; min-width: 0; padding: 11px 12px;
     border: 1px solid var(--rule); border-radius: 8px;
     font-family: inherit; font-size: 14px; color: var(--ink); background: #fff;
   }
@@ -60,30 +56,41 @@
     background: transparent; color: var(--brown);
     border: 1px solid var(--rule);
   }
-  .mode {
-    display: flex; gap: 6px; margin: 18px 0 0; flex-wrap: wrap;
-  }
-  .mode button {
-    padding: 8px 16px; font-size: 13px;
-    background: transparent; border: 1px solid var(--rule); color: var(--muted);
-  }
-  .mode button.on { background: var(--ink); border-color: var(--ink); color: #fff; }
 
   .card {
     background: #fffdf9; border: 1px solid var(--rule); border-radius: 14px;
     box-shadow: 0 3px 0 var(--rule);
-    padding: 24px; margin-top: 16px;
+    padding: 24px;
   }
-  .topic-line {
-    font-size: 12px; letter-spacing: 1.5px; text-transform: uppercase;
-    color: var(--orange); font-weight: 700; margin-bottom: 12px;
+  .topic-label {
+    display: block; font-size: 12px; letter-spacing: 1.5px; text-transform: uppercase;
+    color: var(--orange); font-weight: 700; margin-bottom: 8px;
   }
   .task-line {
-    font-family: Georgia, serif; font-size: 15px; line-height: 1.6;
+    font-family: Georgia, serif; font-size: 17px; line-height: 1.5; font-style: italic;
     background: var(--peach); color: var(--brown);
-    border-radius: 10px; padding: 12px 16px; margin-bottom: 18px;
+    border-radius: 10px; padding: 12px 16px; margin: 0 0 18px;
   }
-  .task-line b { color: var(--ink); }
+  .task-line b { color: var(--ink); font-style: normal; }
+  .topic-select {
+    font-size: 16px; font-weight: 700; border-color: var(--orange); background: #fff;
+  }
+  .field { margin-top: 14px; }
+  .field:first-of-type { margin-top: 0; }
+  .aud-select { font-size: 15px; border-color: var(--rule); }
+  .seg { display: flex; gap: 6px; flex-wrap: wrap; }
+  .seg button {
+    flex: 1 1 150px; padding: 10px 14px; font-size: 14px;
+    background: #fff; border: 1px solid var(--rule); color: var(--brown);
+  }
+  .seg button.on { background: var(--ink); border-color: var(--ink); color: #fff; }
+  .given { margin-top: 18px; text-align: left; }
+  .blank {
+    border: 2px dashed var(--rule); border-radius: 10px; padding: 14px 16px;
+    color: var(--muted); font-size: 14px; font-style: italic;
+  }
+  .reveal-hint { font-size: 14px; color: var(--muted); margin: 0 0 14px; line-height: 1.5; }
+  .reveal-btns { display: flex; gap: 10px; flex-wrap: wrap; justify-content: center; }
   .para-label {
     display: inline-block; background: var(--peach); color: var(--brown);
     border-radius: 999px; padding: 3px 12px; font-size: 12px; font-weight: 700;
@@ -98,25 +105,10 @@
     border-top: 1px dashed var(--rule); padding-top: 12px;
   }
   .hidden { display: none !important; }
-  .reveal-zone { text-align: center; padding: 10px 0 4px; }
-  .card-actions { margin-top: 16px; display: flex; gap: 10px; flex-wrap: wrap; }
-
-  .phrases { margin-top: 22px; }
-  .phrases summary {
-    cursor: pointer; font-weight: 700; color: var(--brown);
-    background: var(--peach); border-radius: 10px; padding: 12px 16px; font-size: 14px;
-  }
-  .phrases-inner { padding: 16px 6px 4px; font-size: 14px; line-height: 1.7; }
-  .phrases-inner b { color: var(--orange); }
-  .note {
-    margin-top: 22px; padding: 14px 18px;
-    background: var(--peach); border-radius: 10px;
-    font-size: 13px; color: var(--brown); line-height: 1.55;
-  }
   .promo { margin: 14px auto 0; max-width: 640px; font-size: 14px; color: var(--brown);
     background: var(--peach); border-radius: 10px; padding: 10px 14px; line-height: 1.5; }
   .promo a { color: var(--orange); font-weight: 700; }
-  .lockbox { text-align: center; padding: 14px 0 6px; }
+  .lockbox { text-align: center; padding: 22px 0 6px; }
   .lockbox .ic { font-size: 30px; }
   .lockbox h3 { font-family: Georgia, 'Times New Roman', serif; font-size: 21px; margin: 8px 0 6px; }
   .lockbox p { margin: 0 auto 16px; max-width: 46ch; font-size: 14.5px; color: var(--muted); line-height: 1.5; }
@@ -124,6 +116,49 @@
     font-weight: 700; text-decoration: none; font-size: 15px; }
   .join:hover { filter: brightness(1.07); }
   .join:focus-visible { outline: 3px solid var(--ink); outline-offset: 2px; }
+  .exam-note {
+    margin-top: 22px; padding: 18px 20px;
+    background: var(--peach); border: 1px solid #efcfa6; border-left: 5px solid var(--brown);
+    border-radius: 12px; color: var(--brown);
+  }
+  .exam-note h3 { font-family: Georgia, 'Times New Roman', serif; font-size: 18px; margin: 0 0 8px; }
+  .exam-note p { margin: 0; font-size: 14.5px; line-height: 1.55; }
+  .exam-note .ex { background: #fff; border-radius: 10px; padding: 10px 14px; margin: 12px 0; }
+  .exam-note .ex-tag {
+    display: inline-block; font-size: 12px; font-weight: 700; color: #fff;
+    background: var(--brown); border-radius: 999px; padding: 2px 10px; margin-bottom: 6px;
+  }
+  .exam-note .ex-en { font-family: Georgia, serif; font-style: italic; font-size: 16px; }
+  .exam-note .ex-en { color: var(--brown); }
+  .exam-note .ex-en b { font-style: normal; color: var(--ink); }
+  .tabs { display: flex; gap: 6px; margin-bottom: 14px; }
+  .tabs button {
+    flex: 1 1 0; padding: 12px 16px; font-size: 15px;
+    background: #fffdf9; border: 1px solid var(--rule); color: var(--brown);
+  }
+  .tabs button.on { background: var(--ink); border-color: var(--ink); color: #fff; }
+  .help h2 { font-family: Georgia, 'Times New Roman', serif; font-size: 22px; margin: 0 0 10px; }
+  .help h3 { font-size: 15px; color: var(--orange); margin: 22px 0 8px; }
+  .help p, .help li { font-size: 15px; line-height: 1.6; color: var(--ink); }
+  .help p { margin: 0; }
+  .help ol, .help ul { margin: 0; padding-left: 22px; }
+  .help li { margin-bottom: 6px; }
+  .help-go { text-align: center; margin-top: 22px; }
+  .reveal-zone { text-align: center; padding: 18px 0 4px; }
+  #answerBlock { margin-top: 18px; }
+  .card-actions { margin-top: 22px; display: flex; gap: 10px; flex-wrap: wrap; }
+  .btn-big {
+    width: 100%; padding: 16px 24px; font-size: 18px;
+    box-shadow: 0 4px 0 #b85f26;
+  }
+  .btn-big:hover { filter: brightness(1.07); }
+  .btn-big:active { transform: translateY(2px); box-shadow: 0 2px 0 #b85f26; }
+
+  .note {
+    margin-top: 22px; padding: 14px 18px;
+    background: var(--peach); border-radius: 10px;
+    font-size: 13px; color: var(--brown); line-height: 1.55;
+  }
 </style>
 </head>
 <body>
@@ -132,83 +167,138 @@
   <h1>Task 38 Helper</h1>
   <p class="subtitle">Problem &amp; Solution для абзаца 4 эссе (задание 38 ЕГЭ, английский язык):
      типовые темы проектов, экзаменационные формулировки, режим тренировки.</p>
-  <p class="promo">В открытом доступе — 3 темы из 17. Все темы и 95 пар «проблема + решение» — в <a href="https://vk.ru/egerepetit?w=donut_payment-161114777&levelId=986" target="_blank" rel="noopener">клубе</a>.</p>
+  <p class="promo">Демо-версия: открыты 3 темы из 17. Все темы и 95 пар «проблема + решение» — в <a href="https://vk.ru/egerepetit?w=donut_payment-161114777&levelId=986" target="_blank" rel="noopener">клубе</a>.</p>
   <a class="back" href="/">← На главную egerepetit.ru</a>
 </header>
 
 <main>
-  <div class="controls">
-    <select id="topicSelect" aria-label="Тема проекта"></select>
-    <select id="audSelect" aria-label="Аудитория"></select>
-    <button class="btn-main" id="genBtn">Сгенерировать</button>
-    <button class="btn-ghost" id="randomBtn">Случайная тема</button>
-  </div>
+  <nav class="tabs" role="tablist">
+    <button role="tab" id="tabHelp" aria-controls="helpPanel" aria-selected="false">Как пользоваться</button>
+    <button role="tab" id="tabTrain" aria-controls="resultCard" aria-selected="true" class="on">Тренажёр</button>
+  </nav>
 
-  <div class="mode">
-    <button id="modeShow" class="on">Показать сразу</button>
-    <button id="modeTrain">Режим тренировки</button>
-    <button id="modeProblem">Дана проблема — решение сами</button>
-    <button id="modeSolution">Дано решение — проблема сами</button>
-  </div>
+  <section class="card help hidden" id="helpPanel" role="tabpanel" aria-labelledby="tabHelp">
+    <h2>Как пользоваться тренажёром</h2>
+    <p>Тренажёр помогает отработать 4-й абзац эссе в задании 38: <b>сформулировать проблему</b> по теме проекта
+       и <b>предложить её решение</b>, причём с 2026 года — в отношении конкретной аудитории.</p>
 
-  <div class="card hidden" id="resultCard">
-    <div class="topic-line" id="topicLine"></div>
-    <p class="task-line hidden" id="taskLine"></p>
+    <h3>Шаг за шагом</h3>
+    <ol>
+      <li><b>Topic</b> — выберите тему проекта. Кнопка «Случайная тема» выберет её за вас.</li>
+      <li><b>Audience</b> — выберите, о ком будет проблема: young people, adults, students, school students,
+          elderly people или teenagers. Если аудитория не нужна — оставьте «без аудитории (people)».
+          В списке только те группы, которые подходят к выбранной теме.</li>
+      <li>Посмотрите на формулировку задания в плашке вверху: она меняется вместе с темой и аудиторией —
+          ровно так это будет выглядеть на экзамене.</li>
+      <li><b>Что придумываете вы</b> — выберите режим (см. ниже).</li>
+      <li>Сформулируйте свой вариант <b>по-английски</b> — вслух или письменно.</li>
+      <li>Нажмите <b>«Показать образец»</b> и сравните со своим вариантом.</li>
+      <li>Нажмите <b>«Другой вариант этой темы»</b> — получите новое задание по той же теме.
+          Образец снова будет скрыт, пока вы не придумаете свой.</li>
+    </ol>
 
-    <div id="answerBlock">
-      <div id="problemBlock">
-        <span class="para-label">Problem</span>
-        <p class="en" id="problemText"></p>
-      </div>
-      <div id="solutionBlock">
-        <span class="para-label">Solution</span>
-        <p class="en" id="solutionText"></p>
+    <h3>Три режима</h3>
+    <ul>
+      <li><b>Проблему и решение</b> — самый сложный: ученик придумывает обе части сам.</li>
+      <li><b>Решение (проблема дана)</b> — проблема уже написана, нужно предложить к ней решение.
+          Хорошо подходит для начала работы с темой.</li>
+      <li><b>Проблему (решение дано)</b> — дано решение, нужно догадаться, какую проблему оно решает,
+          и сформулировать её. Тренирует логическую связь между двумя частями абзаца.</li>
+    </ul>
+
+    <h3>Как использовать на уроке и дома</h3>
+    <ul>
+      <li><b>На уроке.</b> Учитель выбирает тему и аудиторию, ученик отвечает устно, затем вместе
+          сверяются с образцом и обсуждают, чем ответ ученика лучше или слабее.</li>
+      <li><b>Дома.</b> За одно занятие — 5–6 заданий подряд: сначала в режиме «Решение», потом
+          «Проблему и решение». Удобно выбирать «Случайную тему», чтобы не готовиться заранее.</li>
+      <li><b>Перед экзаменом.</b> Только режим «Проблему и решение» и разные аудитории —
+          так проверяется, что формулировки приходят в голову быстро.</li>
+    </ul>
+
+    <h3>Важно</h3>
+    <ul>
+      <li>Образец — пример, а не текст для заучивания. На экзамене перефразируйте своими словами.</li>
+      <li>Проблема должна быть связана с темой и данными таблицы/диаграммы вашего варианта.</li>
+      <li>Если в задании есть аудитория, она должна прозвучать и в проблеме, и в решении.</li>
+    </ul>
+
+    <div class="help-go"><button class="btn-main" id="goTrain">Перейти к тренажёру</button></div>
+  </section>
+
+  <div class="card" id="resultCard" role="tabpanel" aria-labelledby="tabTrain">
+    <p class="task-line" id="taskLine"></p>
+
+    <div class="field">
+      <label class="topic-label" for="topicSelect">Topic</label>
+      <select id="topicSelect" class="topic-select"></select>
+    </div>
+    <div class="field" id="audField">
+      <label class="topic-label" for="audSelect">Audience</label>
+      <select id="audSelect" class="aud-select"></select>
+    </div>
+    <div class="field" id="modeField">
+      <span class="topic-label" id="segLabel">Что придумываете вы</span>
+      <div class="seg" role="group" aria-labelledby="segLabel">
+        <button id="modeBoth" class="on">Проблему и решение</button>
+        <button id="modeSol">Решение (проблема дана)</button>
+        <button id="modeProb">Проблему (решение дано)</button>
       </div>
     </div>
 
     <div class="lockbox hidden" id="lockBox">
       <div class="ic">🔒</div>
       <h3>Эта тема — в клубе</h3>
-      <p>Готовые пары «проблема + решение» по этой и другим темам доступны участницам клуба.</p>
+      <p>Задания и образцы «проблема + решение» по этой и другим темам доступны участницам клуба.</p>
       <a class="join" href="https://vk.ru/egerepetit?w=donut_payment-161114777&levelId=986" target="_blank" rel="noopener">Вступить в клуб</a>
     </div>
 
-    <div class="reveal-zone hidden" id="revealZone">
-      <p style="font-size:14px;color:var(--muted);margin:0 0 12px" id="revealHint">
-        Сначала сформулируйте проблему и решение сами — вслух или письменно. Потом сверьтесь с образцом.
-      </p>
-      <button class="btn-main" id="revealBtn">Показать образец</button>
+    <div id="answerBlock">
+      <div id="problemBlock" class="given">
+        <span class="para-label">Problem</span>
+        <p class="en" id="problemText"></p>
+        <div class="blank hidden" id="problemBlank">Здесь будет проблема — сначала придумайте её сами.</div>
+      </div>
+      <div id="solutionBlock" class="given">
+        <span class="para-label">Solution</span>
+        <p class="en" id="solutionText"></p>
+        <div class="blank hidden" id="solutionBlank">Здесь будет решение — сначала придумайте его сами.</div>
+      </div>
     </div>
 
-    <div class="card-actions">
-      <button class="btn-ghost" id="copyBtn">Скопировать текст</button>
-      <button class="btn-ghost" id="anotherBtn">Другой вариант этой темы</button>
+    <div class="reveal-zone" id="revealZone">
+      <p class="reveal-hint" id="revealHint"></p>
+      <div class="reveal-btns">
+        <button class="btn-main" id="revealBtn">Показать образец</button>
+        <button class="btn-ghost" id="randomBtn">Случайная тема</button>
+      </div>
     </div>
 
-    <p class="hint">На экзамене не воспроизводите образец дословно: перефразируйте своими словами
+    <div class="card-actions hidden" id="cardActions">
+      <button class="btn-main btn-big" id="anotherBtn">↻ Другой вариант этой темы</button>
+    </div>
+
+    <p class="hint" id="trainHint">На экзамене не воспроизводите образец дословно: перефразируйте своими словами
        и свяжите проблему с данными таблицы/диаграммы вашего варианта.</p>
   </div>
 
-  <details class="phrases">
-    <summary>Банк фраз: problem &amp; solution</summary>
-    <div class="phrases-inner">
-      <b>Ввести проблему (первая часть абзаца):</b><br>
-      One problem that may arise with … is that … · However, … can pose a certain problem. ·
-      Unfortunately, there is a difficulty connected with … · Speaking about problems, I should mention that …<br><br>
-      <b>Предложить решение (вторая часть абзаца):</b><br>
-      A possible way of solving this problem is to … · To overcome this difficulty, one can … ·
-      The best way out is probably to … · I believe this problem can be solved by …
-    </div>
-  </details>
 
-  <div class="note">
-    💡 Совет: прогоните 5–6 случайных тем подряд в режиме тренировки — на экзамене
-    формулировки будут приходить в голову сами.<br>
-    С 2026 года проблему нужно связать с конкретной аудиторией: выберите её во втором списке —
-    в карточке появится точная формулировка задания, а проблема и решение будут написаны
-    про эту группу. Режимы «дана проблема» и «дано решение» тренируют вторую половину абзаца:
-    ученик сам придумывает недостающую часть.
-  </div>
+  <aside class="exam-note" id="examNote">
+    <h3>ЕГЭ 2027: два вида формулировок</h3>
+    <p>На экзамене задание к 4-му абзацу может прийти в одном из двух видов — тренируйте оба.</p>
+    <div class="ex">
+      <span class="ex-tag">Без аудитории</span>
+      <p class="ex-en">… <b>outline a possible problem</b> that can arise when living in the countryside
+         and <b>suggest a way of solving it</b>;</p>
+    </div>
+    <div class="ex">
+      <span class="ex-tag">С аудиторией</span>
+      <p class="ex-en">… <b>outline a problem</b> related to job search that <b>young professionals</b> can face
+         and <b>suggest a way of solving it</b>;</p>
+    </div>
+    <p>Внимательно читайте формулировку: если аудитория указана, проблема и решение должны быть именно про неё.
+       В тренажёре это переключается в списке <b>Audience</b>.</p>
+  </aside>
 </main>
 
 <script>
@@ -217,60 +307,60 @@
 // ── База: темы → пары «проблема + решение» ──────────────────
 // {p: problem clause (после "...is that"), s: solution (после "to ...")}
 const TOPICS = [
-  { name: "Hobbies & free time", key: "hobbies and free time activities", pairs: [
-    { p: "people waste too many hours on gadgets and social networks instead of doing something really interesting",
+  { name: "Hobbies & free time", key: "spending free time", pairs: [
+    { p: "people waste too many hours on gadgets and social networks instead of doing something really interesting", a: "Y A S H T",
       s: "set strict time limits for using devices and learn alternative ways to spend free time" },
-    { p: "people often lose motivation and interest soon after taking up a new hobby",
+    { p: "people often lose motivation and interest soon after taking up a new hobby", a: "Y A S H E T",
       s: "set achievable goals, break them into small manageable steps and track the progress" },
-    { p: "starting a new hobby can be very expensive",
+    { p: "starting a new hobby can be very expensive", a: "Y A S H E T",
       s: "set a budget, spend money only on the most important things and look for budget-friendly alternatives such as second-hand materials" },
-    { p: "it is often difficult for friends to agree on a common activity, for example which film to watch",
+    { p: "it is often difficult for friends to agree on a common activity, for example which film to watch", a: "Y S H T",
       s: "read reviews, watch trailers together and take a group vote to make a fair choice" },
-    { p: "teenagers may suffer from boredom and a lack of activities during long summer holidays",
+    { p: "teenagers may suffer from boredom and a lack of activities during long summer holidays", a: "S H T",
       s: "plan ahead and create a schedule by researching local festivals, concerts and outdoor activities" },
-    { p: "playing active games outdoors in hot summer weather carries a high risk of dehydration and overheating",
+    { p: "playing active games outdoors in hot summer weather carries a high risk of dehydration and overheating", a: "A S H T",
       s: "always carry a water bottle to stay hydrated and take regular breaks in the shade" },
-    { p: "spending time outdoors in winter may lead to cold-related illnesses such as frostbite or hypothermia",
+    { p: "spending time outdoors in winter may lead to cold-related illnesses such as frostbite or hypothermia", a: "A S H E T",
       s: "wear proper layered winter clothes and limit the time spent outside during very low temperatures" },
-    { p: "when organising a camping trip, people often forget important supplies like food, water or first-aid items",
+    { p: "when organising a camping trip, people often forget important supplies like food, water or first-aid items", a: "Y A S H T",
       s: "make a detailed checklist in advance and double-check all the items before leaving" },
-    { p: "some hobbies take up so much time that they begin to interfere with studies",
+    { p: "some hobbies take up so much time that they begin to interfere with studies", a: "Y S H T",
       s: "keep a sensible balance and devote time to the hobby only after the homework is done" },
-    { p: "it is sometimes hard to find like-minded people who share an unusual hobby",
+    { p: "it is sometimes hard to find like-minded people who share an unusual hobby", a: "Y S H E T",
       s: "join online communities or local clubs where fans of the activity meet regularly" },
   ]},
-  { name: "Sports & healthy lifestyle", key: "doing sports", pairs: [
-    { p: "extreme sports are highly dangerous, and young athletes risk serious injuries or even death",
+  { name: "Sports & healthy lifestyle", key: "leading a healthy lifestyle", pairs: [
+    { p: "extreme sports are highly dangerous, and young athletes risk serious injuries or even death", a: "Y S H T",
       s: "strictly follow safety rules, take precautions and always wear high-quality protective gear" },
-    { p: "young people who do not do sports face a high risk of obesity, heart disease and poor physical health",
+    { p: "many young people lead a sedentary lifestyle, which increases the risk of obesity, heart disease and poor physical health", a: "H T", inst: true,
       s: "make sports fun and accessible by organising after-school programmes and introducing enjoyable physical activities" },
-    { p: "not eating breakfast leads to low energy levels and difficulty focusing during the day",
-      s: "prepare breakfast in advance to make sure you eat a nutritious meal every morning" },
-    { p: "drinking too little water results in symptoms of dehydration and poor physical health",
+    { p: "many people skip breakfast, which leads to low energy levels and difficulty focusing during the day", a: "Y A S H T",
+      s: "prepare breakfast the evening before so that there is always time for a nutritious meal in the morning" },
+    { p: "many people drink too little water, which results in dehydration and poor physical health", a: "Y A S H E T",
       s: "carry a personal water bottle at all times to develop a steady habit of drinking water" },
-    { p: "many students cannot find time for regular training because of their studies",
+    { p: "many students cannot find time for regular training because of their studies", a: "Y S H T",
       s: "make a weekly timetable and choose short but regular workouts, for example twenty minutes every morning" },
-    { p: "gym memberships and sports equipment can be rather expensive for young people",
+    { p: "gym memberships and sports equipment can be rather expensive for young people", a: "H T",
       s: "use free sports grounds, work out at home or join school sports clubs which cost nothing" },
-    { p: "people who train without proper preparation often get injuries",
+    { p: "people who train without proper preparation often get injuries", a: "Y A S H E T",
       s: "start with a qualified instructor, always warm up properly and increase the load gradually" },
   ]},
-  { name: "Work & career", key: "work and career", pairs: [
-    { p: "not having the necessary skills for a dream job makes it difficult to compete with other candidates",
+  { name: "Work & career", key: "building a career", pairs: [
+    { p: "not having the necessary skills for a dream job makes it difficult to compete with other candidates", a: "Y A S",
       s: "take relevant professional training or courses to build expertise before applying" },
-    { p: "teenagers with part-time jobs often struggle to manage their time, which leads to stress and poor grades",
+    { p: "teenagers with part-time jobs often struggle to manage their time, which leads to stress and poor grades", a: "S H T",
       s: "create a balanced schedule that prioritises tasks and includes time for both work and rest" },
-    { p: "a poorly written CV can fail to grab an employer's attention, so applicants miss out on interviews",
+    { p: "a poorly written CV can fail to grab an employer's attention, so applicants miss out on interviews", a: "Y A",
       s: "use special templates or ask a professional resume writer to make the application more eye-catching" },
-    { p: "many young people are unsure of their talents and struggle to choose a career they will actually enjoy",
+    { p: "many young people are unsure of their talents and struggle to choose a career they will actually enjoy", a: "Y S H T",
       s: "take aptitude tests to identify personal strengths and see which jobs match those skills" },
-    { p: "technology is moving quickly, and many human workers are being replaced by machines and automated systems",
+    { p: "technology is moving quickly, and many human workers are being replaced by machines and automated systems", a: "Y A",
       s: "be flexible and develop digital skills that are difficult for artificial intelligence to replace" },
-    { p: "working in customer service can be emotionally exhausting because of rude or impatient clients",
+    { p: "working in customer service can be emotionally exhausting because of rude or impatient clients", a: "Y A",
       s: "develop strong communication skills and practise patience to handle such situations more effectively" },
-    { p: "manual labour and backstage roles, like being a chef, can be physically demanding and stressful",
+    { p: "manual labour and backstage roles, like being a chef, can be physically demanding and stressful", a: "Y A",
       s: "focus on time management and take regular breaks to reduce the risk of burnout" },
-    { p: "young people often have no work experience, which most employers require",
+    { p: "young people often have no work experience, which most employers require", a: "Y S H",
       s: "start with internships or volunteer projects to gain the first practical experience" },
   ]},
   { name: "School & education", locked: true },
@@ -289,27 +379,10 @@ const TOPICS = [
   { name: "Keeping pets", locked: true },
 ];
 
-// ── Аудитории: проблему формулируем в отношении конкретной группы ──
-const AUDIENCES = [
-  { en: "young professionals",            ru: "молодые специалисты" },
-  { en: "teenagers",                      ru: "подростки" },
-  { en: "students",                       ru: "студенты и школьники" },
-  { en: "school leavers",                 ru: "выпускники школ" },
-  { en: "young people",                   ru: "молодёжь" },
-  { en: "parents",                        ru: "родители" },
-  { en: "families with children",         ru: "семьи с детьми" },
-  { en: "elderly people",                 ru: "пожилые люди" },
-  { en: "beginners",                      ru: "новички" },
-  { en: "people living in big cities",    ru: "жители больших городов" },
-  { en: "people living in the countryside", ru: "жители сельской местности" },
-  { en: "tourists",                       ru: "туристы" },
-  { en: "working people",                 ru: "работающие люди" },
-];
-
 // Вводные конструкции — каждый раз текст собирается по-разному
 const PROBLEM_OPENERS = [
-  (k, p) => `One problem that may arise with ${k} is that ${p}.`,
-  (k, p) => `However, ${k} can pose a certain problem: ${p}.`,
+  (k, p) => `One problem connected with ${k} is that ${p}.`,
+  (k, p) => `However, ${k} is not always easy: ${p}.`,
   (k, p) => `Unfortunately, there is a difficulty connected with ${k}. The thing is that ${p}.`,
   (k, p) => `Speaking about possible problems, I should mention that ${p}.`,
 ];
@@ -317,197 +390,192 @@ const SOLUTION_OPENERS = [
   s => `A possible way of solving this problem is to ${s}.`,
   s => `To overcome this difficulty, one can ${s}.`,
   s => `The best way out is probably to ${s}.`,
-  s => `I believe this problem can be solved if people ${s}.`,
+  s => `I believe the most effective solution is to ${s}.`,
 ];
-// те же конструкции, но с указанием аудитории
+
+// те же конструкции, но с аудиторией (тема названа в каждой вводной фразе)
 const PROBLEM_OPENERS_AUD = [
-  (k, p, a) => `One problem that ${a} may face with ${k} is that ${p}.`,
-  (k, p, a) => `However, ${k} can pose a certain problem for ${a}: ${p}.`,
-  (k, p, a) => `Unfortunately, there is a difficulty that ${a} often have to deal with. The thing is that ${p}.`,
-  (k, p, a) => `Speaking about possible problems, I should mention that ${a} often find that ${p}.`,
+  (k, p, a) => `One problem connected with ${k} that ${a} may face is that ${p}.`,
+  (k, p, a) => `However, ${k} is not always easy for ${a}: ${p}.`,
+  (k, p, a) => `Unfortunately, ${a} may have difficulties connected with ${k}. The thing is that ${p}.`,
+  (k, p, a) => `Speaking about possible problems ${a} may face with ${k}, I should mention that ${p}.`,
 ];
 const SOLUTION_OPENERS_AUD = [
   (s, a) => `A possible way for ${a} to solve this problem is to ${s}.`,
   (s, a) => `To overcome this difficulty, ${a} can ${s}.`,
-  (s, a) => `The best way out is probably to ${s}.`,
-  (s, a) => `I believe this problem can be solved if ${a} ${s}.`,
+  (s, a) => `The best way out for ${a} is probably to ${s}.`,
+  (s, a) => `I believe the most effective solution for ${a} is to ${s}.`,
 ];
-// Если в проблеме общее подлежащее («people», «teenagers»…), меняем его на they —
-// аудитория уже названа во вводной фразе. Заменяем только там, где за словом идёт
-// сказуемое: «like-minded people who share…» остаётся как есть.
-const VERBS = "often|usually|sometimes|frequently|rarely|also|still|may|might|can|cannot|can't|could|" +
-  "should|must|do|don't|does|are|aren't|is|have|has|had|tend|risk|struggle|find|lose|waste|forget|" +
-  "get|feel|face|suffer|spend|need|want|fail|miss|train|eat|drink|work|study|start|begin|prefer|" +
-  "complain|ignore|become|choose|rely|live|travel|visit|buy|use|follow|pay|throw|hurry|stop|keep";
-const GENERIC_SUBJECT = new RegExp(
-  "\\b(?:many |some |most |a lot of )?(?:young people|young athletes|teenagers|students|" +
-  "schoolchildren|children|people)\\b(?=\\s+(?:" + VERBS + ")\\b)", "gi");
-// «young people who do not…» в начале придаточного → «those who do not…»
-const GROUP_WHO = new RegExp(
-  "(^|,\\s*|\\bthat\\s+|\\band\\s+|\\bbut\\s+|\\bbecause\\s+|\\bwhen\\s+|\\bif\\s+)" +
-  "((?:many |some |most )?(?:young people|teenagers|students|schoolchildren|children|people))" +
-  "(?=\\s+(?:who|with|without)\\b)", "gi");
-// «…expensive for young people» → «…expensive for them»
-const GROUP_OBJ = /\bfor (?:young people|teenagers|students|schoolchildren|children|people)\b/gi;
 
-function forAudience(clause) {
-  return clause
-    .replace(GENERIC_SUBJECT, "they")
-    .replace(GROUP_WHO, (m, pre) => pre + "those")
-    .replace(GROUP_OBJ, "for them");
+// ── Аудитории (коды из поля a у каждой пары) ────────────────
+const AUDIENCES = {
+  Y: "young people",
+  A: "adults",
+  S: "students",
+  H: "school students",
+  E: "elderly people",
+  T: "teenagers",
+};
+const AUD_ORDER = "YASHET".split("");
+
+// Аудитория уже названа во вводной фразе, поэтому общее подлежащее
+// («people», «teenagers»…) в проблеме меняем на they.
+const VERBS = "often|usually|sometimes|frequently|rarely|also|still|may|might|can|cannot|could|" +
+  "should|must|do|does|are|is|have|has|had|tend|risk|struggle|find|lose|waste|forget|want|" +
+  "get|feel|face|suffer|spend|need|fail|miss|train|eat|drink|skip|lead|work|study|start|begin|prefer|" +
+  "consider|postpone|complain|ignore|become|choose|rely|live|travel|visit|buy|use|follow|pay|compare|keep";
+const GROUPS = "young people|young athletes|teenagers|school students|students|schoolchildren|children|adults|people|" +
+  "travellers|tourists|learners|new volunteers|volunteers|families|applicants";
+const QUANT = "(?:many |some |most |a lot of )?";
+const reEsc = x => x.replace(/[.*+?^${}()|[\]\\]/g, "\\$&");
+
+function forAudience(clause, aud) {
+  const groups = reEsc(aud) + "|" + GROUPS;          // название самой аудитории тоже меняем
+  // подлежащее перед сказуемым: «many teenagers often…» → «they often…»
+  const subj = new RegExp("\\b" + QUANT + "(?:" + groups + ")\\b(?=\\s+(?:" + VERBS + ")\\b)", "gi");
+  // «students who / with…» в начале придаточного → «those who / with…»
+  const who = new RegExp("(^|,\\s*|\\bthat\\s+|\\band\\s+|\\bbut\\s+|\\bbecause\\s+|\\bwhen\\s+|\\bif\\s+)" +
+    QUANT + "(?:" + groups + ")(?=\\s+(?:who|with|without)\\b)", "gi");
+  return clause.replace(subj, "they")
+               .replace(who, (m, pre) => pre + "those")
+               .replace(/\bfor (?:young people|teenagers|students|schoolchildren|children|people)\b(?=[,.]|\s+to\b|$)/gi, "for them");
 }
 
 // ── Логика ──────────────────────────────────────────────────
 const $ = id => document.getElementById(id);
-let mode = "show";                 // show | train | problem | solution
-let lastTopicIdx = -1, lastPairIdx = -1, lastAud = "";
+const sel = $("topicSelect"), aSel = $("audSelect");
+let mode = "both";                       // both | sol (решение придумывает ученик) | prob
+let cur = null;                          // текущее задание: {topicIdx, pairIdx, aud}
 
-const sel = $("topicSelect");
 TOPICS.forEach((t, i) => {
   const o = document.createElement("option");
   o.value = i; o.textContent = (t.locked ? "🔒 " : "") + t.name;
   sel.appendChild(o);
 });
 
-const aSel = $("audSelect");
-[["rnd", "🎲 Случайная аудитория"], ["", "Без аудитории"]].forEach(([v, text]) => {
-  const o = document.createElement("option");
-  o.value = v; o.textContent = text; aSel.appendChild(o);
-});
-AUDIENCES.forEach((a, i) => {
-  const o = document.createElement("option");
-  o.value = i; o.textContent = a.en + " — " + a.ru;
-  aSel.appendChild(o);
-});
-
 function rnd(n) { return Math.floor(Math.random() * n); }
+function codes(pair) { return pair.a ? pair.a.split(" ") : []; }
+function esc(x) { return String(x).replace(/[&<>]/g, c => ({ "&": "&amp;", "<": "&lt;", ">": "&gt;" }[c])); }
 
-function pickAudience(keepLast) {
-  const v = aSel.value;
-  if (v === "") return "";
-  if (v === "rnd") {
-    if (keepLast && lastAud) return lastAud;
-    return AUDIENCES[rnd(AUDIENCES.length)].en;
-  }
-  return AUDIENCES[Number(v)].en;
+/* в списке аудиторий — только те, для которых в теме есть подходящие пары */
+function fillAudiences() {
+  const t = TOPICS[parseInt(sel.value, 10)];
+  const avail = new Set((t.pairs || []).flatMap(codes));
+  const prev = aSel.value || "none";
+  aSel.innerHTML = "";
+  const add = (v, text) => { const o = document.createElement("option"); o.value = v; o.textContent = text; aSel.appendChild(o); };
+  add("none", "без аудитории (people)");
+  AUD_ORDER.filter(c => avail.has(c)).forEach(c => add(c, AUDIENCES[c]));
+  aSel.value = [...aSel.options].some(o => o.value === prev) ? prev : "none";
 }
 
-function esc(s) {
-  return String(s).replace(/[&<>]/g, c => ({ "&": "&amp;", "<": "&lt;", ">": "&gt;" }[c]));
-}
-
-/* режимы: что показываем, что ученик придумывает сам */
-const MODES = {
-  show:     { hint: "", btn: "" },
-  train:    { hint: "Сначала сформулируйте проблему и решение сами — вслух или письменно. Потом сверьтесь с образцом.",
-              btn: "Показать образец" },
-  problem:  { hint: "Проблема дана. Предложите своё решение — одним предложением, как в эссе. Потом сверьтесь с образцом.",
-              btn: "Показать решение" },
-  solution: { hint: "Решение дано. Придумайте проблему, к которой оно подходит, и сформулируйте её по-английски.",
-              btn: "Показать проблему" },
-};
-
-function applyMode() {
-  const locked = !$("lockBox").classList.contains("hidden");
-  if ($("resultCard").classList.contains("hidden") || locked) return;
-  const m = MODES[mode];
-  $("answerBlock").classList.remove("hidden");
-  $("problemBlock").classList.toggle("hidden", mode === "train" || mode === "solution");
-  $("solutionBlock").classList.toggle("hidden", mode === "train" || mode === "problem");
-  $("revealZone").classList.toggle("hidden", mode === "show");
-  if (mode !== "show") {
-    $("revealHint").textContent = m.hint;
-    $("revealBtn").textContent = m.btn;
-  }
-}
-
-function generate(topicIdx, forceNewPair, keepPair) {
-  const t = TOPICS[topicIdx];
-  const locked = !!t.locked;
-  $("lockBox").classList.toggle("hidden", !locked);
-  document.querySelector(".card-actions").classList.toggle("hidden", locked);
-  document.querySelector(".hint").classList.toggle("hidden", locked);
-  $("taskLine").classList.toggle("hidden", locked);
-  if (locked) {
-    $("topicLine").textContent = "Topic: " + t.name;
-    $("answerBlock").classList.add("hidden");
-    $("revealZone").classList.add("hidden");
-    $("resultCard").classList.remove("hidden");
-    $("resultCard").scrollIntoView({ behavior: "smooth", block: "nearest" });
-    return;
-  }
-  let pairIdx = rnd(t.pairs.length);
-  if (keepPair && topicIdx === lastTopicIdx && lastPairIdx >= 0) {
-    pairIdx = lastPairIdx;                       // сменили только аудиторию
-  } else if (forceNewPair && t.pairs.length > 1) {
-    while (topicIdx === lastTopicIdx && pairIdx === lastPairIdx) pairIdx = rnd(t.pairs.length);
-  }
-  const aud = pickAudience(forceNewPair);
-  lastTopicIdx = topicIdx; lastPairIdx = pairIdx; lastAud = aud;
-
+/* выбрать пару (и аудиторию), по возможности не повторяя предыдущую */
+function pickTask(forceNew) {
+  const topicIdx = parseInt(sel.value, 10), t = TOPICS[topicIdx], v = aSel.value;
+  let cands = t.pairs.map((p, i) => i);
+  if (v === "rnd") cands = cands.filter(i => codes(t.pairs[i]).length);
+  else if (v !== "none") cands = cands.filter(i => codes(t.pairs[i]).includes(v));
+  if (forceNew && cur && cur.topicIdx === topicIdx && cands.length > 1)
+    cands = cands.filter(i => i !== cur.pairIdx);
+  const pairIdx = cands[rnd(cands.length)];
   const pair = t.pairs[pairIdx];
-  const i = rnd(PROBLEM_OPENERS.length), j = rnd(SOLUTION_OPENERS.length);
+  let aud = "";
+  if (v === "rnd") { const c = codes(pair); aud = AUDIENCES[c[rnd(c.length)]]; }
+  else if (v !== "none") aud = AUDIENCES[v];
+
   let problem, solution;
+  const i = rnd(4), j = rnd(4);
   if (aud) {
-    const clause = forAudience(pair.p);
-    problem  = PROBLEM_OPENERS_AUD[i](t.key, clause, aud);
-    solution = SOLUTION_OPENERS_AUD[j](pair.s, aud);
+    problem  = PROBLEM_OPENERS_AUD[i](t.key, pair.keep ? pair.p : forAudience(pair.p, aud), aud);
+    solution = pair.inst ? SOLUTION_OPENERS[[0, 2, 3][j % 3]](pair.s)   // решение не от лица аудитории
+                         : SOLUTION_OPENERS_AUD[j](pair.s, aud);
   } else {
     problem  = PROBLEM_OPENERS[i](t.key, pair.p);
     solution = SOLUTION_OPENERS[j](pair.s);
   }
-
-  $("topicLine").textContent = "Topic: " + t.name;
-  $("taskLine").innerHTML = aud
-    ? "… <b>outline a problem</b> related to " + esc(t.key) + " that <b>" + esc(aud) +
-      "</b> can face and <b>suggest a way of solving it</b>;"
-    : "… <b>outline a problem</b> related to " + esc(t.key) + " and <b>suggest a way of solving it</b>;";
+  cur = { topicIdx, pairIdx, aud };
+  $("taskLine").innerHTML = "… <b>outline a problem</b> related to <b>" + esc(t.key) + "</b>" +
+    (aud ? " that <b>" + esc(aud) + "</b> can face" : "") + " and <b>suggest a way of solving it</b>;";
   $("problemText").textContent = problem;
   $("solutionText").textContent = solution;
-  $("resultCard").classList.remove("hidden");
-  applyMode();
+}
+
+const HINTS = {
+  both: "Сначала сформулируйте проблему и решение сами — вслух или письменно. Потом сверьтесь с образцом.",
+  sol:  "Проблема дана. Предложите своё решение — одним-двумя предложениями, как в эссе. Потом сверьтесь с образцом.",
+  prob: "Решение дано. Придумайте проблему, к которой оно подходит, и сформулируйте её по-английски. Потом сверьтесь с образцом.",
+};
+
+/* ученик думает: видна только «данная» часть (или ничего) */
+const LOCK_HIDE = ["answerBlock", "revealZone", "cardActions", "audField", "modeField", "trainHint"];
+function newTask(forceNew) {
+  const locked = !!TOPICS[parseInt(sel.value, 10)].locked;
+  $("lockBox").classList.toggle("hidden", !locked);
+  LOCK_HIDE.forEach(id => $(id).classList.toggle("hidden", locked));
+  if (locked) {
+    $("taskLine").innerHTML = "… <b>outline a problem</b> related to … and <b>suggest a way of solving it</b>;";
+    cur = null;
+    return;
+  }
+  pickTask(forceNew);
+  const hideP = mode !== "sol", hideS = mode !== "prob";
+  $("problemText").classList.toggle("hidden", hideP);
+  $("problemBlank").classList.toggle("hidden", !hideP);
+  $("solutionText").classList.toggle("hidden", hideS);
+  $("solutionBlank").classList.toggle("hidden", !hideS);
+  $("revealHint").textContent = HINTS[mode];
+  $("revealZone").classList.remove("hidden");
+  $("cardActions").classList.add("hidden");
+}
+
+function reveal() {
+  ["problemText", "solutionText"].forEach(id => $(id).classList.remove("hidden"));
+  ["problemBlank", "solutionBlank"].forEach(id => $(id).classList.add("hidden"));
+  $("revealZone").classList.add("hidden");
+  $("cardActions").classList.remove("hidden");
+}
+
+function randomTopic() {
+  const open = TOPICS.map((t, k) => k).filter(k => !TOPICS[k].locked && k !== parseInt(sel.value, 10));
+  const i = open[rnd(open.length)];
+  sel.value = i;
+  fillAudiences();
+  newTask(false);
   $("resultCard").scrollIntoView({ behavior: "smooth", block: "nearest" });
 }
 
-$("genBtn").onclick = () => generate(parseInt(sel.value, 10), false);
-$("randomBtn").onclick = () => {
-  const open = TOPICS.map((t, k) => k).filter(k => !TOPICS[k].locked);
-  const i = open[rnd(open.length)];
-  sel.value = i;
-  generate(i, false);
+$("revealBtn").onclick = reveal;
+$("randomBtn").onclick = randomTopic;
+$("anotherBtn").onclick = () => {
+  newTask(true);
+  $("resultCard").scrollIntoView({ behavior: "smooth", block: "start" });
 };
-$("anotherBtn").onclick = () => generate(lastTopicIdx < 0 ? parseInt(sel.value, 10) : lastTopicIdx, true);
-$("revealBtn").onclick = () => {
-  $("answerBlock").classList.remove("hidden");
-  $("problemBlock").classList.remove("hidden");
-  $("solutionBlock").classList.remove("hidden");
-  $("revealZone").classList.add("hidden");
-};
-$("copyBtn").onclick = async () => {
-  const text = $("problemText").textContent + "\n\n" + $("solutionText").textContent;
-  try {
-    await navigator.clipboard.writeText(text);
-    $("copyBtn").textContent = "Скопировано!";
-  } catch (e) {
-    $("copyBtn").textContent = "Не удалось :(";
-  }
-  setTimeout(() => { $("copyBtn").textContent = "Скопировать текст"; }, 1500);
-};
-const MODE_BTN = { show: "modeShow", train: "modeTrain", problem: "modeProblem", solution: "modeSolution" };
-Object.keys(MODE_BTN).forEach(name => {
-  $(MODE_BTN[name]).onclick = () => {
-    mode = name;
-    Object.keys(MODE_BTN).forEach(n => $(MODE_BTN[n]).classList.toggle("on", n === name));
-    applyMode();
+sel.onchange = () => { fillAudiences(); newTask(false); };
+aSel.onchange = () => newTask(false);
+const MODE_BTN = { both: "modeBoth", sol: "modeSol", prob: "modeProb" };
+Object.keys(MODE_BTN).forEach(m => {
+  $(MODE_BTN[m]).onclick = () => {
+    mode = m;
+    Object.keys(MODE_BTN).forEach(n => $(MODE_BTN[n]).classList.toggle("on", n === m));
+    newTask(true);
   };
 });
 
-/* смена аудитории сразу пересобирает текст, если карточка уже открыта */
-aSel.onchange = () => {
-  if (lastTopicIdx >= 0 && !$("resultCard").classList.contains("hidden")) {
-    generate(lastTopicIdx, false, true);
-  }
-};
+function showTab(help) {
+  $("helpPanel").classList.toggle("hidden", !help);
+  $("resultCard").classList.toggle("hidden", help);
+  $("examNote").classList.toggle("hidden", help);
+  $("tabHelp").classList.toggle("on", help);
+  $("tabTrain").classList.toggle("on", !help);
+  $("tabHelp").setAttribute("aria-selected", help);
+  $("tabTrain").setAttribute("aria-selected", !help);
+}
+$("tabHelp").onclick = () => showTab(true);
+$("tabTrain").onclick = () => showTab(false);
+$("goTrain").onclick = () => { showTab(false); window.scrollTo({ top: 0, behavior: "smooth" }); };
+
+fillAudiences();
+newTask(false);
 </script>
 </body>
 </html>
