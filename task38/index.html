@@ -44,7 +44,7 @@
     padding: 18px; display: flex; gap: 12px; flex-wrap: wrap; align-items: center;
   }
   select {
-    flex: 1 1 240px; padding: 11px 12px;
+    flex: 1 1 240px; min-width: 0; max-width: 100%; padding: 11px 12px;
     border: 1px solid var(--rule); border-radius: 8px;
     font-family: inherit; font-size: 14px; color: var(--ink); background: #fff;
   }
@@ -78,6 +78,12 @@
     font-size: 12px; letter-spacing: 1.5px; text-transform: uppercase;
     color: var(--orange); font-weight: 700; margin-bottom: 12px;
   }
+  .task-line {
+    font-family: Georgia, serif; font-size: 15px; line-height: 1.6;
+    background: var(--peach); color: var(--brown);
+    border-radius: 10px; padding: 12px 16px; margin-bottom: 18px;
+  }
+  .task-line b { color: var(--ink); }
   .para-label {
     display: inline-block; background: var(--peach); color: var(--brown);
     border-radius: 999px; padding: 3px 12px; font-size: 12px; font-weight: 700;
@@ -132,7 +138,8 @@
 
 <main>
   <div class="controls">
-    <select id="topicSelect"></select>
+    <select id="topicSelect" aria-label="Тема проекта"></select>
+    <select id="audSelect" aria-label="Аудитория"></select>
     <button class="btn-main" id="genBtn">Сгенерировать</button>
     <button class="btn-ghost" id="randomBtn">Случайная тема</button>
   </div>
@@ -140,16 +147,23 @@
   <div class="mode">
     <button id="modeShow" class="on">Показать сразу</button>
     <button id="modeTrain">Режим тренировки</button>
+    <button id="modeProblem">Дана проблема — решение сами</button>
+    <button id="modeSolution">Дано решение — проблема сами</button>
   </div>
 
   <div class="card hidden" id="resultCard">
     <div class="topic-line" id="topicLine"></div>
+    <p class="task-line hidden" id="taskLine"></p>
 
     <div id="answerBlock">
-      <span class="para-label">Problem</span>
-      <p class="en" id="problemText"></p>
-      <span class="para-label">Solution</span>
-      <p class="en" id="solutionText"></p>
+      <div id="problemBlock">
+        <span class="para-label">Problem</span>
+        <p class="en" id="problemText"></p>
+      </div>
+      <div id="solutionBlock">
+        <span class="para-label">Solution</span>
+        <p class="en" id="solutionText"></p>
+      </div>
     </div>
 
     <div class="lockbox hidden" id="lockBox">
@@ -160,7 +174,7 @@
     </div>
 
     <div class="reveal-zone hidden" id="revealZone">
-      <p style="font-size:14px;color:var(--muted);margin:0 0 12px">
+      <p style="font-size:14px;color:var(--muted);margin:0 0 12px" id="revealHint">
         Сначала сформулируйте проблему и решение сами — вслух или письменно. Потом сверьтесь с образцом.
       </p>
       <button class="btn-main" id="revealBtn">Показать образец</button>
@@ -189,7 +203,11 @@
 
   <div class="note">
     💡 Совет: прогоните 5–6 случайных тем подряд в режиме тренировки — на экзамене
-    формулировки будут приходить в голову сами.
+    формулировки будут приходить в голову сами.<br>
+    С 2026 года проблему нужно связать с конкретной аудиторией: выберите её во втором списке —
+    в карточке появится точная формулировка задания, а проблема и решение будут написаны
+    про эту группу. Режимы «дана проблема» и «дано решение» тренируют вторую половину абзаца:
+    ученик сам придумывает недостающую часть.
   </div>
 </main>
 
@@ -271,6 +289,23 @@ const TOPICS = [
   { name: "Keeping pets", locked: true },
 ];
 
+// ── Аудитории: проблему формулируем в отношении конкретной группы ──
+const AUDIENCES = [
+  { en: "young professionals",            ru: "молодые специалисты" },
+  { en: "teenagers",                      ru: "подростки" },
+  { en: "students",                       ru: "студенты и школьники" },
+  { en: "school leavers",                 ru: "выпускники школ" },
+  { en: "young people",                   ru: "молодёжь" },
+  { en: "parents",                        ru: "родители" },
+  { en: "families with children",         ru: "семьи с детьми" },
+  { en: "elderly people",                 ru: "пожилые люди" },
+  { en: "beginners",                      ru: "новички" },
+  { en: "people living in big cities",    ru: "жители больших городов" },
+  { en: "people living in the countryside", ru: "жители сельской местности" },
+  { en: "tourists",                       ru: "туристы" },
+  { en: "working people",                 ru: "работающие люди" },
+];
+
 // Вводные конструкции — каждый раз текст собирается по-разному
 const PROBLEM_OPENERS = [
   (k, p) => `One problem that may arise with ${k} is that ${p}.`,
@@ -284,11 +319,48 @@ const SOLUTION_OPENERS = [
   s => `The best way out is probably to ${s}.`,
   s => `I believe this problem can be solved if people ${s}.`,
 ];
+// те же конструкции, но с указанием аудитории
+const PROBLEM_OPENERS_AUD = [
+  (k, p, a) => `One problem that ${a} may face with ${k} is that ${p}.`,
+  (k, p, a) => `However, ${k} can pose a certain problem for ${a}: ${p}.`,
+  (k, p, a) => `Unfortunately, there is a difficulty that ${a} often have to deal with. The thing is that ${p}.`,
+  (k, p, a) => `Speaking about possible problems, I should mention that ${a} often find that ${p}.`,
+];
+const SOLUTION_OPENERS_AUD = [
+  (s, a) => `A possible way for ${a} to solve this problem is to ${s}.`,
+  (s, a) => `To overcome this difficulty, ${a} can ${s}.`,
+  (s, a) => `The best way out is probably to ${s}.`,
+  (s, a) => `I believe this problem can be solved if ${a} ${s}.`,
+];
+// Если в проблеме общее подлежащее («people», «teenagers»…), меняем его на they —
+// аудитория уже названа во вводной фразе. Заменяем только там, где за словом идёт
+// сказуемое: «like-minded people who share…» остаётся как есть.
+const VERBS = "often|usually|sometimes|frequently|rarely|also|still|may|might|can|cannot|can't|could|" +
+  "should|must|do|don't|does|are|aren't|is|have|has|had|tend|risk|struggle|find|lose|waste|forget|" +
+  "get|feel|face|suffer|spend|need|want|fail|miss|train|eat|drink|work|study|start|begin|prefer|" +
+  "complain|ignore|become|choose|rely|live|travel|visit|buy|use|follow|pay|throw|hurry|stop|keep";
+const GENERIC_SUBJECT = new RegExp(
+  "\\b(?:many |some |most |a lot of )?(?:young people|young athletes|teenagers|students|" +
+  "schoolchildren|children|people)\\b(?=\\s+(?:" + VERBS + ")\\b)", "gi");
+// «young people who do not…» в начале придаточного → «those who do not…»
+const GROUP_WHO = new RegExp(
+  "(^|,\\s*|\\bthat\\s+|\\band\\s+|\\bbut\\s+|\\bbecause\\s+|\\bwhen\\s+|\\bif\\s+)" +
+  "((?:many |some |most )?(?:young people|teenagers|students|schoolchildren|children|people))" +
+  "(?=\\s+(?:who|with|without)\\b)", "gi");
+// «…expensive for young people» → «…expensive for them»
+const GROUP_OBJ = /\bfor (?:young people|teenagers|students|schoolchildren|children|people)\b/gi;
+
+function forAudience(clause) {
+  return clause
+    .replace(GENERIC_SUBJECT, "they")
+    .replace(GROUP_WHO, (m, pre) => pre + "those")
+    .replace(GROUP_OBJ, "for them");
+}
 
 // ── Логика ──────────────────────────────────────────────────
 const $ = id => document.getElementById(id);
-let trainMode = false;
-let lastTopicIdx = -1, lastPairIdx = -1;
+let mode = "show";                 // show | train | problem | solution
+let lastTopicIdx = -1, lastPairIdx = -1, lastAud = "";
 
 const sel = $("topicSelect");
 TOPICS.forEach((t, i) => {
@@ -297,14 +369,65 @@ TOPICS.forEach((t, i) => {
   sel.appendChild(o);
 });
 
+const aSel = $("audSelect");
+[["rnd", "🎲 Случайная аудитория"], ["", "Без аудитории"]].forEach(([v, text]) => {
+  const o = document.createElement("option");
+  o.value = v; o.textContent = text; aSel.appendChild(o);
+});
+AUDIENCES.forEach((a, i) => {
+  const o = document.createElement("option");
+  o.value = i; o.textContent = a.en + " — " + a.ru;
+  aSel.appendChild(o);
+});
+
 function rnd(n) { return Math.floor(Math.random() * n); }
 
-function generate(topicIdx, forceNewPair) {
+function pickAudience(keepLast) {
+  const v = aSel.value;
+  if (v === "") return "";
+  if (v === "rnd") {
+    if (keepLast && lastAud) return lastAud;
+    return AUDIENCES[rnd(AUDIENCES.length)].en;
+  }
+  return AUDIENCES[Number(v)].en;
+}
+
+function esc(s) {
+  return String(s).replace(/[&<>]/g, c => ({ "&": "&amp;", "<": "&lt;", ">": "&gt;" }[c]));
+}
+
+/* режимы: что показываем, что ученик придумывает сам */
+const MODES = {
+  show:     { hint: "", btn: "" },
+  train:    { hint: "Сначала сформулируйте проблему и решение сами — вслух или письменно. Потом сверьтесь с образцом.",
+              btn: "Показать образец" },
+  problem:  { hint: "Проблема дана. Предложите своё решение — одним предложением, как в эссе. Потом сверьтесь с образцом.",
+              btn: "Показать решение" },
+  solution: { hint: "Решение дано. Придумайте проблему, к которой оно подходит, и сформулируйте её по-английски.",
+              btn: "Показать проблему" },
+};
+
+function applyMode() {
+  const locked = !$("lockBox").classList.contains("hidden");
+  if ($("resultCard").classList.contains("hidden") || locked) return;
+  const m = MODES[mode];
+  $("answerBlock").classList.remove("hidden");
+  $("problemBlock").classList.toggle("hidden", mode === "train" || mode === "solution");
+  $("solutionBlock").classList.toggle("hidden", mode === "train" || mode === "problem");
+  $("revealZone").classList.toggle("hidden", mode === "show");
+  if (mode !== "show") {
+    $("revealHint").textContent = m.hint;
+    $("revealBtn").textContent = m.btn;
+  }
+}
+
+function generate(topicIdx, forceNewPair, keepPair) {
   const t = TOPICS[topicIdx];
   const locked = !!t.locked;
   $("lockBox").classList.toggle("hidden", !locked);
   document.querySelector(".card-actions").classList.toggle("hidden", locked);
   document.querySelector(".hint").classList.toggle("hidden", locked);
+  $("taskLine").classList.toggle("hidden", locked);
   if (locked) {
     $("topicLine").textContent = "Topic: " + t.name;
     $("answerBlock").classList.add("hidden");
@@ -314,26 +437,35 @@ function generate(topicIdx, forceNewPair) {
     return;
   }
   let pairIdx = rnd(t.pairs.length);
-  if (forceNewPair && t.pairs.length > 1) {
+  if (keepPair && topicIdx === lastTopicIdx && lastPairIdx >= 0) {
+    pairIdx = lastPairIdx;                       // сменили только аудиторию
+  } else if (forceNewPair && t.pairs.length > 1) {
     while (topicIdx === lastTopicIdx && pairIdx === lastPairIdx) pairIdx = rnd(t.pairs.length);
   }
-  lastTopicIdx = topicIdx; lastPairIdx = pairIdx;
+  const aud = pickAudience(forceNewPair);
+  lastTopicIdx = topicIdx; lastPairIdx = pairIdx; lastAud = aud;
+
   const pair = t.pairs[pairIdx];
-  const problem = PROBLEM_OPENERS[rnd(PROBLEM_OPENERS.length)](t.key, pair.p);
-  const solution = SOLUTION_OPENERS[rnd(SOLUTION_OPENERS.length)](pair.s);
+  const i = rnd(PROBLEM_OPENERS.length), j = rnd(SOLUTION_OPENERS.length);
+  let problem, solution;
+  if (aud) {
+    const clause = forAudience(pair.p);
+    problem  = PROBLEM_OPENERS_AUD[i](t.key, clause, aud);
+    solution = SOLUTION_OPENERS_AUD[j](pair.s, aud);
+  } else {
+    problem  = PROBLEM_OPENERS[i](t.key, pair.p);
+    solution = SOLUTION_OPENERS[j](pair.s);
+  }
 
   $("topicLine").textContent = "Topic: " + t.name;
+  $("taskLine").innerHTML = aud
+    ? "… <b>outline a problem</b> related to " + esc(t.key) + " that <b>" + esc(aud) +
+      "</b> can face and <b>suggest a way of solving it</b>;"
+    : "… <b>outline a problem</b> related to " + esc(t.key) + " and <b>suggest a way of solving it</b>;";
   $("problemText").textContent = problem;
   $("solutionText").textContent = solution;
   $("resultCard").classList.remove("hidden");
-
-  if (trainMode) {
-    $("answerBlock").classList.add("hidden");
-    $("revealZone").classList.remove("hidden");
-  } else {
-    $("answerBlock").classList.remove("hidden");
-    $("revealZone").classList.add("hidden");
-  }
+  applyMode();
   $("resultCard").scrollIntoView({ behavior: "smooth", block: "nearest" });
 }
 
@@ -347,6 +479,8 @@ $("randomBtn").onclick = () => {
 $("anotherBtn").onclick = () => generate(lastTopicIdx < 0 ? parseInt(sel.value, 10) : lastTopicIdx, true);
 $("revealBtn").onclick = () => {
   $("answerBlock").classList.remove("hidden");
+  $("problemBlock").classList.remove("hidden");
+  $("solutionBlock").classList.remove("hidden");
   $("revealZone").classList.add("hidden");
 };
 $("copyBtn").onclick = async () => {
@@ -359,20 +493,19 @@ $("copyBtn").onclick = async () => {
   }
   setTimeout(() => { $("copyBtn").textContent = "Скопировать текст"; }, 1500);
 };
-$("modeShow").onclick = () => {
-  trainMode = false;
-  $("modeShow").classList.add("on"); $("modeTrain").classList.remove("on");
-  if (!$("resultCard").classList.contains("hidden") && $("lockBox").classList.contains("hidden")) {
-    $("answerBlock").classList.remove("hidden");
-    $("revealZone").classList.add("hidden");
-  }
-};
-$("modeTrain").onclick = () => {
-  trainMode = true;
-  $("modeTrain").classList.add("on"); $("modeShow").classList.remove("on");
-  if (!$("resultCard").classList.contains("hidden") && $("lockBox").classList.contains("hidden")) {
-    $("answerBlock").classList.add("hidden");
-    $("revealZone").classList.remove("hidden");
+const MODE_BTN = { show: "modeShow", train: "modeTrain", problem: "modeProblem", solution: "modeSolution" };
+Object.keys(MODE_BTN).forEach(name => {
+  $(MODE_BTN[name]).onclick = () => {
+    mode = name;
+    Object.keys(MODE_BTN).forEach(n => $(MODE_BTN[n]).classList.toggle("on", n === name));
+    applyMode();
+  };
+});
+
+/* смена аудитории сразу пересобирает текст, если карточка уже открыта */
+aSel.onchange = () => {
+  if (lastTopicIdx >= 0 && !$("resultCard").classList.contains("hidden")) {
+    generate(lastTopicIdx, false, true);
   }
 };
 </script>
