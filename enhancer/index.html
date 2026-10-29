@@ -196,15 +196,15 @@
 
 <main>
   <div id="dropzone">
-    <div class="big">Перетащите один или несколько листов сюда</div>
-    <div class="small">или нажмите, чтобы выбрать файлы — PNG, JPG, WEBP. Каждый лист станет страницей PDF</div>
+    <div class="big">Перетащите одну или несколько картинок сюда</div>
+    <div class="small">или нажмите, чтобы выбрать файлы — PNG, JPG, WEBP. Каждая картинка станет страницей PDF</div>
   </div>
   <input type="file" id="fileInput" accept="image/*" multiple class="hidden">
 
   <div class="layout hidden" id="app">
     <aside>
       <div class="panel">
-        <div class="eyebrow">Режим · применяется ко всем листам</div>
+        <div class="eyebrow">Режим · применяется ко всем картинкам</div>
         <div id="presets"></div>
         <div class="eyebrow" style="margin-top:18px">Тонкая настройка</div>
         <div id="sliders"></div>
@@ -225,7 +225,7 @@
         <button class="primary" id="pdfBtn">Скачать PDF для печати</button>
         <button class="secondary" id="allPngBtn">Скачать все PNG по отдельности</button>
         <div class="btn-row">
-          <button class="ghost" id="addBtn">+ Добавить листы</button>
+          <button class="ghost" id="addBtn">+ Добавить картинки</button>
           <button class="ghost" id="clearBtn">Очистить всё</button>
         </div>
       </div>
@@ -245,8 +245,8 @@
       </div>
       <div class="under">
         <p>Все вычисления идут локально в браузере — изображения никуда не отправляются.
-           В PDF каждый лист становится страницей A4 с полями, по центру.</p>
-        <button id="onePngBtn">Скачать этот лист PNG</button>
+           В PDF каждая картинка становится страницей A4 с полями, по центру.</p>
+        <button id="onePngBtn">Скачать эту картинку PNG</button>
       </div>
     </section>
   </div>
@@ -567,7 +567,7 @@ function renderThumbs() {
       '<img src="' + (it.resultUrl || it.img.src) + '" alt="">' +
       '<div class="name">' + (idx + 1) + '. ' + it.name + '</div>' +
       '<div class="st ' + it.status + '">' + STATUS_LABEL[it.status] + '</div>' +
-      '<button class="rm" title="Убрать лист">×</button>';
+      '<button class="rm" title="Убрать картинку">×</button>';
     div.onclick = () => { selectedId = it.id; renderThumbs(); renderCompare(); };
     div.querySelector(".rm").onclick = e => {
       e.stopPropagation();
