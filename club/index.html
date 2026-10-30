@@ -3,190 +3,443 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>База материалов для учителей английского — клуб @egerepetit</title>
-<meta name="description" content="Что внутри клуба: готовые материалы к урокам английского, пособия и разборы по разделам ЕГЭ и ОГЭ. Несколько материалов можно скачать бесплатно, без регистрации.">
+<title>База материалов клуба — готовые материалы к урокам английского</title>
+<meta name="description" content="Весь состав базы материалов клуба @egerepetit: готовые уроки, карточки, пособия и пробники по разделам ЕГЭ и ОГЭ. Поиск и фильтры открыты всем, скачивание — участницам клуба.">
 <meta property="og:title" content="База материалов клуба @egerepetit">
-<meta property="og:description" content="Готовые материалы к урокам английского по разделам ЕГЭ и ОГЭ. Часть можно скачать бесплатно.">
+<meta property="og:description" content="Готовые уроки, карточки и пособия по разделам ЕГЭ и ОГЭ. Смотрите состав базы, скачивание — в клубе.">
 <meta property="og:type" content="website">
 <link rel="icon" href="/favicon.svg" type="image/svg+xml">
 <link rel="icon" href="/favicon.ico" sizes="any">
-<meta name="theme-color" content="#1f3a6e">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Unbounded:wght@600;800&family=Onest:wght@400;500;600;700&display=swap&subset=cyrillic,latin" rel="stylesheet">
 <style>
-  :root {
-    --ink: #1f3a6e; --paper: #fdf6ec; --peach: #fae3c6; --orange: #e07b39;
-    --brown: #7a4a2b; --rule: #eeddc4; --muted: #6b6154;
-  }
-  * { box-sizing: border-box; }
-  body { margin: 0; min-height: 100vh; background: var(--paper); color: var(--ink);
-    font-family: 'Trebuchet MS', Verdana, sans-serif; }
-  a { color: var(--orange); }
-
-  header { padding: 40px 24px 30px; text-align: center;
-    background: linear-gradient(160deg, #fdeed8 0%, var(--paper) 70%);
-    border-bottom: 3px double var(--ink); }
-  .head-inner { max-width: 760px; margin: 0 auto; }
-  h1 { font-family: Georgia, 'Times New Roman', serif; font-size: 34px; margin: 0 0 10px; }
-  .lede { font-size: 16px; color: var(--muted); line-height: 1.6; margin: 0 auto 18px; max-width: 620px; }
-  .back { display: inline-block; margin-bottom: 14px; font-size: 13px;
-    color: var(--orange); text-decoration: none; font-weight: 700; }
-  .join { display: inline-block; padding: 13px 26px; border-radius: 999px;
-    background: var(--orange); color: #fff; font-weight: 700; font-size: 16px; text-decoration: none; }
-  .join:hover { filter: brightness(1.07); }
-  .join:focus-visible { outline: 3px solid var(--ink); outline-offset: 2px; }
-
-  main { max-width: 880px; margin: 0 auto; padding: 26px 20px 70px; }
-
-  .numbers { display: flex; gap: 12px; flex-wrap: wrap; justify-content: center; margin-bottom: 8px; }
-  .num { flex: 1 1 180px; background: #fffdf9; border: 1px solid var(--rule); border-radius: 14px;
-    box-shadow: 0 3px 0 var(--rule); padding: 18px; text-align: center; }
-  .num b { display: block; font-family: Georgia, serif; font-size: 30px; color: var(--ink); }
-  .num span { font-size: 14px; color: var(--muted); }
-  .updated { text-align: center; font-size: 13px; color: var(--muted); margin: 10px 0 0; }
-
-  h2 { font-family: Georgia, serif; font-size: 24px; margin: 34px 0 6px; }
-  .sub { font-size: 14.5px; color: var(--muted); margin: 0 0 16px; line-height: 1.55; }
-
-  .sections { display: grid; gap: 12px; grid-template-columns: repeat(auto-fill, minmax(260px, 1fr)); }
-  .sec { background: #fffdf9; border: 1px solid var(--rule); border-radius: 14px; padding: 16px 18px; }
-  .sec h3 { margin: 0 0 4px; font-size: 17px; font-family: Georgia, serif; }
-  .sec .cnt { font-size: 13px; color: var(--orange); font-weight: 700; }
-  .sec .topics { margin: 8px 0 0; font-size: 13.5px; color: var(--muted); line-height: 1.5; }
-
-  .free { background: var(--peach); border-radius: 14px; padding: 18px 20px; margin-top: 10px; }
-  .free ul { list-style: none; margin: 0; padding: 0; }
-  .free li { padding: 12px 0; border-bottom: 1px solid rgba(122,74,43,.18); }
-  .free li:last-child { border-bottom: 0; }
-  .free .nm { display: block; font-weight: 700; color: var(--brown); margin-bottom: 5px; }
-  .free .dls { font-size: 14px; line-height: 1.9; }
-  .free a.dl { color: var(--ink); text-decoration: none;
-    border-bottom: 1px dotted var(--ink); margin-right: 16px; }
-  .free a.dl:hover { color: var(--orange); border-bottom-color: var(--orange); }
-
-  .cta { margin-top: 36px; background: #fffdf9; border: 1px solid var(--rule);
-    border-radius: 14px; box-shadow: 0 3px 0 var(--rule); padding: 26px 22px; text-align: center; }
-  .cta p { color: var(--muted); font-size: 15px; line-height: 1.6; max-width: 56ch; margin: 0 auto 18px; }
-  .note { font-size: 14px; color: var(--muted); text-align: center; padding: 18px 0; line-height: 1.6; }
-  footer { text-align: center; font-size: 13px; color: var(--muted); padding: 24px 0 0; }
-  .hidden { display: none !important; }
+:root{--ink:#17233D;--ink-soft:#4A566E;--paper:#EEF1F8;--card:#FFFFFF;--line:#DCE2EE;--chip:#E7EBF4;
+  --hl:#FFD84D;--hl-deep:#E7B70C;--folder:#F5C443;--shade:rgba(23,35,61,.42);
+  --pdf:#D9483B;--doc:#2F6FD6;--ppt:#E07B22;--aud:#2E9E6B;--vid:#7A4FD0;--img:#1E8FA6;--oth:#7A869E;
+  --shadow:0 1px 2px rgba(23,35,61,.05),0 12px 32px -18px rgba(23,35,61,.35)}
+*{box-sizing:border-box}
+body{margin:0;font-family:'Onest',system-ui,-apple-system,sans-serif;color:var(--ink);line-height:1.5;font-size:15px;min-height:100vh;
+  background:radial-gradient(1100px 500px at 82% -8%,#FBF3D6 0%,rgba(251,243,214,0) 55%),var(--paper)}
+.promo{display:flex;gap:16px;align-items:center;flex-wrap:wrap;background:var(--card);
+  border:1px solid var(--line);border-radius:16px;box-shadow:var(--shadow);padding:16px 18px;margin:0 0 18px;
+  font-size:14.5px;color:var(--ink-soft);line-height:1.55}
+.promo b{color:var(--ink)}
+.promo>div{flex:1 1 320px;min-width:0}
+.promo .btn{flex:none}
+.lockbox{padding:14px 16px;background:var(--chip);border-radius:12px;font-size:14px;color:var(--ink-soft);line-height:1.55}
+.lockbox b{color:var(--ink)}
+.pnums{display:block;margin-top:8px;color:var(--ink);font-weight:600;font-variant-numeric:tabular-nums}
+.cta{margin-top:30px;background:var(--card);border:1px solid var(--line);border-radius:16px;
+  box-shadow:var(--shadow);padding:22px}
+.cta h2{font-family:'Unbounded',sans-serif;font-weight:700;font-size:clamp(18px,3.4vw,22px);margin:0 0 8px}
+.cta p{color:var(--ink-soft);margin:0 0 16px;max-width:62ch}
+/* папка «Бесплатно» — крупно и жёлтым */
+.chip.free{background:var(--hl);border-color:var(--hl-deep);color:var(--ink);font-weight:700;font-size:15px;padding:7px 15px}
+.chip.free[aria-pressed="true"]{background:var(--hl-deep);color:var(--ink);border-color:var(--hl-deep)}
+.chip.free .n{opacity:.65}
+.row.free{background:#FFF7D6}
+.row.free:hover{background:#FFEFAE}
+.row.free .nm{font-weight:800;font-size:17px}
+.row.free .ico,.row.free .ico::before{background:var(--hl-deep)}
+.row.free .ct{color:#7A5E00;font-weight:600}
+.tag.free{background:var(--hl);color:var(--ink);font-weight:700}
+.wrap{max-width:1040px;margin:0 auto;padding:28px 16px 70px}
+.back{color:var(--ink-soft);font-size:14px;text-decoration:none}
+h1{font-family:'Unbounded',sans-serif;font-weight:800;font-size:clamp(26px,5vw,38px);line-height:1.1;margin:10px 0 6px}
+.lede{color:var(--ink-soft);margin:0 0 18px;max-width:62ch}
+.tabs{display:inline-flex;background:var(--chip);border-radius:12px;padding:4px;gap:4px;margin-bottom:14px}
+.tabs button{border:0;background:transparent;font:600 14.5px 'Onest',sans-serif;color:var(--ink-soft);padding:8px 16px;border-radius:9px;cursor:pointer}
+.tabs button[aria-selected="true"]{background:var(--card);color:var(--ink);box-shadow:var(--shadow)}
+button:focus-visible,a:focus-visible,input:focus-visible{outline:3px solid var(--hl-deep);outline-offset:2px}
+.searchbar{position:sticky;top:0;z-index:5;background:var(--paper);padding:8px 0}
+.search{width:100%;font:500 16px 'Onest',sans-serif;color:var(--ink);background:var(--card);border:1px solid var(--line);border-radius:14px;padding:13px 16px 13px 44px;
+  background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='20' height='20' fill='none' stroke='%237A869E' stroke-width='2' stroke-linecap='round'%3E%3Ccircle cx='9' cy='9' r='6'/%3E%3Cpath d='m14 14 4 4'/%3E%3C/svg%3E");
+  background-repeat:no-repeat;background-position:14px 50%}
+.filters{display:grid;gap:10px;margin:8px 0 18px}
+.frow{display:flex;gap:10px;align-items:baseline;min-width:0}
+.flabel{flex:0 0 86px;font-size:12px;text-transform:uppercase;letter-spacing:.06em;color:var(--ink-soft);font-weight:600}
+.chips{display:flex;flex-wrap:wrap;gap:6px;min-width:0}
+.chip{border:1px solid var(--line);background:var(--card);color:var(--ink);font:500 13.5px 'Onest',sans-serif;padding:5px 11px;border-radius:999px;cursor:pointer}
+.chip[aria-pressed="true"]{background:var(--ink);color:#fff;border-color:var(--ink)}
+.chip .n{opacity:.55;font-variant-numeric:tabular-nums;margin-left:3px}
+.chips.long .chip:nth-child(n+13){display:none}
+.chips.long.open .chip{display:inline-block}
+.chip.toggle{border-style:dashed;color:var(--ink-soft)}
+.meta{display:flex;justify-content:space-between;align-items:center;gap:10px;margin-bottom:12px;color:var(--ink-soft);font-size:14px;flex-wrap:wrap}
+.reset{border:0;background:none;color:var(--ink-soft);text-decoration:underline;font:inherit;cursor:pointer}
+.grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(230px,1fr));gap:12px}
+.card{display:flex;flex-direction:column;gap:8px;text-align:left;background:var(--card);border:1px solid var(--line);border-radius:16px;padding:16px;cursor:pointer;color:inherit;font:inherit;transition:transform .15s,border-color .15s}
+.card:hover{transform:translateY(-2px);border-color:var(--ink-soft)}
+.card h3{font-weight:700;font-size:15.5px;line-height:1.3;margin:0;overflow-wrap:anywhere}
+.card .src{font-size:13px;color:var(--ink-soft);overflow-wrap:anywhere}
+.tags{display:flex;flex-wrap:wrap;gap:4px}
+.tag{font-size:12px;font-weight:600;background:var(--chip);color:var(--ink-soft);padding:2px 8px;border-radius:6px}
+.tag.lvl{background:var(--hl);color:var(--ink)}
+.tag.new{background:#DDF3E7;color:#166B44}
+.fmts{display:flex;flex-wrap:wrap;gap:4px;margin-top:auto;padding-top:4px}
+.fmt{font:700 10.5px 'Onest',sans-serif;letter-spacing:.04em;color:#fff;padding:2px 6px;border-radius:5px;white-space:nowrap}
+.fmt.pdf{background:var(--pdf)}.fmt.word{background:var(--doc)}.fmt.slides{background:var(--ppt)}.fmt.audio{background:var(--aud)}
+.fmt.video{background:var(--vid)}.fmt.image{background:var(--img)}.fmt.excel{background:#1F8A4C}.fmt.other{background:var(--oth)}
+.more{display:block;margin:18px auto 0;border:1px solid var(--line);background:var(--card);color:var(--ink);font:600 14.5px 'Onest',sans-serif;padding:10px 20px;border-radius:12px;cursor:pointer}
+.empty{background:var(--card);border:1px dashed var(--line);border-radius:16px;padding:28px;text-align:center;color:var(--ink-soft)}
+.crumbs{display:flex;flex-wrap:wrap;gap:4px;align-items:center;font-size:14px;margin:4px 0 14px}
+.crumbs button{border:0;background:none;color:var(--ink-soft);font:inherit;cursor:pointer;padding:2px 4px;border-radius:6px;text-align:left}
+.crumbs button:last-child{color:var(--ink);font-weight:700}
+.crumbs span{color:var(--ink-soft)}
+.list{background:var(--card);border:1px solid var(--line);border-radius:16px;overflow:hidden}
+.row{display:flex;align-items:center;gap:14px;width:100%;text-align:left;border:0;border-top:1px solid var(--line);background:none;color:inherit;font:inherit;padding:12px 16px;cursor:pointer}
+.row:first-child{border-top:0}
+.row:hover{background:var(--chip)}
+.row .nm{flex:1;min-width:0;font-weight:500;overflow-wrap:anywhere}
+.row .ct{font-size:13px;color:var(--ink-soft);font-variant-numeric:tabular-nums;white-space:nowrap}
+.ico{flex:0 0 34px;height:26px;border-radius:4px 4px 6px 6px;background:var(--folder);position:relative}
+.ico::before{content:"";position:absolute;left:0;top:-4px;width:14px;height:6px;border-radius:3px 3px 0 0;background:var(--folder)}
+.ico.lesson{background:var(--hl)}.ico.lesson::before{background:var(--hl)}
+.row .fmt{flex:0 0 auto;min-width:46px;text-align:center}
+.shade{position:fixed;inset:0;background:var(--shade);z-index:20}
+.sheet{position:fixed;top:0;right:0;bottom:0;width:min(820px,100%);background:var(--card);z-index:21;display:flex;flex-direction:column;padding:18px 20px;box-shadow:var(--shadow);overflow:auto}
+.sh-top{display:flex;justify-content:space-between;gap:12px;align-items:flex-start}
+.sheet h2{font-family:'Unbounded',sans-serif;font-weight:600;font-size:21px;line-height:1.25;margin:4px 0 8px;overflow-wrap:anywhere}
+.path{font-size:13px;color:var(--ink-soft);overflow-wrap:anywhere}
+.x{flex:0 0 auto;border:0;background:var(--chip);color:var(--ink);width:38px;height:38px;border-radius:10px;font-size:18px;cursor:pointer}
+.sh-body{display:grid;grid-template-columns:250px 1fr;gap:16px;margin-top:16px;flex:1;min-height:0}
+.files{display:flex;flex-direction:column;gap:6px;min-width:0}
+.file{display:flex;align-items:center;gap:10px;border:1px solid var(--line);background:var(--card);border-radius:12px;padding:10px;cursor:pointer;text-align:left;font:inherit;color:inherit}
+.file[aria-current="true"]{border-color:var(--ink);box-shadow:inset 0 0 0 1px var(--ink)}
+.file .fn{flex:1;min-width:0;font-size:14px;overflow-wrap:anywhere}
+.file .sz{font-size:12px;color:var(--ink-soft);white-space:nowrap}
+.btn{display:inline-flex;align-items:center;justify-content:center;gap:8px;border:0;font:700 14.5px 'Onest',sans-serif;padding:11px 16px;border-radius:12px;cursor:pointer;text-decoration:none}
+.btn.y{background:var(--hl);color:var(--ink)}
+.btn.g{background:var(--chip);color:var(--ink)}
+.viewer{min-width:0;display:flex;flex-direction:column;gap:10px}
+.vbox{background:var(--paper);border:1px solid var(--line);border-radius:12px;min-height:240px;display:flex;align-items:center;justify-content:center;text-align:center;padding:18px;color:var(--ink-soft)}
+.viewer iframe{width:100%;height:min(70vh,820px);border:1px solid var(--line);border-radius:10px;background:#fff}
+.viewer img,.viewer video{max-width:100%;border-radius:10px;border:1px solid var(--line)}
+.viewer audio{width:100%}
+.vnote{font-size:13px;color:var(--ink-soft);margin:0}
+.vbtns{display:flex;flex-wrap:wrap;gap:8px}
+.toast{position:fixed;left:50%;bottom:22px;transform:translateX(-50%);background:var(--ink);color:#fff;padding:12px 18px;border-radius:12px;font-size:14px;z-index:40;max-width:calc(100% - 32px);text-align:center}
+.loading{color:var(--ink-soft);padding:30px 0}
+@media (max-width:680px){.sh-body{grid-template-columns:1fr}.frow{flex-direction:column;gap:6px}.flabel{flex:none}.viewer iframe{height:60vh}}
+@media (prefers-reduced-motion:reduce){*{transition:none!important}}
+[hidden]{display:none!important}
 </style>
 </head>
 <body>
+<div class="wrap">
+  <a class="back" href="/">← egerepetit.ru</a>
+  <h1>База материалов</h1>
+  <p class="lede">Готовые уроки, карточки, пособия и пробники. Здесь виден весь состав базы:
+     ищите по названию, смотрите по папкам и фильтрам. Скачивание — для участниц клуба.</p>
 
-<header>
-  <div class="head-inner">
-    <a class="back" href="/">← egerepetit.ru</a>
-    <h1>База материалов клуба</h1>
-    <p class="lede">Готовые материалы к урокам английского: пособия, практикумы, разборы и тренажёры
-       по разделам ЕГЭ и ОГЭ. Всё разложено по темам — открыли нужную папку и взяли на урок.</p>
-    <a class="join" id="joinTop" href="https://vk.ru/egerepetit?w=donut_payment-161114777&amp;levelId=986"
-       target="_blank" rel="noopener">Вступить в клуб</a>
+  <div class="promo">
+    <div>
+      <b>Это витрина базы.</b> Состав настоящий и обновляется вместе с клубом —
+      можно заранее посмотреть, что есть по вашей теме. Файлы открываются и скачиваются
+      внутри клуба, а материалы из папки «Бесплатно» можно забрать прямо отсюда.
+      <span class="pnums" id="pnums"></span>
+    </div>
+    <a class="btn y" id="joinTop" target="_blank" rel="noopener">Вступить в клуб</a>
   </div>
-</header>
 
-<main>
-  <div class="numbers" id="numbers" hidden>
-    <div class="num"><b id="nLessons">—</b><span>материалов</span></div>
-    <div class="num"><b id="nFiles">—</b><span>файлов</span></div>
-    <div class="num"><b id="nGb">—</b><span>гигабайт</span></div>
+  <div class="tabs" role="tablist">
+    <button role="tab" id="tab-search" aria-selected="true">Поиск и фильтры</button>
+    <button role="tab" id="tab-folders" aria-selected="false">Папками</button>
   </div>
-  <p class="updated hidden" id="updated"></p>
 
-  <section id="freeBlock" hidden>
-    <h2>Попробовать бесплатно</h2>
-    <p class="sub">Эти материалы можно скачать прямо отсюда, без регистрации и входа в клуб.</p>
-    <div class="free"><ul id="freeList"></ul></div>
+  <p class="loading" id="loading">Загружаю каталог…</p>
+
+  <section id="v-search" hidden>
+    <div class="searchbar"><input class="search" id="q" type="search" placeholder="Например: past simple, autumn, family" autocomplete="off" aria-label="Поиск по материалам"></div>
+    <div class="filters" id="filters"></div>
+    <div class="meta"><span id="count"></span><button class="reset" id="reset" hidden>Сбросить фильтры</button></div>
+    <div class="grid" id="grid"></div>
+    <button class="more" id="more" hidden>Показать ещё</button>
   </section>
 
-  <section id="secBlock" hidden>
-    <h2>Что внутри</h2>
-    <p class="sub">Разделы базы и сколько в каждом материалов. Список живой — он собирается
-       из самой базы, а не написан руками.</p>
-    <div class="sections" id="sections"></div>
-    <p class="sub" style="margin-top:14px">
-      <a class="join" href="/club/library/">Посмотреть всю базу целиком →</a>
-    </p>
-    <p class="sub">Откроется та же страница, что видят участницы: поиск, фильтры, папки и все названия
-       материалов. Скачивание и просмотр — внутри клуба, кроме папки «Бесплатно».</p>
+  <section id="v-folders" hidden>
+    <nav class="crumbs" id="crumbs" aria-label="Путь"></nav>
+    <div class="list" id="list"></div>
   </section>
-
-  <p class="note" id="note">Загружаю состав базы…</p>
 
   <div class="cta">
-    <h2 style="margin-top:0">Как получить доступ</h2>
-    <p>Клуб — это подписка ВКонтакте. Внутри: вся база материалов, банк заданий ФИПИ
+    <h2>Как получить доступ</h2>
+    <p>Клуб — это подписка ВКонтакте. Внутри: вся база материалов целиком, банк заданий ФИПИ
        для ОГЭ и ЕГЭ с автопроверкой, тренажёры устной части и разборы.
        Доступ открывается сразу после оформления.</p>
-    <a class="join" href="https://vk.ru/egerepetit?w=donut_payment-161114777&amp;levelId=986"
-       target="_blank" rel="noopener">Вступить в клуб</a>
+    <a class="btn y" id="joinBottom" target="_blank" rel="noopener">Вступить в клуб</a>
   </div>
+</div>
 
-  <footer>ЕГЭ и ОГЭ Английский · <a href="https://vk.com/egerepetit" target="_blank" rel="noopener">@egerepetit</a></footer>
-</main>
+<div class="shade" id="shade" hidden></div>
+<aside class="sheet" id="sheet" hidden role="dialog" aria-modal="true" aria-labelledby="sh-title">
+  <div class="sh-top">
+    <div style="min-width:0"><div class="path" id="sh-path"></div><h2 id="sh-title"></h2><div class="tags" id="sh-tags"></div></div>
+    <button class="x" id="sh-close" aria-label="Закрыть">✕</button>
+  </div>
+  <div class="sh-body">
+    <div class="files"><div id="sh-files" style="display:flex;flex-direction:column;gap:6px"></div>
+      <a class="btn g" id="sh-zip" style="margin-top:6px">Скачать урок целиком (ZIP)</a></div>
+    <div class="viewer" id="sh-view"></div>
+  </div>
+</aside>
+<div class="toast" id="toast" hidden></div>
 
 <script>
-"use strict";
-var CLUB = "https://club.tatnet.app";
-var $ = function (id) { return document.getElementById(id); };
-
-function plural(n, a, b, c) {
-  var x = n % 10, y = n % 100;
-  return (x === 1 && y !== 11) ? a : ((x >= 2 && x <= 4 && !(y > 10 && y < 20)) ? b : c);
+(function(){
+const $ = id => document.getElementById(id);
+const esc = t => String(t).replace(/[&<>"]/g, c => ({"&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;"}[c]));
+const LEVELS = ["A1","A2","B1","B2","C1","C2"];
+const EXAMS = ["ЕГЭ","ОГЭ","ВПР","FCE","CAE","KET","PET","IELTS","TOEFL"];
+const SOURCE_SECTIONS = ["ГОТОВЫЕ УРОКИ"];          // в каких разделах подпапки — это «Источник»
+const FMT = { pdf:["pdf","PDF"], doc:["word","Word"], docx:["word","Word"], odt:["word","Word"], rtf:["word","Word"],
+  ppt:["slides","Слайды"], pptx:["slides","Слайды"], odp:["slides","Слайды"], xls:["excel","Excel"], xlsx:["excel","Excel"],
+  mp3:["audio","Аудио"], m4a:["audio","Аудио"], wav:["audio","Аудио"], ogg:["audio","Аудио"],
+  mp4:["video","Видео"], mov:["video","Видео"], webm:["video","Видео"], jpg:["image","Картинка"], jpeg:["image","Картинка"], png:["image","Картинка"], gif:["image","Картинка"], webp:["image","Картинка"] };
+const fmtOf = name => FMT[(name.split(".").pop() || "").toLowerCase()] || ["other","Файл"];
+const FMT_LABEL = { pdf:"PDF", word:"Word", slides:"Слайды", excel:"Excel", audio:"Аудио", video:"Видео", image:"Картинка", other:"Другое" };
+const KEEP = new Set(EXAMS.concat(["ИИ","AI","ESL","ENG"]));
+// «ПОСОБИЯ ЕГЭ,ОГЭ,FCE» → «Пособия ЕГЭ, ОГЭ, FCE»: заглавные буквы оставляем только у аббревиатур
+const prettyTop = s => s !== s.toUpperCase() || !/[A-ZА-ЯЁ]/.test(s) ? s
+  : s.replace(/,(?=\S)/g, ", ").replace(/[A-ZА-ЯЁ]+/g, (w, i) => KEEP.has(w) ? w : (i === 0 ? w.charAt(0) + w.slice(1).toLowerCase() : w.toLowerCase()));
+const bare = n => n.replace(/\.[^.]+$/, "").replace(/_/g, " ").replace(/\s+/g, " ").trim();
+// название на карточке: без «+» в начале, без «.pdf» у папок-уроков, «Slova-cherez-defis» → «Slova cherez defis»
+const EXT = /\.(pdf|docx?|pptx?|ppsx?|odp|odt|xlsx?|mp3|m4a|wav|ogg|mp4|mov|webm|jpe?g|png|gif|webp|zip|rar)$/i;
+const tidy = n => {
+  let t = n.replace(EXT, "").replace(/^[\s+]+/, "").replace(/_/g, " ");
+  if (!/\s/.test(t) && /[A-Za-zА-Яа-яЁё]-[A-Za-zА-Яа-яЁё]/.test(t)) t = t.replace(/-/g, " ");
+  return t.replace(/\s+/g, " ").trim() || n;
+};
+const mb = b => b >= 1e9 ? (b/1e9).toFixed(1).replace(".",",")+" ГБ" : b >= 1e6 ? (b/1e6).toFixed(b<1e7?1:0).replace(".",",")+" МБ" : Math.max(1,Math.round(b/1e3))+" КБ";
+function levelsOf(str){
+  const s = str.toUpperCase();
+  const m = s.match(/(?:^|[^A-Z0-9])([ABC][12])\s*[-–+]\s*([ABC][12])(?![0-9])/);
+  if (m){ const a = LEVELS.indexOf(m[1]), b = LEVELS.indexOf(m[2]); if (a>=0 && b>=a) return LEVELS.slice(a,b+1); }
+  const one = s.match(/(?:^|[^A-Z0-9])([ABC][12])(?![0-9])/); return one ? [one[1]] : [];
 }
-function fmt(n) { return String(n).replace(/\B(?=(\d{3})+(?!\d))/g, " "); }
-function esc(s) { return String(s).replace(/[&<>]/g, function (c) {
-  return { "&": "&amp;", "<": "&lt;", ">": "&gt;" }[c]; }); }
+const lvText = lv => lv.length ? (lv.length > 1 ? lv[0] + "–" + lv[lv.length-1] : lv[0]) : "";
 
-function render(d) {
-  $("nLessons").textContent = fmt(d.totals.lessons);
-  $("nFiles").textContent = fmt(d.totals.files);
-  $("nGb").textContent = String(d.totals.gb).replace(".", ",");
-  $("numbers").hidden = false;
-  if (d.updated) {
-    var dt = new Date(d.updated);
-    $("updated").textContent = "Состав базы на " + dt.toLocaleDateString("ru-RU",
-      { day: "numeric", month: "long", year: "numeric" });
-    $("updated").classList.remove("hidden");
+const CLUB = "https://club.tatnet.app";
+const JOIN = "https://vk.ru/egerepetit?w=donut_payment-161114777&levelId=986";
+let FREE = "", FREE_SEC = "";                   // папка с бесплатными материалами и её название в фильтре
+let ITEMS = [], TREE = null;
+const st = { q:"", section:new Set(), source:new Set(), level:new Set(), exam:new Set(), format:new Set(), shown:24, cwd:[], open:new Set() };
+const KEYS = ["section","source","level","exam","format"];
+
+function prepare(c){
+  const now = Date.now();
+  FREE = c.free || ""; FREE_SEC = FREE ? prettyTop(FREE) : "";
+  ITEMS = c.items.map(it => {
+    const path = c.paths[it.p] ? c.paths[it.p].split("/") : [];
+    const dir = c.paths[it.d];
+    const all = path.concat(it.n);
+    let levels = []; for (const p of all){ const l = levelsOf(p); if (l.length) levels = l; }
+    const upAll = all.slice(1).join(" ").toUpperCase();     // название раздела не учитываем: «Пособия ЕГЭ,ОГЭ,FCE…» — это про все экзамены сразу
+    const exams = EXAMS.filter(e => new RegExp("(^|[^A-ZА-ЯЁ])" + e + "($|[^A-ZА-ЯЁ])").test(upAll));
+    const files = it.f.map(f => ({ name:f[0], size:f[1], prev:!!f[2], key:(dir ? dir + "/" : "") + f[0] }));
+    return { name: tidy(it.l ? it.n : bare(it.n)), raw: it.n, lesson: !!it.l, path, dir, files,
+      free: !!FREE && path[0] === FREE,
+      section: path.length ? prettyTop(path[0]) : "Без раздела",
+      source: SOURCE_SECTIONS.includes(path[0]) && path[1] ? path[1] : null,
+      levels, exams, formats: [...new Set(files.map(f => fmtOf(f.name)[0]))],
+      fresh: now - it.t < 14 * 864e5, text: all.join(" ").toLowerCase() };
+  });
+  TREE = { dirs:new Map(), items:[] };
+  for (const it of ITEMS){
+    let n = TREE;
+    for (const p of it.path){ if (!n.dirs.has(p)) n.dirs.set(p, { dirs:new Map(), items:[] }); n = n.dirs.get(p); }
+    n.items.push(it);
   }
+  const nf = ITEMS.reduce((a, it) => a + it.files.length, 0);
+  const nb = ITEMS.reduce((a, it) => a + it.files.reduce((x, f) => x + f.size, 0), 0);
+  const num = n => n.toLocaleString("ru-RU");
+  $("pnums").textContent = "Сейчас в базе: " + num(ITEMS.length) + " " + plural(ITEMS.length, "материал", "материала", "материалов")
+    + " · " + num(nf) + " " + plural(nf, "файл", "файла", "файлов")
+    + " · " + (Math.round(nb / 1e8) / 10).toLocaleString("ru-RU") + " ГБ";
+}
+function plural(n, one, few, many){
+  const a = n % 10, b = n % 100;
+  return a === 1 && b !== 11 ? one : a >= 2 && a <= 4 && (b < 10 || b >= 20) ? few : many;
+}
 
-  if (d.free && d.free.length) {
-    $("freeList").innerHTML = d.free.map(function (it) {
-      var url = function (name) {
-        return CLUB + "/showcase/file?k=" + encodeURIComponent((it.d ? it.d + "/" : "") + name);
-      };
-      if (it.f.length === 1) {       // один файл — название и есть ссылка
-        return '<li><span class="nm"><a class="dl" href="' + url(it.f[0].n) + '">' +
-               esc(it.n) + "</a></span></li>";
+/* ---------- поиск и фильтры ---------- */
+function matches(it, skip){
+  if (st.q){ for (const w of st.q.toLowerCase().split(/\s+/).filter(Boolean)) if (!it.text.includes(w)) return false; }
+  if (skip!=="section" && st.section.size && !st.section.has(it.section)) return false;
+  if (skip!=="source" && st.source.size && !st.source.has(it.source)) return false;
+  if (skip!=="level" && st.level.size && !it.levels.some(v => st.level.has(v))) return false;
+  if (skip!=="exam" && st.exam.size && !it.exams.some(v => st.exam.has(v))) return false;
+  if (skip!=="format" && st.format.size && !it.formats.some(v => st.format.has(v))) return false;
+  return true;
+}
+function renderFilters(){
+  const coll = new Intl.Collator("ru", { numeric:true });
+  const groups = [
+    ["section","Раздел", null, it => [it.section]],
+    ["source","Источник", null, it => it.source ? [it.source] : []],
+    ["level","Уровень", LEVELS, it => it.levels],
+    ["exam","Экзамен", EXAMS, it => it.exams],
+    ["format","Формат", Object.keys(FMT_LABEL), it => it.formats]
+  ];
+  $("filters").innerHTML = groups.map(([key,label,order,get]) => {
+    const pool = ITEMS.filter(it => matches(it, key));
+    const counts = new Map();
+    for (const it of pool) for (const v of get(it)) counts.set(v, (counts.get(v)||0)+1);
+    for (const v of st[key]) if (!counts.has(v)) counts.set(v, 0);
+    const vals = order ? order.filter(v => counts.has(v)) : [...counts.keys()].sort(coll.compare);
+    if (!vals.length) return "";
+    const long = vals.length > 12;
+    const chips = vals.map(v => `<button class="chip${key === "section" && v === FREE_SEC ? " free" : ""}" data-k="${key}" data-v="${esc(v)}" aria-pressed="${st[key].has(v)}">${esc(key==="format" ? FMT_LABEL[v] : v)}<span class="n">${counts.get(v)}</span></button>`).join("")
+      + (long ? `<button class="chip toggle" data-more="${key}">${st.open.has(key) ? "Свернуть" : "Ещё " + (vals.length - 12)}</button>` : "");
+    return `<div class="frow"><span class="flabel">${label}</span><div class="chips${long ? " long" : ""}${st.open.has(key) ? " open" : ""}">${chips}</div></div>`;
+  }).join("");
+}
+function card(it, i){
+  const lv = lvText(it.levels);
+  return `<button class="card" data-i="${i}">
+    <span class="src">${esc(it.source || it.path.slice(1).join(" › ") || it.section)}</span>
+    <h3>${esc(it.name)}</h3>
+    <span class="tags">${it.free ? '<span class="tag free">Бесплатно</span>' : ""}${it.fresh ? '<span class="tag new">Новое</span>' : ""}${lv ? `<span class="tag lvl">${lv}</span>` : ""}${it.exams.map(e => `<span class="tag">${e}</span>`).join("")}${it.source ? `<span class="tag">${esc(it.section)}</span>` : ""}</span>
+    <span class="fmts">${it.formats.map(f => `<span class="fmt ${f}">${FMT_LABEL[f]}</span>`).join("")}</span>
+  </button>`;
+}
+let RES = [];
+function renderSearch(){
+  renderFilters();
+  RES = ITEMS.filter(it => matches(it));
+  const any = st.q || KEYS.some(k => st[k].size);
+  $("count").textContent = `Найдено: ${RES.length} из ${ITEMS.length}`;
+  $("reset").hidden = !any;
+  $("grid").innerHTML = RES.length ? RES.slice(0, st.shown).map((it,i) => card(it,i)).join("")
+    : `<div class="empty" style="grid-column:1/-1">Ничего не нашлось. Попробуйте другое слово или уберите часть фильтров.</div>`;
+  $("more").hidden = RES.length <= st.shown;
+}
+
+/* ---------- папками ---------- */
+function nodeAt(path){ let n = TREE; for (const p of path){ n = n.dirs.get(p); if (!n) return null; } return n; }
+function countIn(n){ let c = n.items.length; for (const d of n.dirs.values()) c += countIn(d); return c; }
+function renderFolders(){
+  let node = nodeAt(st.cwd); if (!node){ st.cwd = []; node = TREE; }
+  $("crumbs").innerHTML = [`<button data-d="0">База материалов</button>`]
+    .concat(st.cwd.map((p,i) => `<span>›</span><button data-d="${i+1}">${esc(p)}</button>`)).join("");
+  const coll = new Intl.Collator("ru", { numeric:true });
+  const free = n => !st.cwd.length && FREE && n === FREE;            // «Бесплатно» — первой строкой
+  const dirs = [...node.dirs.keys()].sort((a, b) => free(a) !== free(b) ? (free(a) ? -1 : 1) : coll.compare(a, b)).map(name => {
+    const n = countIn(node.dirs.get(name));
+    return `<button class="row${free(name) ? " free" : ""}" data-dir="${esc(name)}"><span class="ico" aria-hidden="true"></span><span class="nm">${esc(name)}</span><span class="ct">${n} ${n%10===1&&n%100!==11?"материал":n%10>=2&&n%10<=4&&(n%100<12||n%100>14)?"материала":"материалов"}</span></button>`;
+  });
+  const items = node.items.map((it, j) => it.lesson
+    ? `<button class="row" data-it="${j}"><span class="ico lesson" aria-hidden="true"></span><span class="nm">${esc(it.raw)}</span><span class="ct">${it.files.length} ${it.files.length===1?"файл":it.files.length<5?"файла":"файлов"}</span></button>`
+    : `<button class="row" data-it="${j}"><span class="fmt ${fmtOf(it.raw)[0]}">${fmtOf(it.raw)[1]}</span><span class="nm">${esc(it.raw)}</span><span class="ct">${mb(it.files[0].size)}</span></button>`);
+  $("list").innerHTML = dirs.concat(items).join("") || `<div class="empty" style="border:0">Папка пуста.</div>`;
+}
+
+/* ---------- урок: файлы, просмотр, скачивание ---------- */
+let cur = null, lastFocus = null;
+function openItem(it){
+  cur = it; lastFocus = document.activeElement;
+  $("sh-path").textContent = it.path.join(" › ");
+  $("sh-title").textContent = it.name;
+  const lv = lvText(it.levels);
+  $("sh-tags").innerHTML = (lv ? `<span class="tag lvl">${lv}</span>` : "") + it.exams.map(e => `<span class="tag">${e}</span>`).join("") + (it.source ? `<span class="tag">${esc(it.source)}</span>` : "");
+  $("sh-files").innerHTML = it.files.map((f,i) => { const [c,l] = fmtOf(f.name);
+    return `<button class="file" data-f="${i}"><span class="fmt ${c}">${l}</span><span class="fn">${esc(f.name)}</span><span class="sz">${mb(f.size)}</span></button>`; }).join("");
+  const zip = $("sh-zip");
+  zip.hidden = true;                      // архивом отдаём только внутри клуба
+  zip.textContent = "Скачать урок целиком (ZIP, " + mb(it.files.reduce((a,f) => a + f.size, 0)) + ")";
+  $("shade").hidden = false; $("sheet").hidden = false; document.body.style.overflow = "hidden";
+  pickFile(0);
+  $("sh-close").focus();
+}
+const CAN_VIEW = new Set(["pdf","image","audio","video","word","slides","excel"]);
+function pickFile(i){
+  const f = cur.files[i], [c] = fmtOf(f.name);
+  document.querySelectorAll("#sh-files .file").forEach((b,j) => b.setAttribute("aria-current", j===i));
+  const dl = CLUB + "/showcase/file?k=" + encodeURIComponent(f.key);
+  const canView = CAN_VIEW.has(c);
+  $("sh-view").innerHTML = `<div class="vbox" id="vbox">${cur.free ? (canView ? `Нажмите «Посмотреть», чтобы открыть файл здесь.<br>${esc(f.name)} · ${mb(f.size)}` : `Этот файл можно скачать.<br>${esc(f.name)} · ${mb(f.size)}`) : `<div class="lockbox"><b>${esc(f.name)}</b> · ${mb(f.size)}<br>Этот материал открывается и скачивается внутри клуба.</div>`}</div>
+    <div class="vbtns">${cur.free
+      ? `${canView ? `<button class="btn g" id="vbtn" data-f="${i}">Посмотреть</button>` : ""}<a class="btn y" href="${dl}">Скачать бесплатно</a>`
+      : `<a class="btn y" href="${JOIN}" target="_blank" rel="noopener">Открыть в клубе</a>`}</div>
+    <p class="vnote" id="vnote"></p>`;
+}
+async function view(i){
+  const f = cur.files[i], box = $("vbox"), note = $("vnote");
+  box.textContent = "Открываю…";
+  let r;
+  try { const res = await fetch(CLUB + "/showcase/link?k=" + encodeURIComponent(f.key)); r = await res.json(); if (!res.ok) throw new Error(r.error || "Не получилось открыть файл."); }
+  catch (e) { box.textContent = e.message || "Не получилось открыть файл. Проверьте интернет и попробуйте ещё раз."; return; }
+  const u = esc(r.url);
+  if (r.kind === "pdf") { box.outerHTML = `<iframe id="vbox" src="${u}" title="${esc(f.name)}"></iframe>`;
+    note.innerHTML = `Если на телефоне видна только первая страница — <a href="${u}" target="_blank" rel="noopener">откройте файл в новой вкладке</a>.`; }
+  else if (r.kind === "image") box.outerHTML = `<img id="vbox" src="${u}" alt="${esc(f.name)}">`;
+  else if (r.kind === "audio") box.outerHTML = `<audio id="vbox" controls preload="metadata" src="${u}"></audio>`;
+  else if (r.kind === "video") box.outerHTML = `<video id="vbox" controls preload="metadata" src="${u}"></video>`;
+  else if (r.kind === "office") { box.outerHTML = `<iframe id="vbox" src="https://view.officeapps.live.com/op/embed.aspx?src=${encodeURIComponent(r.url)}" title="${esc(f.name)}"></iframe>`;
+    note.textContent = "Просмотр Word и презентаций открывается через сервис Microsoft и может грузиться несколько секунд. Если не открылось — скачайте файл."; }
+  else box.textContent = "Этот файл можно только скачать.";
+}
+function closeItem(){ $("shade").hidden = true; $("sheet").hidden = true; $("sh-view").innerHTML = ""; document.body.style.overflow = ""; cur = null; if (lastFocus) lastFocus.focus(); }
+let tt; function toast(t){ $("toast").textContent = t; $("toast").hidden = false; clearTimeout(tt); tt = setTimeout(() => $("toast").hidden = true, 3500); }
+
+/* ---------- события ---------- */
+let qt; $("q").addEventListener("input", e => { clearTimeout(qt); qt = setTimeout(() => { st.q = e.target.value.trim(); st.shown = 24; renderSearch(); }, 150); });
+$("filters").addEventListener("click", e => {
+  const m = e.target.closest("[data-more]"); if (m){ const k = m.dataset.more; st.open.has(k) ? st.open.delete(k) : st.open.add(k); return renderFilters(); }
+  const b = e.target.closest(".chip"); if (!b) return;
+  const s = st[b.dataset.k]; s.has(b.dataset.v) ? s.delete(b.dataset.v) : s.add(b.dataset.v);
+  st.shown = 24; renderSearch();
+});
+$("reset").addEventListener("click", () => { st.q = ""; $("q").value = ""; KEYS.forEach(k => st[k].clear()); renderSearch(); });
+$("more").addEventListener("click", () => { st.shown += 48; renderSearch(); });
+$("grid").addEventListener("click", e => { const c = e.target.closest(".card"); if (c) openItem(RES[+c.dataset.i]); });
+$("crumbs").addEventListener("click", e => { const b = e.target.closest("button"); if (!b) return; st.cwd = st.cwd.slice(0, +b.dataset.d); renderFolders(); });
+$("list").addEventListener("click", e => {
+  const r = e.target.closest(".row"); if (!r) return;
+  if (r.dataset.dir !== undefined){ st.cwd = st.cwd.concat(r.dataset.dir); renderFolders(); window.scrollTo(0, 0); }
+  else openItem(nodeAt(st.cwd).items[+r.dataset.it]);
+});
+$("sh-files").addEventListener("click", e => { const b = e.target.closest(".file"); if (b) pickFile(+b.dataset.f); });
+$("sh-view").addEventListener("click", e => { const b = e.target.closest("#vbtn"); if (b){ b.remove(); view(+b.dataset.f); } });
+$("sh-close").addEventListener("click", closeItem);
+$("shade").addEventListener("click", closeItem);
+document.addEventListener("keydown", e => { if (e.key === "Escape" && cur) closeItem(); });
+function tab(which){
+  $("tab-search").setAttribute("aria-selected", which === "search");
+  $("tab-folders").setAttribute("aria-selected", which === "folders");
+  $("v-search").hidden = which !== "search"; $("v-folders").hidden = which !== "folders";
+  try { localStorage.setItem("lib-tab", which); } catch (e) {}
+}
+$("tab-search").addEventListener("click", () => tab("search"));
+$("tab-folders").addEventListener("click", () => tab("folders"));
+
+/* Каталог может быть ещё не готов (хранилище иногда отвечает не сразу) —
+   тогда не оставляем пустую страницу, а сами повторяем попытку. */
+$("joinTop").href = JOIN;
+$("joinBottom").href = JOIN;
+
+(function load(attempt){
+  fetch(CLUB + "/showcase/catalog.json", { cache:"no-store" })
+    .then(r => r.json().then(j => { if (!r.ok) throw new Error(j.error || ""); return j; }))
+    .then(c => {
+      prepare(c);
+      $("loading").hidden = true;
+      renderSearch(); renderFolders();
+      let t = "search"; try { if (localStorage.getItem("lib-tab") === "folders") t = "folders"; } catch (e) {}
+      tab(t);
+    })
+    .catch(e => {
+      const why = (e && e.message) || "Не получилось загрузить каталог.";
+      if (attempt < 40) {
+        $("loading").textContent = why + " Пробуем ещё раз, страница заполнится сама…";
+        setTimeout(() => load(attempt + 1), 15000);
+      } else {
+        $("loading").textContent = why + " Загляните, пожалуйста, чуть позже.";
       }
-      var links = it.f.map(function (f) {
-        return '<a class="dl" href="' + url(f.n) + '">' + esc(f.n) + "</a>";
-      }).join("");
-      return '<li><span class="nm">' + esc(it.n) + '</span><div class="dls">' + links + "</div></li>";
-    }).join("");
-    $("freeBlock").hidden = false;
-  }
-
-  if (d.sections && d.sections.length) {
-    $("sections").innerHTML = d.sections.map(function (s) {
-      return '<div class="sec"><h3>' + esc(s.name) + '</h3>' +
-        '<div class="cnt">' + fmt(s.lessons) + " " + plural(s.lessons, "материал", "материала", "материалов") + '</div>' +
-        (s.topics && s.topics.length ? '<p class="topics">' + esc(s.topics.slice(0, 5).join(" · ")) + '…</p>' : '') +
-        '</div>';
-    }).join("");
-    $("secBlock").hidden = false;
-  }
-  $("note").classList.add("hidden");
-}
-
-(function load(attempt) {
-  fetch(CLUB + "/showcase.json", { cache: "no-store" })
-    .then(function (r) { if (!r.ok) throw new Error("нет данных"); return r.json(); })
-    .then(render)
-    .catch(function () {
-      if (attempt < 3) { setTimeout(function () { load(attempt + 1); }, 4000); return; }
-      $("note").textContent = "Состав базы сейчас не показать — клубный сервер не отвечает. " +
-        "Загляните чуть позже или напишите мне во ВКонтакте, расскажу, что внутри.";
     });
 })(0);
+})();
 </script>
 </body>
 </html>
