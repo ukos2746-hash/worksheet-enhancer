@@ -30,6 +30,12 @@ body{margin:0;font-family:'Onest',system-ui,-apple-system,sans-serif;color:var(-
 .lockbox{padding:14px 16px;background:var(--chip);border-radius:12px;font-size:14px;color:var(--ink-soft);line-height:1.55}
 .lockbox b{color:var(--ink)}
 .pnums{display:block;margin-top:8px;color:var(--ink);font-weight:600;font-variant-numeric:tabular-nums}
+.skel{display:grid;grid-template-columns:repeat(auto-fill,minmax(230px,1fr));gap:12px;margin-top:14px}
+.skel i{height:116px;border:1px solid var(--line);border-radius:16px;
+  background:linear-gradient(90deg,var(--card) 0%,#F2F5FC 45%,var(--card) 90%);background-size:220% 100%;
+  animation:sh 1.5s linear infinite}
+@keyframes sh{from{background-position:120% 0}to{background-position:-120% 0}}
+@media (prefers-reduced-motion:reduce){.skel i{animation:none}}
 .cta{margin-top:30px;background:var(--card);border:1px solid var(--line);border-radius:16px;
   box-shadow:var(--shadow);padding:22px}
 .cta h2{font-family:'Unbounded',sans-serif;font-weight:700;font-size:clamp(18px,3.4vw,22px);margin:0 0 8px}
@@ -148,7 +154,8 @@ button:focus-visible,a:focus-visible,input:focus-visible{outline:3px solid var(-
     <button role="tab" id="tab-folders" aria-selected="false">Папками</button>
   </div>
 
-  <p class="loading" id="loading">Загружаю каталог…</p>
+  <p class="loading" id="loading">Загружаю список материалов…</p>
+  <div class="skel" id="skel" aria-hidden="true"><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i></div>
 
   <section id="v-search" hidden>
     <div class="searchbar"><input class="search" id="q" type="search" placeholder="Например: past simple, autumn, family" autocomplete="off" aria-label="Поиск по материалам"></div>
@@ -414,31 +421,37 @@ function tab(which){
 $("tab-search").addEventListener("click", () => tab("search"));
 $("tab-folders").addEventListener("click", () => tab("folders"));
 
-/* Каталог может быть ещё не готов (хранилище иногда отвечает не сразу) —
-   тогда не оставляем пустую страницу, а сами повторяем попытку. */
+/* Каталог берём из копии, которая лежит рядом со страницей на сайте — она отдаётся
+   быстро и всегда. Копию обновляет ночная задача GitHub. Если копии нет (ещё не
+   успела появиться), спрашиваем живой каталог клуба и повторяем, пока не ответит. */
 $("joinTop").href = JOIN;
 $("joinBottom").href = JOIN;
 
-(function load(attempt){
-  fetch(CLUB + "/showcase/catalog.json", { cache:"no-store" })
-    .then(r => r.json().then(j => { if (!r.ok) throw new Error(j.error || ""); return j; }))
-    .then(c => {
-      prepare(c);
-      $("loading").hidden = true;
-      renderSearch(); renderFolders();
-      let t = "search"; try { if (localStorage.getItem("lib-tab") === "folders") t = "folders"; } catch (e) {}
-      tab(t);
-    })
-    .catch(e => {
-      const why = (e && e.message) || "Не получилось загрузить каталог.";
-      if (attempt < 40) {
-        $("loading").textContent = why + " Пробуем ещё раз, страница заполнится сама…";
-        setTimeout(() => load(attempt + 1), 15000);
-      } else {
-        $("loading").textContent = why + " Загляните, пожалуйста, чуть позже.";
-      }
-    });
-})(0);
+function paint(c){
+  prepare(c);
+  $("loading").hidden = true; $("skel").hidden = true;
+  renderSearch(); renderFolders();
+  let t = "search"; try { if (localStorage.getItem("lib-tab") === "folders") t = "folders"; } catch (e) {}
+  tab(t);
+}
+function grab(u, opt){
+  return fetch(u, opt).then(r => r.ok ? r.json()
+    : r.json().catch(() => ({})).then(j => { throw new Error(j.error || ""); }));
+}
+grab("catalog.json", {}).then(paint).catch(() => fromClub(0));
+
+function fromClub(attempt){
+  grab(CLUB + "/showcase/catalog.json", { cache:"no-store" }).then(paint).catch(() => {
+    if (attempt < 40) {
+      $("loading").textContent = "Собираю список материалов…";
+      setTimeout(() => fromClub(attempt + 1), attempt < 3 ? 3000 : 15000);
+    } else {
+      $("loading").textContent = "Список материалов сейчас не загружается — загляните, пожалуйста, чуть позже. "
+        + "А пока можно посмотреть тренажёры на главной.";
+      $("skel").hidden = true;
+    }
+  });
+}
 })();
 </script>
 </body>

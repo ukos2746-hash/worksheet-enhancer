@@ -1,0 +1,39 @@
+name: Копия каталога базы для витрины
+
+# Витрина на /club/ берёт список материалов из файла club/catalog.json —
+# он лежит рядом со страницей и отдаётся мгновенно. Этот файл обновляется
+# отсюда: раз в сутки (и по кнопке «Run workflow») забираем свежий каталог
+# у клуба и коммитим его, если он изменился.
+
+on:
+  schedule:
+    - cron: "23 1 * * *"          # 04:23 по Москве
+  workflow_dispatch:
+
+permissions:
+  contents: write
+
+jobs:
+  snapshot:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: Забрать каталог витрины
+        run: |
+          curl -fsS --compressed --retry 6 --retry-delay 30 --retry-all-errors \
+               --max-time 240 -o /tmp/catalog.json \
+               https://club.tatnet.app/showcase/catalog.json
+          python3 -c "import json;d=json.load(open('/tmp/catalog.json'));assert d.get('items'),'пустой каталог';print('материалов:',len(d['items']))"
+          mkdir -p club && cp /tmp/catalog.json club/catalog.json
+
+      - name: Закоммитить, если изменился
+        run: |
+          if git diff --quiet -- club/catalog.json; then
+            echo "каталог не менялся — коммит не нужен"; exit 0
+          fi
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git add club/catalog.json
+          git commit -m "Копия каталога базы для витрины ($(date -u +%Y-%m-%d))"
+          git push
