@@ -17,7 +17,7 @@ jobs:
   snapshot:
     runs-on: ubuntu-latest
     steps:
-      - uses: actions/checkout@v4
+      - uses: actions/checkout@v5
 
       - name: Забрать каталог витрины
         run: |
@@ -29,11 +29,13 @@ jobs:
 
       - name: Закоммитить, если изменился
         run: |
-          if git diff --quiet -- club/catalog.json; then
+          # git add до проверки: иначе новый (ещё не добавленный) файл
+          # не виден для git diff, и коммит не происходит никогда
+          git add club/catalog.json
+          if git diff --cached --quiet -- club/catalog.json; then
             echo "каталог не менялся — коммит не нужен"; exit 0
           fi
           git config user.name "github-actions[bot]"
           git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
-          git add club/catalog.json
           git commit -m "Копия каталога базы для витрины ($(date -u +%Y-%m-%d))"
           git push
