@@ -115,7 +115,7 @@ function load(i){n=i;v=D[n-1];chk=false;ans=S.get('a'+n,[]);while(ans.length<7)a
  try{history.replaceState(null,'','#'+n)}catch(e){}$('#tk').textContent='Задание 2 · вариант '+n;
  $('#qs').innerHTML=v.s.map((t,i)=>`<div class="st"><p><span class="L">${LET[i]}</span>${esc(t)}</p><div class="opts">${[1,2,3].map(k=>`<button class="o" data-i="${i}" data-k="${k}" aria-pressed="${ans[i]==k}">${k} · ${NM[k]}</button>`).join('')}</div></div>`).join('');
  $('#rs').textContent='';$('#af').innerHTML='';$('#fn').hidden=true;$('#jp').innerHTML='';$('#zones').innerHTML='';
- au.src=files[n]||'https://club.egerepetit.ru/demo/ege/listening-2/'+n+'.mp3';au.playbackRate=rate;upd();chips();$('#pv').disabled=n==1;$('#nx').disabled=n==D.length;scrollTo(0,0)}
+ au.src=files[n]||'audio/'+n+'.mp3';au.playbackRate=rate;upd();chips();$('#pv').disabled=n==1;$('#nx').disabled=n==D.length;scrollTo(0,0)}
 function chips(){const r=S.get('res',{}),d=Object.keys(r).length;$('#sv').textContent=d;$('#tt').textContent=D.length;$('#sb').style.width=100*d/D.length+'%';
  $('#ch').innerHTML=Array.from({length:69},(_,i)=>{const k=i+1;return k<=10?`<button data-n="${k}" class="${k==n?'c':r[k]>=6?'g':r[k]!=null?'p':''}">${k}</button>`:`<button class="locked" type="button" data-locked="${k}" aria-label="Вариант ${k} — доступен в Клубе" title="Вариант ${k} — в Клубе">🔒 ${k}</button>`}).join('')}
 au.onerror=()=>{$('#fn').hidden=false};au.onloadedmetadata=()=>{$('#du').textContent=fmt(au.duration);$('#fn').hidden=true;jumps()};
