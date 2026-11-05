@@ -42,7 +42,7 @@ h1{font-size:clamp(26px,5vw,36px);line-height:1.15;margin:10px 0 6px;letter-spac
 input[type=search]{width:100%;background:var(--sf2);border:1px solid var(--ln);border-radius:10px;padding:8px 12px;margin:6px 0 10px}
 footer{color:var(--mu);font-size:13px;margin-top:28px}
 
-/* Поиск по всем 69 вариантам */
+/* Поиск только по 10 бесплатным вариантам */
 .search-area{position:relative;margin:16px 0 12px}
 .search-line{display:flex;gap:8px;align-items:center}
 .search-line input{margin:0;flex:1;min-width:0;background:var(--sf);border:1px solid var(--ln);border-radius:10px;padding:13px 14px;font-size:14px;outline:none}
@@ -56,6 +56,8 @@ footer{color:var(--mu);font-size:13px;margin-top:28px}
 .search-hit span{display:block;color:var(--fg);font-size:13px;line-height:1.5;overflow-wrap:anywhere}
 .search-hit mark{background:var(--ac);color:var(--acf);border-radius:2px;padding:0 1px}
 .search-empty{color:var(--mu);font-size:13px;margin:5px 0 0}
+
+.ch button.locked{opacity:.66;color:var(--mu);font-size:12px;min-width:54px}.ch button.locked:hover{border-color:var(--ac);opacity:1}
 </style></head><body><div class="w">
 <span class="eb"><i></i>эфир</span>
 <h1>Аудирование ЕГЭ · задание 2</h1>
@@ -84,7 +86,7 @@ footer{color:var(--mu);font-size:13px;margin-top:28px}
  <p>Вы услышите диалог. Определите, какие из утверждений <b>A–G</b> соответствуют содержанию текста (<b>1 – True</b>), какие не соответствуют (<b>2 – False</b>) и о чём в тексте не сказано (<b>3 – Not stated</b>).</p>
  <div id="qs"></div><div class="act"><button class="pn" id="chk">Проверить</button><button class="b" id="clr">Очистить</button><span class="res" id="rs"></span></div></section>
 <div id="af"></div>
-<section class="card" style="text-align:center"><h2>Ещё 59 вариантов — в Клубе преподавателей</h2><p class="sub">Вы изучаете бесплатную версию на 10 вариантов. Полный тренажёр на 69 вариантов доступен участникам Клуба.</p><p><a class="pn" style="display:inline-block;text-decoration:none" href="https://club.egerepetit.ru/">Перейти в Клуб</a></p></section>
+<section class="card" id="demoClubNotice" style="text-align:center"><h2>Ещё 59 вариантов — в Клубе преподавателей</h2><p class="sub">Вы изучаете бесплатную версию на 10 вариантов. Полный тренажёр на 69 вариантов доступен участникам Клуба.</p><p><a class="pn" style="display:inline-block;text-decoration:none" href="https://club.egerepetit.ru/">Перейти в Клуб</a></p></section>
 <div class="nv"><button class="b" id="pv">← Предыдущее</button><button class="b" id="nx">Следующее →</button></div>
 <footer><a href="../">Банк ФИПИ ЕГЭ</a> · <a href="https://egerepetit.ru">egerepetit.ru</a> · Юлия Косенкова, @egerepetit</footer></div>
 <script>
@@ -113,9 +115,9 @@ function load(i){n=i;v=D[n-1];chk=false;ans=S.get('a'+n,[]);while(ans.length<7)a
  try{history.replaceState(null,'','#'+n)}catch(e){}$('#tk').textContent='Задание 2 · вариант '+n;
  $('#qs').innerHTML=v.s.map((t,i)=>`<div class="st"><p><span class="L">${LET[i]}</span>${esc(t)}</p><div class="opts">${[1,2,3].map(k=>`<button class="o" data-i="${i}" data-k="${k}" aria-pressed="${ans[i]==k}">${k} · ${NM[k]}</button>`).join('')}</div></div>`).join('');
  $('#rs').textContent='';$('#af').innerHTML='';$('#fn').hidden=true;$('#jp').innerHTML='';$('#zones').innerHTML='';
- au.src=files[n]||'audio/'+n+'.mp3';au.playbackRate=rate;upd();chips();$('#pv').disabled=n==1;$('#nx').disabled=n==D.length;scrollTo(0,0)}
+ au.src=files[n]||'https://club.egerepetit.ru/demo/ege/listening-2/'+n+'.mp3';au.playbackRate=rate;upd();chips();$('#pv').disabled=n==1;$('#nx').disabled=n==D.length;scrollTo(0,0)}
 function chips(){const r=S.get('res',{}),d=Object.keys(r).length;$('#sv').textContent=d;$('#tt').textContent=D.length;$('#sb').style.width=100*d/D.length+'%';
- $('#ch').innerHTML=D.map(x=>`<button data-n="${x.n}" class="${x.n==n?'c':r[x.n]>=6?'g':r[x.n]!=null?'p':''}">${x.n}</button>`).join('')}
+ $('#ch').innerHTML=Array.from({length:69},(_,i)=>{const k=i+1;return k<=10?`<button data-n="${k}" class="${k==n?'c':r[k]>=6?'g':r[k]!=null?'p':''}">${k}</button>`:`<button class="locked" type="button" data-locked="${k}" aria-label="Вариант ${k} — доступен в Клубе" title="Вариант ${k} — в Клубе">🔒 ${k}</button>`}).join('')}
 au.onerror=()=>{$('#fn').hidden=false};au.onloadedmetadata=()=>{$('#du').textContent=fmt(au.duration);$('#fn').hidden=true;jumps()};
 au.onplay=au.onpause=()=>$('#pp').textContent=au.paused?'▶':'❚❚';
 function upd(){const d=au.duration||0,c=au.currentTime||0,p=d?100*c/d:0;$('#ct').textContent=fmt(c);$('#fl').style.width=p+'%';$('#hd').style.left=p+'%';
@@ -137,7 +139,7 @@ $('#fm').onchange=e=>[...e.target.files].forEach(f=>{const m=f.name.match(/(\d+)
 document.addEventListener('keydown',e=>{if(e.target.closest('input')||e.metaKey||e.ctrlKey)return;
  if(e.key===' '){e.preventDefault();tog()}else if(e.key==='ArrowLeft')seek(au.currentTime-10);else if(e.key==='ArrowRight')seek(au.currentTime+10);
  ;});
-$('#ch').onclick=e=>{const b=e.target.closest('[data-n]');b&&load(+b.dataset.n)};
+$('#ch').onclick=e=>{const locked=e.target.closest('[data-locked]');if(locked){document.getElementById('demoClubNotice').scrollIntoView({behavior:'smooth',block:'center'});return}const b=e.target.closest('[data-n]');b&&load(+b.dataset.n)};
 $('#pv').onclick=()=>n>1&&load(n-1);$('#nx').onclick=()=>n<D.length&&load(n+1);
 $('#qs').onclick=e=>{const b=e.target.closest('.o');if(!b||chk)return;ans[+b.dataset.i]=+b.dataset.k;S.set('a'+n,ans);b.parentNode.querySelectorAll('.o').forEach(x=>x.setAttribute('aria-pressed',x===b))};
 $('#clr').onclick=()=>{ans=Array(7).fill(0);S.set('a'+n,ans);load(n)};
