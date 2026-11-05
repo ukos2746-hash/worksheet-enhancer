@@ -1,0 +1,39 @@
+name: Copy first 10 EGE Listening 2 recordings
+on:
+  workflow_dispatch:
+  push:
+    paths:
+      - '.github/workflows/ege-listening-2-audio.yml'
+permissions:
+  contents: write
+jobs:
+  copy-demo-audio:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - name: Download only variants 1–10 from club audio storage
+        shell: bash
+        run: |
+          set -euo pipefail
+          mkdir -p ege-trainers/listening-2/audio
+          for i in $(seq 1 10); do
+            url="https://club.egerepetit.ru/demo/ege/listening-2/${i}.mp3"
+            dest="ege-trainers/listening-2/audio/${i}.mp3"
+            curl --fail --location --retry 5 --retry-all-errors --retry-delay 4 --max-time 120 --silent --show-error "$url" --output "$dest"
+            test "$(stat -c '%s' "$dest")" -gt 10000
+            if ! file --mime-type "$dest" | grep -Eq 'audio/|application/octet-stream'; then
+              echo "Unexpected audio file type for variant $i"
+              exit 1
+            fi
+          done
+      - name: Commit the 10 public audio files
+        shell: bash
+        run: |
+          set -euo pipefail
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git add ege-trainers/listening-2/audio/
+          if ! git diff --cached --quiet; then
+            git commit -m "Add 10 public EGE Listening Task 2 audio recordings"
+            git push
+          fi
